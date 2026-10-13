@@ -1,0 +1,22 @@
+[
+  { "id": "s01", "text": "Plaza ki second floor, shop 24 ke paas dhuaan hai. Hum 3 log hain.", "expected": { "incidentType": "smoke", "building": null, "floor": "2", "landmark": "shop 24", "peopleReported": 3 } },
+  { "id": "s02", "text": "Fire on ground floor of Saddar Trade Centre near the main stairs!", "expected": { "incidentType": "fire", "building": "Saddar Trade Centre", "floor": "G", "landmark": "main stairs", "peopleReported": null } },
+  { "id": "s03", "text": "Aag lagi hai third floor par, lift ke saamne. 5 log phansay hue hain", "expected": { "incidentType": "fire", "building": null, "floor": "3", "landmark": "lift", "peopleReported": 5 } },
+  { "id": "s04", "text": "دوسری منزل پر دھواں ہے، ہم دکان نمبر 12 میں ہیں", "expected": { "incidentType": "smoke", "building": null, "floor": "2", "landmark": "shop 12", "peopleReported": null } },
+  { "id": "s05", "text": "help", "expected": { "incidentType": null, "building": null, "floor": null, "landmark": null, "peopleReported": null } },
+  { "id": "s06", "text": "Ek aadmi behosh ho gaya hai food court mein, ambulance chahiye", "expected": { "incidentType": "medical", "building": null, "floor": null, "landmark": "food court", "peopleReported": 1 } },
+  { "id": "s07", "text": "Saddar Trade Centre 4th floor stairs blocked, we are 2 people stuck in shop 41", "expected": { "incidentType": "trapped", "building": "Saddar Trade Centre", "floor": "4", "landmark": "shop 41", "peopleReported": 2 } },
+  { "id": "s08", "text": "Smoke coming from parking basement", "expected": { "incidentType": "smoke", "building": null, "floor": "B", "landmark": "parking", "peopleReported": null } },
+  { "id": "s09", "text": "Shop 24 ke paas abhi bhi dhuaan hai, hum 3 nahi 4 log hain", "expected": { "incidentType": "smoke", "building": null, "floor": null, "landmark": "shop 24", "peopleReported": 4 } },
+  { "id": "s10", "text": "Chhat ka hissa gir gaya hai first floor par, kapray wali gali mein", "expected": { "incidentType": "collapse", "building": null, "floor": "1", "landmark": "kapray wali gali", "peopleReported": null } },
+  { "id": "s11", "text": "Mera bhai andar hai, phone nahi utha raha", "expected": { "incidentType": null, "building": null, "floor": null, "landmark": null, "peopleReported": 1 } },
+  { "id": "s12", "text": "Fire alarm baj raha hai lekin aag nazar nahi aa rahi, 2nd floor east side", "expected": { "incidentType": "other", "building": null, "floor": "2", "landmark": "east side", "peopleReported": null } },
+  { "id": "s13", "text": "Bohat saare log teesri manzil par hain, seerhiyon mein dhuaan", "expected": { "incidentType": "smoke", "building": null, "floor": "3", "landmark": "stairs", "peopleReported": null } },
+  { "id": "s14", "text": "Saddar Trade Centre second floor shop 24 smoke, 3 of us here", "expected": { "incidentType": "smoke", "building": "Saddar Trade Centre", "floor": "2", "landmark": "shop 24", "peopleReported": 3 } },
+  { "id": "s15", "text": "Aag bujh gayi hai ground floor wali, ab sirf dhuaan hai", "expected": { "incidentType": "smoke", "building": null, "floor": "G", "landmark": null, "peopleReported": null } },
+  { "id": "s16", "text": "Child separated from parents near escalator, first floor", "expected": { "incidentType": "other", "building": null, "floor": "1", "landmark": "escalator", "peopleReported": 1 } },
+  { "id": "s17", "text": "Bijli chali gayi hai aur andhera hai, 4th floor, 6 log", "expected": { "incidentType": "other", "building": null, "floor": "4", "landmark": null, "peopleReported": 6 } },
+  { "id": "s18", "text": "Kisi ko saans lene mein mushkil ho rahi hai dhuain ki wajah se, shop 7", "expected": { "incidentType": "medical", "building": null, "floor": null, "landmark": "shop 7", "peopleReported": 1 } },
+  { "id": "s19", "text": "jaldi aao", "expected": { "incidentType": null, "building": null, "floor": null, "landmark": null, "peopleReported": null } },
+  { "id": "s20", "text": "Trade centre ke peeche wale gate ke paas wall crack ho gayi, log bahar nikal rahe hain", "expected": { "incidentType": "collapse", "building": null, "floor": null, "landmark": "back gate", "peopleReported": null } }
+]

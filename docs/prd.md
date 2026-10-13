@@ -1,0 +1,46 @@
+# MadadDesk — Product Requirements (hackathon MVP)
+
+**Event:** AI Builder Cup 2026 (JAPAC) · **Theme:** Sustainability & Social Impact
+**Deadline:** 18 Oct 2026 · **Source proposal:** `MadadDesk_Initial_Proposal.pdf`
+
+## Problem
+During a building emergency, a coordinator gets overlapping, incomplete, multilingual messages
+(English / Urdu / Roman Urdu). Floor, shop and people counts are often missing, duplicates and
+contradictions pile up, and nobody has a shared view of who owns which task.
+
+## Users
+| User | Needs |
+|---|---|
+| Occupant / reporter | Send an SOS fast, in any language, and know whether it was delivered |
+| Building coordinator | One verified incident picture; assign agencies; full history |
+| Agency (fire / ambulance / police) | See verified incidents, accept / decline / mark busy |
+
+## MVP scope (must ship)
+1. Text SOS intake with a stable report ID; delivery state is shown honestly (pending / sent / failed).
+2. Gemini extraction: incident type, building, floor, landmark, people, help requested. **Unstated = Unknown.**
+3. Clarification question drafted for missing fields.
+4. Coordinator dashboard (realtime), editable fields, verify → map marker.
+5. "Possibly related" flag (rule: same building + floor/landmark within 15 min). Coordinator decides.
+6. Three seeded agencies: accept / decline / busy; coordinator picks lead + support.
+7. Timeline of every status change.
+8. AI failure → manual fields still work.
+9. **PWA**: installable; app opens offline; reports queue offline and sync when online.
+
+## Out of scope (roadmap slide)
+Push notifications (FCM), geohash agency matching, SMS/call fallback, nearby public alerts,
+history/analytics layers, volunteers, hardware SOS buttons, real agency integration.
+
+## Trust rules (non-negotiable)
+- AI never invents facts and never dispatches. Humans verify, assign and close.
+- Every incident links back to its original report text.
+- Offline ≠ delivered. The UI never shows "sent" before the backend acknowledges.
+- Reporter identity is visible only to coordinators.
+
+## Success targets (on 20 synthetic reports, `npm run eval`)
+- ≥ 90% correct extraction of stated fields
+- 0 invented locations or people counts
+
+## Demo script (3 min)
+Roman Urdu report → extracted card with unknowns → clarification → related-report flag →
+verify → marker on map → agencies notified, one busy → lead + support assigned → update →
+show AI failure falling back to manual entry.

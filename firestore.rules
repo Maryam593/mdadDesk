@@ -1,0 +1,46 @@
+rules_version = '2';
+// Roles come from custom claims set by api/scripts/seed.ts: { role, agencyId }.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function role() { return request.auth != null ? request.auth.token.role : null; }
+    function isCoordinator() { return role() == 'coordinator'; }
+    function isAgency() { return role() == 'agency'; }
+    function onlyChanges(keys) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(keys);
+    }
+
+    match /reports/{id} {
+      // Reporters may be anonymous during the demo. TODO: require anonymous auth + rate limit.
+      allow create: if request.resource.data.text is string
+        && request.resource.data.text.size() <= 2000
+        && request.resource.data.aiStatus == 'pending';
+      allow update: if isCoordinator()
+        || (resource.data.aiStatus == 'pending' && onlyChanges(['aiStatus', 'extraction']));
+      allow read: if isCoordinator();
+    }
+
+    match /incidents/{id} {
+      allow create: if request.resource.data.status == 'reported';
+      allow update: if isCoordinator()
+        || (resource.data.status == 'reported' && onlyChanges([
+          'incidentType', 'building', 'floor', 'landmark', 'peopleReported', 'summary', 'updatedAt']));
+      allow read: if isCoordinator() || (isAgency() && resource.data.status != 'reported');
+
+      match /events/{eventId} {
+        allow read: if isCoordinator() || isAgency();
+        allow create: if request.resource.data.incidentId == id;
+      }
+    }
+
+    match /agencies/{id} {
+      allow read: if request.auth != null;
+      allow update: if isCoordinator() || (isAgency() && request.auth.token.agencyId == id);
+    }
+
+    match /assignments/{id} {
+      allow read, create: if isCoordinator() || isAgency();
+      allow update: if isCoordinator()
+        || (isAgency() && resource.data.agencyId == request.auth.token.agencyId && onlyChanges(['status', 'updatedAt']));
+    }
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+**/node_modules/
+# Keep web/package.json: the npm workspace lockfile needs it
+web/*
+!web/package.json
+docs/
+data/
+**/dist/
+**/.env
+.git/
+*.pdf
