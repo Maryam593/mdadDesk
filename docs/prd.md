@@ -15,7 +15,24 @@ contradictions pile up, and nobody has a shared view of who owns which task.
 | Building coordinator | One verified incident picture; assign agencies; full history |
 | Agency (fire / ambulance / police) | See verified incidents, accept / decline / mark busy |
 
-## MVP scope (must ship)
+## MVP: the help loop (build this first, nothing else until it works)
+The one thing the MVP must prove: **someone reports, and help reaches them — and they can see it coming.**
+
+| # | Who | What happens | Reporter sees |
+|---|---|---|---|
+| 1 | Reporter | Sends SOS: message + building floor/landmark (optional "share my location") | "Sent — waiting for coordinator" |
+| 2 | Coordinator | Sees it instantly on the list and map; taps **Verify** | "Seen and confirmed" |
+| 3 | Coordinator | Taps **Send Fire / Ambulance / Police** | "Help requested" |
+| 4 | Agency | Sees it in their inbox; taps **On the way** | "Fire service on the way" |
+| 5 | Coordinator | Taps **Resolved** after the team confirms | "Closed" |
+
+The reporter keeps a live status page for their report (link stays on their phone, works after reload).
+AI extraction stays in (already working) but is not required for the loop: a report without AI still flows.
+
+**After the loop works**, in this order: follow-up question reply, field editing, related-report flag,
+busy/decline + escalation, lead vs support agencies.
+
+## Full scope (from the proposal)
 1. Text SOS intake with a stable report ID; delivery state is shown honestly (pending / sent / failed).
 2. Gemini extraction: incident type, building, floor, landmark, people, help requested. **Unstated = Unknown.**
 3. Clarification question drafted for missing fields.

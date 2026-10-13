@@ -15,7 +15,10 @@ npm run dev                      # api :8080 + web :5173
 ```
 Without Firebase config the report page still shows the AI preview.
 
-## Google Cloud / Firebase setup (once)
+## Firebase setup (free, no card)
+Follow **[docs/firebase-setup.md](docs/firebase-setup.md)** step by step.
+
+## Google Cloud setup (only if billing is available)
 1. Create a GCP project, enable billing, add a $5 budget alert.
 2. Enable: Cloud Run, Firestore, Generative Language API, Maps JavaScript API.
 3. Firebase console → add the same project → Authentication (Email/Password) + Firestore.

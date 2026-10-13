@@ -1,5 +1,6 @@
 // Creates demo accounts (with role claims) and the three simulated agencies.
-// Needs: `gcloud auth application-default login` and GOOGLE_CLOUD_PROJECT=<project id>.
+// Needs in api/.env: GOOGLE_APPLICATION_CREDENTIALS=service-account.json and GOOGLE_CLOUD_PROJECT=<id>.
+// See docs/firebase-setup.md step 7.
 import { initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
