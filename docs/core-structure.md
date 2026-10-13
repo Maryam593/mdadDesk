@@ -1,6 +1,8 @@
 # Core structure
 
 ## Code rules
+- **Beginner-readable.** A new teammate should understand any file in one read. Plain `for` loops
+  and `if`s over clever one-liners, one property per line, short comments that explain *why*.
 - **Every code file ≤ 60 lines.** Split before it grows.
 - **No repetition.** Reuse a component, hook or service; never copy one.
 - UI primitives live in `web/src/components/ui/`. Feature components never restyle raw HTML
@@ -19,6 +21,7 @@ api/               Express on Cloud Run — Gemini only
 web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/lib/         firebase.ts (offline cache), api.ts (never-throw POST), labels.ts
   src/services/    reports.ts, incidents.ts, events.ts — all Firestore writes
+                   newRecords.ts — starting data for a new report/incident
   src/hooks/       useCollection (realtime), useReportSubmit, useOnline, useAuthUser
   src/components/
     ui/            Button, Card, Badge, Notice, TextField, tone.ts (colours + cx)

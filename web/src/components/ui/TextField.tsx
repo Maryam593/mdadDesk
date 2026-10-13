@@ -1,21 +1,32 @@
-import type { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
+import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
 
-const INPUT = "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-2 focus:outline-brand";
+// Same look for every input box in the app. Change it here to change it everywhere.
+const BOX_STYLE = "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-2 focus:outline-brand";
 
-type InputProps = InputHTMLAttributes<HTMLInputElement> & { label: string; multiline?: false };
-type AreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> & { label: string; multiline: true };
-
-/** Labelled input or textarea — the only form-field component in the app. */
-export function TextField(props: InputProps | AreaProps) {
-  const { label, multiline, ...rest } = props;
+// A label shown above any input.
+function Labelled({ label, children }: { label: string; children: ReactNode }) {
   return (
     <label className="block space-y-1">
       <span className="text-sm font-medium text-slate-700">{label}</span>
-      {multiline ? (
-        <textarea {...(rest as TextareaHTMLAttributes<HTMLTextAreaElement>)} className={INPUT} />
-      ) : (
-        <input {...(rest as InputHTMLAttributes<HTMLInputElement>)} className={INPUT} />
-      )}
+      {children}
     </label>
+  );
+}
+
+// One-line input, e.g. email or password.
+export function TextInput({ label, ...inputProps }: InputHTMLAttributes<HTMLInputElement> & { label: string }) {
+  return (
+    <Labelled label={label}>
+      <input {...inputProps} className={BOX_STYLE} />
+    </Labelled>
+  );
+}
+
+// Multi-line input, e.g. the SOS message.
+export function TextArea({ label, ...areaProps }: TextareaHTMLAttributes<HTMLTextAreaElement> & { label: string }) {
+  return (
+    <Labelled label={label}>
+      <textarea {...areaProps} className={BOX_STYLE} />
+    </Labelled>
   );
 }

@@ -1,9 +1,9 @@
-import { useState, type FormEvent } from "react";
+﻿import { useState, type FormEvent } from "react";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Notice } from "@/components/ui/Notice";
-import { TextField } from "@/components/ui/TextField";
+import { TextInput } from "@/components/ui/TextField";
 import { auth } from "@/lib/firebase";
 import { useAuthUser } from "@/hooks/useAuthUser";
 
@@ -31,8 +31,8 @@ export function LoginPage() {
   return (
     <Card title="Coordinator / agency sign in" className="mx-auto max-w-md">
       <form onSubmit={login} className="space-y-3">
-        <TextField label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <TextField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <TextInput label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <TextInput label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         {error && <Notice tone="danger">{error}</Notice>}
         <Button type="submit">Sign in</Button>
       </form>

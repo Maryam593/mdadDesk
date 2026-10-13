@@ -1,32 +1,31 @@
-import type {
-  ApiResult,
-  ClarifyRequest,
-  ClarifyResponse,
-  ExtractRequest,
-  ExtractResponse,
-} from "@shared";
+import type { ClarifyRequest, ClarifyResponse, ExtractRequest, ExtractResponse } from "@shared";
 import { auth } from "./firebase";
 
 const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
 
-/** POST helper that never throws: network/AI errors come back as `{ ok: false }`. */
-async function post<T extends object>(path: string, body: unknown): Promise<ApiResult<T>> {
+/**
+ * Sends JSON to our API. It never throws:
+ * if anything goes wrong you get { ok: false, error } and the UI falls back to manual entry.
+ */
+async function post(path: string, body: unknown) {
   if (!navigator.onLine) return { ok: false, error: "offline" };
+
   try {
+    const headers: Record<string, string> = { "Content-Type": "application/json" };
     const token = await auth?.currentUser?.getIdToken();
-    const res = await fetch(`${API_URL}${path}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      },
-      body: JSON.stringify(body),
-    });
-    return (await res.json()) as ApiResult<T>;
+    if (token) headers.Authorization = `Bearer ${token}`;
+
+    const res = await fetch(API_URL + path, { method: "POST", headers, body: JSON.stringify(body) });
+    return await res.json();
   } catch (err) {
-    return { ok: false, error: err instanceof Error ? err.message : "network error" };
+    return { ok: false, error: String(err) };
   }
 }
 
-export const extractReport = (req: ExtractRequest) => post(`/extract`, req) as Promise<ExtractResponse>;
-export const clarifyReport = (req: ClarifyRequest) => post(`/clarify`, req) as Promise<ClarifyResponse>;
+export function extractReport(req: ExtractRequest): Promise<ExtractResponse> {
+  return post("/extract", req);
+}
+
+export function clarifyReport(req: ClarifyRequest): Promise<ClarifyResponse> {
+  return post("/clarify", req);
+}

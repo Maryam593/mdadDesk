@@ -1,6 +1,6 @@
-import { useState, type FormEvent } from "react";
+﻿import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { TextField } from "@/components/ui/TextField";
+import { TextArea } from "@/components/ui/TextField";
 
 interface Props {
   onSubmit: (text: string) => void;
@@ -19,8 +19,7 @@ export function ReportForm({ onSubmit, disabled }: Props) {
 
   return (
     <form onSubmit={handle} className="space-y-3">
-      <TextField
-        multiline
+      <TextArea
         label="What is happening and where? (English, اردو, or Roman Urdu)"
         rows={4}
         maxLength={2000}
