@@ -28,6 +28,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
     layout/        AppShell (nav), StatusBanners (offline / config)
     incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, Timeline
     report/        ReportForm, SubmitStatus
+    map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident)
   src/pages/       ReportPage, CoordinatorPage, AgencyPage, LoginPage
 data/              synthetic-reports.json (labelled test set)
 firestore.rules    role-based access via custom claims {role, agencyId}
@@ -48,5 +49,8 @@ firestore.rules    role-based access via custom claims {role, agencyId}
 - **Status change:** `services/incidents.changeIncident` updates the incident and appends a timeline event in one batch.
 
 ## Decisions
+- Map: Leaflet + OpenStreetMap instead of Google Maps (no billing). One demo building in
+  `web/src/lib/building.ts`; incidents without their own location show there, nudged ~3 m apart.
+  Coloured circles instead of image pins (Leaflet's default pin images break with Vite).
 - shadcn/ui dropped: its generated files break the 60-line rule; own primitives instead.
 - Web writes Firestore directly (realtime + offline); the API only does AI, keeping the Gemini key server-side.

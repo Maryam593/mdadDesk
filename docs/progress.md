@@ -26,7 +26,11 @@
 - GCP billing failed (`OR_BACR2_31`, SadaPay card). Without billing there is no Cloud Run or Google Maps.
   Plan B: Firebase Spark (Hosting + Firestore + Auth) + Gemini without a server; the map comes from elsewhere.
 
-**Not yet verified:** Firestore writes (no Firebase project yet), deployment.
+- Map added early (planned for 15 Oct): Leaflet + OpenStreetMap on the coordinator page. Shows the demo
+  building and one coloured dot per incident (amber reported, red verified, blue response, green resolved);
+  clicking a dot opens the incident. Shows a notice when offline.
+
+**Not yet verified:** Firestore writes (no Firebase project yet), so no incident dots appear yet; deployment.
 
 **Next (14 Oct)**
 - Add the Gemini key → `npm run eval`; tune prompts until ≥90% / 0 invented.

@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { Notice } from "@/components/ui/Notice";
 import { IncidentList } from "@/components/incident/IncidentList";
 import { IncidentDetail } from "@/components/incident/IncidentDetail";
+import { IncidentMap } from "@/components/map/IncidentMap";
 import { useCollection } from "@/hooks/useCollection";
 
 export function CoordinatorPage() {
@@ -12,24 +13,26 @@ export function CoordinatorPage() {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const selected = data.find((i) => i.id === selectedId) ?? null;
 
-  if (error) return <Notice tone="danger">{error}</Notice>;
-
   return (
-    <div className="grid gap-4 md:grid-cols-[320px_1fr]">
-      <Card title={`Incidents (${data.length})`}>
-        {loading ? (
-          <p className="text-sm text-slate-500">Loading…</p>
-        ) : (
-          <IncidentList incidents={data} selectedId={selectedId} onSelect={setSelectedId} />
-        )}
-      </Card>
-      {selected ? (
-        <IncidentDetail incident={selected} />
-      ) : (
-        <Card>
-          <p className="text-sm text-slate-500">Select an incident to review its source and verify it.</p>
+    <div className="space-y-4">
+      {error && <Notice tone="danger">{error}</Notice>}
+      <IncidentMap incidents={data} onSelect={setSelectedId} />
+      <div className="grid gap-4 md:grid-cols-[320px_1fr]">
+        <Card title={`Incidents (${data.length})`}>
+          {loading ? (
+            <p className="text-sm text-slate-500">Loading…</p>
+          ) : (
+            <IncidentList incidents={data} selectedId={selectedId} onSelect={setSelectedId} />
+          )}
         </Card>
-      )}
+        {selected ? (
+          <IncidentDetail incident={selected} />
+        ) : (
+          <Card>
+            <p className="text-sm text-slate-500">Select an incident (or a dot on the map) to review and verify it.</p>
+          </Card>
+        )}
+      </div>
     </div>
   );
 }
