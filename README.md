@@ -30,7 +30,8 @@ Without Firebase config the report page still shows the AI preview.
 ```bash
 # API → Cloud Run
 gcloud run deploy madaddesk-api --source . --region asia-south1 \
-  --allow-unauthenticated --set-env-vars GEMINI_MODEL=gemini-2.5-flash,ALLOWED_ORIGIN=https://<id>.web.app \
+  --allow-unauthenticated \
+  --set-env-vars "^@^GEMINI_MODEL=gemini-3.5-flash-lite,gemini-3.1-flash-lite@ALLOWED_ORIGIN=https://<id>.web.app" \
   --set-secrets GEMINI_API_KEY=gemini-key:latest
 # Web + rules → Firebase
 npm run build -w web && firebase deploy --only hosting,firestore:rules

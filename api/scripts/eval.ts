@@ -12,8 +12,13 @@ const match = (a: unknown, b: unknown) => {
   return x === y || (x !== null && y !== null && (x.includes(y) || y.includes(x)));
 };
 
+// Free tier allows only a few requests per minute, so wait between reports.
+const WAIT_MS = Number(process.env.EVAL_WAIT_MS ?? 5000);
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 let correct = 0, total = 0, invented = 0, failures = 0;
 for (const s of samples) {
+  await sleep(WAIT_MS);
   try {
     const got = await extract(s.text);
     for (const f of LOCATION_FIELDS) {
@@ -26,7 +31,7 @@ for (const s of samples) {
     }
   } catch (e) {
     failures++;
-    console.log(`  FAILED   ${s.id}: ${(e as Error).message}`);
+    console.log(`  FAILED   ${s.id}: ${String(e).slice(0, 120)}`);
   }
 }
 

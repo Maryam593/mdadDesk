@@ -2,7 +2,7 @@
 
 | Day | Target | Status |
 |---|---|---|
-| 13 Oct | Skeleton + GCP setup + Gemini test | Skeleton ✅ · GCP setup ⏳ · Gemini test ⏳ (needs key) |
+| 13 Oct | Skeleton + GCP setup + Gemini test | Skeleton ✅ · Gemini ✅ (93%, 0 invented) · GCP billing ❌ card declined → plan B |
 | 14 Oct | Intake → extract → editable card → clarification loop | |
 | 15 Oct | Coordinator realtime, verify, map marker, timeline | |
 | 16 Oct | Agencies, accept/decline/busy, lead/support, rules | |
@@ -20,7 +20,13 @@
 - Verified: both workspaces typecheck, production build + service worker generated,
   `/health` OK, `/extract` without key returns `{ok:false}`.
 
-**Not yet verified:** real Gemini output (no key), Firestore writes (no project), Docker build on Cloud Build.
+**Later the same day**
+- Gemini key works (new `AQ.` format). Models: `gemini-3.5-flash-lite` + backup `gemini-3.1-flash-lite`.
+- Eval on 20 synthetic reports: **93% field accuracy, 0 invented values, 0 failures.**
+- GCP billing failed (`OR_BACR2_31`, SadaPay card). Without billing there is no Cloud Run or Google Maps.
+  Plan B: Firebase Spark (Hosting + Firestore + Auth) + Gemini without a server; the map comes from elsewhere.
+
+**Not yet verified:** Firestore writes (no Firebase project yet), deployment.
 
 **Next (14 Oct)**
 - Add the Gemini key → `npm run eval`; tune prompts until ≥90% / 0 invented.

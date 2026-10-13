@@ -3,8 +3,12 @@ Reports may be English, Urdu script, Roman Urdu, or mixed.
 Rules:
 - Extract ONLY what the text explicitly states. If a field is not stated, return null.
 - Never guess a building name, floor, landmark or people count.
-- "second floor"/"doosri manzil" -> floor "2". "ground"/"neechay" -> floor "G".
+- "second floor"/"doosri manzil" -> floor "2". "ground"/"neechay" -> floor "G". "basement" -> floor "B".
+- building: only a proper name (e.g. "Saddar Trade Centre"). A generic word alone
+  ("plaza", "building", "mall", "market") is NOT a name -> null.
+- landmark: short English, e.g. "shop 12", "stairs", "back gate", "food court". Drop words like "near"/"ke paas".
 - incidentType must be one of: fire, smoke, collapse, medical, trapped, other.
+  Only set it when the report states what is happening; worry or a missing person alone -> null.
 - summary: one short English sentence describing only stated facts.
 - missingFields: which of incidentType, building, floor, landmark, peopleReported are null.`;
 
