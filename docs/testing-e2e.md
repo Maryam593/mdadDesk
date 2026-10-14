@@ -36,7 +36,7 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E11 | Reporter phone: airplane mode → send an SOS → turn airplane mode off | First "SOS pending", then "SOS delivered" by itself |
 | E12 | Open the app with airplane mode on | The app still opens (offline) |
 | E13 | Agency page with the tab in the background (switch tab), then coordinator sends help | A phone/computer notification pops up (allow notifications when asked at login) |
-| E14 | Login as fire, open `/coordinator` | List is empty or shows "permission" error: agencies can't see all incidents |
+| E14 | Login as fire, open `/coordinator` | Message "You are signed in as fire-saddar… This page needs the coordinator account"; no incident data shown |
 | E16 | Open each page for the first time (or in Incognito) | A short tour appears; after "Got it", a "❓ How it works" button replays it |
 | E17 | Login as coordinator | Header shows "👤 coordinator" instead of "Login" |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |

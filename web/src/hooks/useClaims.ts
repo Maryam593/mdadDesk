@@ -24,5 +24,5 @@ export function useClaims() {
   }, [user]);
 
   const loading = !ready || (user !== null && claims === null);
-  return { role: claims?.role ?? null, agencyId: claims?.agencyId ?? null, loading };
+  return { role: claims?.role ?? null, agencyId: claims?.agencyId ?? null, email: user?.email ?? null, loading };
 }

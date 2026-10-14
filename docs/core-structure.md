@@ -36,19 +36,21 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField,
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
-    layout/        AppShell (nav), StatusBanners (offline / config)
+    layout/        AppShell (nav), StatusBanners (offline / config), RoleGate (right account or a clear message)
+    coordinator/   CoordinatorDesk (alerts + map + list + detail)
     incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline,
                    LocationLine (GPS ± metres + "Open in Google Maps")
     track/         LiveStatus (live card, on report page + /track), HelpProgress (checklist),
                    HelpSplash (green good-news screen + chime), MyReports (links on the report page)
     tour/          Tour (first-visit guide per page + "How it works" button; text in lib/tours.ts)
-    agency/        AssignmentCard (one help request + "On the way")
+    agency/        AgencyInbox (requests for the signed-in agency), AssignmentCard (one request + "On the way")
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)
     report/        ReportForm (details box), QuickTypeButtons (one-tap SOS), SubmitStatus
     map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident),
                    MapFocus (flies to the selected incident)
   src/pages/       ReportPage, TrackPage (/track/:reportId), CoordinatorPage, AgencyPage, LoginPage
+                   (pages stay thin: tour + RoleGate + the feature component)
 data/              synthetic-reports.json (labelled test set)
 firestore.rules    role-based access via custom claims {role, agencyId}
 ```

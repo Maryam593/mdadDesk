@@ -12,6 +12,15 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Coordinator tab: "Missing or insufficient permissions"
+**Symptom:** after signing in as fire-saddar in a second tab, the coordinator tab showed the raw Firebase error.
+**Cause:** not a bug in the rules: all tabs of one browser share one login, so the coordinator tab became
+fire-saddar, which may not list all incidents.
+**Fix:** `components/layout/RoleGate.tsx` on the coordinator and agency pages: shows who is signed in, which
+account the page needs, and the Incognito tip. Page bodies moved to `CoordinatorDesk` / `AgencyInbox`.
+The agency alert now waits for `agencyId` before arming (else old requests would ring on load).
+**Check:** typecheck + build; browser check by user.
+
 ## 2026-10-14 — Demo password was in the code before making the repo public
 **Risk:** `seed.ts` had the default password; a public repo would let anyone log in as coordinator and see
 reports, including testers' GPS locations.
