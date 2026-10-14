@@ -44,6 +44,7 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E20 | Coordinator: Verify, then click the same spot again quickly | Nothing happens (no button there); case stays verified. "Not an emergency? Hold to close…" only closes after a full press-and-hold |
 | E21 | Android: install from Chrome; iPhone: Safari → Share → Add to Home Screen | Red MadadDesk icon on the home screen; opens without address bar; opens in airplane mode |
 | E22 | iPhone, installed app: send an SOS | Works; note whether the chime plays (silent switch off) and whether notifications are offered |
+| E23 | Phone: open the app | Header shows logo + ☰; tapping ☰ opens the menu; choosing a tab closes it |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |
 
 ## Results (copy this table, fill it, send it to the developer)

@@ -127,3 +127,8 @@
 - **Login page redone** ("bht dumb hy"): navy brand panel (what the control room is, each role's job,
   "In danger? Report an SOS →") + form card with demo-account chips (fill email only), show password,
   friendly error messages, busy state; signed-in view has "Open my desk". Logic in `useStaffLogin`.
+- Phone-first header: ☰ hamburger on small screens (menu opens under the bar, closes after a pick),
+  tab row on wide screens (`SiteHeader` + shared `NavItems`).
+- Background lines: 14 lines instead of 4, stronger colour and longer dashes (were nearly invisible).
+- GitHub social preview made (`docs/assets/social-preview.png`, 1280×640) and used as the README banner.
+  Must be uploaded by hand in repo Settings → Social preview.

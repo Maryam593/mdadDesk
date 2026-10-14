@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <!-- GitHub social preview for MadadDesk. PNG version: docs/assets/social-preview.png -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1b2b"/>
+      <stop offset="0.55" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#881337"/>
+    </linearGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fb4b5e"/>
+      <stop offset="1" stop-color="#c8102e"/>
+    </linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#e11d2e" stop-opacity="0.55"/><stop offset="1" stop-color="#e11d2e" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <g fill="none" stroke-dasharray="28 12" stroke-width="2">
+    <path d="M-50 90 C 250 20, 500 170, 800 90 S 1150 20, 1330 100" stroke="#5eead4" stroke-opacity="0.18"/>
+    <path d="M-50 560 C 260 480, 520 640, 820 550 S 1160 470, 1330 560" stroke="#fda4af" stroke-opacity="0.25"/>
+    <path d="M-50 600 C 240 540, 500 680, 800 600 S 1150 540, 1330 610" stroke="#5eead4" stroke-opacity="0.15"/>
+  </g>
+  <circle cx="1010" cy="300" r="260" fill="url(#glow)"/>
+  <!-- logo (same drawing as web/public/icon.svg) -->
+  <g transform="translate(850 140) scale(0.625)">
+    <rect width="512" height="512" rx="120" fill="url(#logo)"/>
+    <path d="M318 112 A150 150 0 0 1 384 190" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" opacity="0.95"/>
+    <path d="M340 64 A205 205 0 0 1 432 172" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" opacity="0.55"/>
+    <path d="M236 116c-66 0-118 52-118 118 0 88 118 170 118 170s118-82 118-170c0-66-52-118-118-118z" fill="#fff"/>
+    <rect x="218" y="178" width="36" height="112" rx="12" fill="#e11d2e"/>
+    <rect x="180" y="216" width="112" height="36" rx="12" fill="#e11d2e"/>
+  </g>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="80" y="128" fill="#fda4af" font-size="22" font-weight="700" letter-spacing="4">BUILDING EMERGENCY SOS</text>
+    <text x="76" y="230" fill="#ffffff" font-size="104" font-weight="700">Madad<tspan fill="#fb7185" font-weight="400">Desk</tspan></text>
+    <text x="80" y="292" fill="#e2e8f0" font-size="32">From a scattered SOS to help on the way.</text>
+    <g font-size="22" font-weight="600">
+      <rect x="80" y="340" width="300" height="48" rx="24" fill="#ffffff" fill-opacity="0.1"/>
+      <text x="104" y="372" fill="#ffffff">One-tap SOS + phone GPS</text>
+      <rect x="80" y="402" width="420" height="48" rx="24" fill="#ffffff" fill-opacity="0.1"/>
+      <text x="104" y="434" fill="#ffffff">AI reads English, Urdu, Roman Urdu</text>
+      <rect x="80" y="464" width="470" height="48" rx="24" fill="#ffffff" fill-opacity="0.1"/>
+      <text x="104" y="496" fill="#ffffff">Live alerts: Fire · Ambulance · Police</text>
+    </g>
+    <text x="80" y="576" fill="#94a3b8" font-size="22">Humans verify · AI never dispatches · Works offline (PWA)</text>
+  </g>
+</svg>

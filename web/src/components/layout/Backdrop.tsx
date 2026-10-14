@@ -1,27 +1,32 @@
-// Soft background behind every page: a few slow, flowing lines (like map contours / signal waves)
-// over a light gradient. Pure SVG + CSS (styles/effects.css), so it is cheap on old phones.
+// Background behind every page: flowing lines (like map contours / signal waves) over a soft
+// gradient. Pure SVG + CSS (styles/effects.css), so it stays cheap on old phones.
 
-const LINES = [
-  "M-100 120 C 200 40, 400 220, 700 120 S 1200 40, 1600 140",
-  "M-100 260 C 250 180, 450 360, 760 250 S 1250 170, 1600 280",
-  "M-100 520 C 220 440, 480 620, 800 510 S 1300 430, 1600 540",
-  "M-100 700 C 260 620, 520 800, 840 690 S 1320 610, 1600 720",
-];
+const LINE_COUNT = 14;
+
+// One wavy line across the screen at height y; each line bends a little differently.
+function wavyLine(i: number): string {
+  const y = 30 + i * 58;
+  const bend = (i % 2 ? 1 : -1) * (40 + (i % 4) * 22);
+  return `M-100 ${y} C 200 ${y - bend}, 450 ${y + bend}, 750 ${y} S 1250 ${y - bend}, 1650 ${y}`;
+}
+
+const LINES: string[] = [];
+for (let i = 0; i < LINE_COUNT; i++) LINES.push(wavyLine(i));
 
 export function Backdrop() {
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-linear-to-b from-slate-100 via-white to-rose-50/60">
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 bg-linear-to-b from-slate-100 via-white to-rose-50">
       <svg className="h-full w-full" viewBox="0 0 1500 800" preserveAspectRatio="xMidYMid slice">
         {LINES.map((d, i) => (
           <path
             key={i}
             d={d}
             fill="none"
-            stroke={i % 2 ? "#e11d2e" : "#0f766e"}
-            strokeOpacity={0.12}
-            strokeWidth={2}
+            stroke={i % 3 === 0 ? "#e11d2e" : "#0f766e"}
+            strokeOpacity={i % 3 === 0 ? 0.4 : 0.32}
+            strokeWidth={i % 3 === 0 ? 2.6 : 2}
             className="flow-line"
-            style={{ animationDelay: `${i * -7}s` }}
+            style={{ animationDelay: `${i * -5}s` }}
           />
         ))}
       </svg>

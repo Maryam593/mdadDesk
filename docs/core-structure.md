@@ -38,7 +38,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    HoldButton (press-and-hold to confirm), ParticleButton (spark burst),
                    Loader (rings + waving label), WaveText (rippling letters),
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
-    layout/        AppShell (navy header + nav + footer), Logo (uses public/icon.svg), StatusBanners,
+    layout/        AppShell (frame), SiteHeader (row of tabs on wide screens, ☰ menu on phones),
+                   NavItems (the tab pills, shared by both), Logo (uses public/icon.svg), StatusBanners,
                    Backdrop (soft flowing lines behind every page),
                    RoleGate (right account or a clear message)
     coordinator/   CoordinatorDesk (alerts + map + list + detail)
@@ -96,6 +97,8 @@ Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`
 ## Look and feel
 - Colours in `web/src/index.css` (`@theme`): brand teal (normal actions), danger red (SOS), ink navy (header).
 - Font: Plus Jakarta Sans (Google Fonts; falls back to the system font offline).
+- GitHub social preview + README banner: `docs/assets/social-preview.svg` → `.png` (1280×640). Upload the
+  PNG in GitHub → Settings → General → Social preview (GitHub has no API for it).
 - Logo = `web/public/icon.svg` (pin + help cross + signal waves). Phone install icons are PNG copies
   (`icon-192/512.png`, `icon-maskable-512.png`, `apple-touch-icon.png`): re-make them if the logo changes.
 - SOS cards (FlipTile + `.flip` CSS, `useTilt`): tap → springy flip with a light sweep → "Send SOS" / Cancel

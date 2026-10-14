@@ -1,5 +1,7 @@
 # MadadDesk
 
+![MadadDesk: from a scattered SOS to help on the way](docs/assets/social-preview.png)
+
 From scattered distress messages to a verified emergency picture.
 AI-assisted SOS intake (English / Urdu / Roman Urdu), coordinator verification and simulated
 multi-agency response for building emergencies.
