@@ -8,6 +8,9 @@ multi-agency response for building emergencies.
 
 **Live demo:** https://mdaddeskv1-6af42.web.app (staff demo logins are shared privately with judges/testers).
 
+**New here?** Start with [docs/how-to-start.md](docs/how-to-start.md) (setup, accounts, demo script).
+AI agents: see [AGENTS.md](AGENTS.md).
+
 ## Quick start (local)
 ```bash
 npm install

@@ -106,3 +106,5 @@
 - **Role-based tabs** (user: "coordinator ko agencies tab nhi dikhna chahiye, user ko sirf help tab"):
   public sees only Report SOS + Staff login; coordinator only Coordinator; agency only its inbox. After
   sign-in each role lands on its own page (`lib/nav.ts`). Tour step 1 explains this (TOUR_VERSION 3).
+- Onboarding: `docs/how-to-start.md` (setup, accounts, 3-minute demo script, pitfalls), `AGENTS.md`
+  (rules for any AI agent), `CLAUDE.md` / `GEMINI.md` pointing to it, Claude skill `madaddesk-demo`.
