@@ -36,7 +36,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField,
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
-    layout/        AppShell (nav), StatusBanners (offline / config), RoleGate (right account or a clear message)
+    layout/        AppShell (navy header + nav + footer), Logo (uses public/icon.svg), StatusBanners,
+                   RoleGate (right account or a clear message)
     coordinator/   CoordinatorDesk (alerts + map + list + detail)
     incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline,
                    LocationLine (GPS ± metres + "Open in Google Maps")
@@ -79,6 +80,12 @@ firestore.rules    role-based access via custom claims {role, agencyId}
   hidden). It closes by itself once handled (verified / "On the way"). Works only while the page is
   open (no push server on the free plan).
 - **Status change:** `services/incidents.changeIncident` updates the incident and appends a timeline event in one batch.
+
+## Look and feel
+- Colours in `web/src/index.css` (`@theme`): brand teal (normal actions), danger red (SOS), ink navy (header).
+- Font: Plus Jakarta Sans (Google Fonts; falls back to the system font offline).
+- Logo = `web/public/icon.svg` (pin + help cross + signal waves); also the app/PWA icon.
+- SOS tiles use the `sos` Button variant; numbered steps on the report page.
 
 ## Decisions
 - Map: Leaflet + OpenStreetMap instead of Google Maps (no billing). One demo building in

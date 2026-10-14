@@ -6,6 +6,7 @@ import { Notice } from "@/components/ui/Notice";
 import { TextInput } from "@/components/ui/TextField";
 import { auth } from "@/lib/firebase";
 import { useAuthUser } from "@/hooks/useAuthUser";
+import { Logo } from "@/components/layout/Logo";
 import { askNotificationPermission } from "@/lib/systemNotify";
 
 export function LoginPage() {
@@ -31,13 +32,18 @@ export function LoginPage() {
     );
 
   return (
-    <Card title="Coordinator / agency sign in" className="mx-auto max-w-md">
-      <form onSubmit={login} className="space-y-3">
-        <TextInput label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <TextInput label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        {error && <Notice tone="danger">{error}</Notice>}
-        <Button type="submit">Sign in</Button>
-      </form>
-    </Card>
+    <div className="mx-auto max-w-md space-y-6 pt-4">
+      <div className="flex justify-center">
+        <Logo size="lg" />
+      </div>
+      <Card title="Staff sign in (coordinator / agency)">
+        <form onSubmit={login} className="space-y-3">
+          <TextInput label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+          <TextInput label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          {error && <Notice tone="danger">{error}</Notice>}
+          <Button type="submit" className="w-full">Sign in</Button>
+        </form>
+      </Card>
+    </div>
   );
 }

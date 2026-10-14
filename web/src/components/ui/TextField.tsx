@@ -1,13 +1,14 @@
 import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
 
 // Same look for every input box in the app. Change it here to change it everywhere.
-const BOX_STYLE = "w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-2 focus:outline-brand";
+const BOX_STYLE =
+  "w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2.5 text-sm focus:outline-2 focus:outline-brand";
 
 // A label shown above any input.
 function Labelled({ label, children }: { label: string; children: ReactNode }) {
   return (
     <label className="block space-y-1">
-      <span className="text-sm font-medium text-slate-700">{label}</span>
+      <span className="text-sm font-semibold text-slate-700">{label}</span>
       {children}
     </label>
   );

@@ -1,11 +1,14 @@
 @import "tailwindcss";
 
+/* Brand colours and font, used everywhere as bg-brand, text-danger, font-sans, ... */
 @theme {
-  --color-brand: #0f766e;
-  --color-brand-soft: #e0f2f1;
-  --color-danger: #dc2626;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-brand: #0f766e; /* calm teal: normal actions */
+  --color-brand-soft: #ccfbf1;
+  --color-danger: #e11d2e; /* SOS red */
+  --color-ink: #0b1b2b; /* header navy */
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  @apply bg-slate-100 text-slate-900 antialiased;
 }

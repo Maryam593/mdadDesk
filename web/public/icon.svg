@@ -1,6 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#0f766e"/>
-  <path d="M256 104c-70 0-128 58-128 128 0 92 128 176 128 176s128-84 128-176c0-70-58-128-128-128z" fill="#fff"/>
-  <rect x="236" y="164" width="40" height="120" rx="8" fill="#dc2626"/>
-  <rect x="196" y="204" width="120" height="40" rx="8" fill="#dc2626"/>
+  <!-- MadadDesk logo: a location pin with a help cross, sending out a signal. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fb4b5e"/>
+      <stop offset="1" stop-color="#c8102e"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="url(#bg)"/>
+  <!-- signal waves -->
+  <path d="M318 112 A150 150 0 0 1 384 190" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" opacity="0.95"/>
+  <path d="M340 64 A205 205 0 0 1 432 172" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" opacity="0.55"/>
+  <!-- pin -->
+  <path d="M236 116c-66 0-118 52-118 118 0 88 118 170 118 170s118-82 118-170c0-66-52-118-118-118z" fill="#fff"/>
+  <!-- help cross -->
+  <rect x="218" y="178" width="36" height="112" rx="12" fill="#e11d2e"/>
+  <rect x="180" y="216" width="112" height="36" rx="12" fill="#e11d2e"/>
 </svg>

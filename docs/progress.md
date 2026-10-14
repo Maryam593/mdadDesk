@@ -97,3 +97,6 @@
   `useTour.ts` makes changed tours show again once.
 - **Deployed** to https://mdaddeskv1-6af42.web.app (Firebase Hosting). Checked: `/`, `/coordinator` and
   `sw.js` return 200. Phone test (GPS, App Check on the live domain, siren) pending.
+- **New look** (user: "UI nhi acha, logo bhe nhi acha"): new logo (red tile, white pin, help cross, signal
+  waves), navy header with logo + pill nav + footer with emergency numbers, Plus Jakarta Sans, rounder
+  cards/buttons, big gradient SOS tiles with numbered steps and a "Need help?" hero, login page with logo.

@@ -10,10 +10,10 @@ interface Props {
 
 export function Card({ title, actions, className, children }: Props) {
   return (
-    <section className={cx("rounded-xl border border-slate-200 bg-white p-4 shadow-sm", className)}>
+    <section className={cx("rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm", className)}>
       {(title || actions) && (
-        <header className="mb-3 flex items-center justify-between gap-2">
-          <h2 className="text-base font-semibold">{title}</h2>
+        <header className="mb-4 flex flex-wrap items-center justify-between gap-2">
+          <h2 className="flex items-center gap-2 text-lg font-bold text-ink">{title}</h2>
           {actions}
         </header>
       )}

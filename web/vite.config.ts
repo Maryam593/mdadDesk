@@ -21,7 +21,7 @@ export default defineConfig({
         name: "MadadDesk",
         short_name: "MadadDesk",
         description: "Building emergency reporting and coordination",
-        theme_color: "#0f766e",
+        theme_color: "#0b1b2b",
         background_color: "#ffffff",
         display: "standalone",
         start_url: "/",

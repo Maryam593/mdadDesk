@@ -9,13 +9,13 @@ export const FIELD_LABELS: Record<LocationField, string> = {
 };
 
 // Big one-tap buttons on the report page.
-export const TYPE_LABELS: Record<IncidentType, string> = {
-  fire: "🔥 Fire",
-  smoke: "💨 Smoke",
-  medical: "🚑 Medical",
-  trapped: "🆘 Trapped",
-  collapse: "🧱 Collapse",
-  other: "❓ Other",
+export const TYPE_INFO: Record<IncidentType, { emoji: string; name: string }> = {
+  fire: { emoji: "🔥", name: "Fire" },
+  smoke: { emoji: "💨", name: "Smoke" },
+  medical: { emoji: "🚑", name: "Medical" },
+  trapped: { emoji: "🆘", name: "Trapped" },
+  collapse: { emoji: "🧱", name: "Collapse" },
+  other: { emoji: "❓", name: "Other" },
 };
 
 export type Tone = "neutral" | "info" | "warn" | "danger" | "success";

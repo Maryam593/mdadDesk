@@ -14,7 +14,12 @@ export function ReportPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <Tour id="report" />
-      <Card title="Report an emergency in this building">
+      <Card>
+        <div className="mb-5">
+          <p className="text-xs font-bold uppercase tracking-widest text-danger">Emergency in this building?</p>
+          <h1 className="mt-1 text-3xl font-extrabold text-ink">Need help? We'll send it.</h1>
+          <p className="mt-1 text-sm text-slate-600">Your SOS and location go straight to the building's coordinator.</p>
+        </div>
         <ReportForm onSubmit={submit} disabled={delivery === "pending" || ai === "pending"} />
       </Card>
       <SubmitStatus delivery={delivery} ai={ai} location={location} />
