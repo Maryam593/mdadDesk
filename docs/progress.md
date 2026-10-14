@@ -91,3 +91,7 @@
 - First-visit tour on report, coordinator and agency pages (+ "❓ How it works" button).
 - Refactors: `Overlay` shared by alert / splash / tour; `submitSteps.ts` split out of useReportSubmit (≤60 lines).
 - User confirmed: login, coordinator page and map work.
+- Tours rewritten after user feedback: every tour starts with what each tab is for; coordinator and
+  report tours explain the flow (SOS → Verify → Send → On the way); agency tour says an empty inbox is
+  normal until the coordinator sends a request, and shows before sign-in. `TOUR_VERSION` in
+  `useTour.ts` makes changed tours show again once.

@@ -19,9 +19,12 @@ export function AgencyPage() {
   if (loading) return <p className="text-sm text-slate-500">Loading…</p>;
   if (role !== "agency") {
     return (
-      <Notice tone="neutral">
-        Agency inbox: sign in on the Login page with an agency account, e.g. fire-saddar@madaddesk.demo.
-      </Notice>
+      <>
+        <Tour id="agency" />
+        <Notice tone="neutral">
+          Agency inbox: sign in on the Login page with an agency account, e.g. fire-saddar@madaddesk.demo.
+        </Notice>
+      </>
     );
   }
 

@@ -31,7 +31,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    submitSteps.ts (deliver + readWithAi, used by useReportSubmit)
   src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone),
                    siren.ts / chime.ts (sounds made in code), systemNotify.ts (phone/PC notifications),
-                   tours.ts (tour text),
+                   tours.ts (tour text; bump TOUR_VERSION in hooks/useTour.ts after editing),
                    geo.ts (phone GPS + Google Maps link)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField,
