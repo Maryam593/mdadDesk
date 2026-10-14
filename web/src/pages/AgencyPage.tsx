@@ -32,7 +32,7 @@ export function AgencyPage() {
       <NewRequestAlert assignments={inbox.data} ready={!inbox.loading} />
       <h2 className="text-lg font-semibold">Agency inbox</h2>
       {inbox.error && <Notice tone="danger">{inbox.error}</Notice>}
-      {newestFirst.length === 0 && <Notice tone="info">No requests yet. New ones appear here by themselves.</Notice>}
+      {newestFirst.length === 0 && <Notice tone="info">No requests yet. A request appears here (with a siren) after the coordinator verifies an SOS and taps "Send" for your agency.</Notice>}
       {newestFirst.map((a) => (
         <AssignmentCard key={a.id} assignment={a} />
       ))}
