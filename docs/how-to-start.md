@@ -72,12 +72,32 @@ Use **two windows**: one browser window logs in as ONE person for all its tabs.
 | Location ±100 m on a laptop | Laptops guess from Wi-Fi; phones are much more precise. |
 | Tour keeps showing / want to see it again | Green **?** button bottom-right. |
 
-## 6. Change and deploy
+## 6. Install on a phone (it's a PWA)
+**Android (Chrome):** open the live link → "Install app" popup, or menu ⋮ → **Install app / Add to Home screen**.
+**iPhone:** open the link in **Safari** → Share (⬆️ box) → **Add to Home Screen** → Add.
+(iOS 16.4+ also allows it from Chrome's Share menu; Safari works on every iPhone.) Always open it from the icon.
+
+After installing: red MadadDesk icon, opens without the address bar, opens offline, an SOS sent offline
+is sent automatically when back online, and updates arrive by themselves on the next launch.
+
+| On iPhone | Works? |
+|---|---|
+| SOS tiles, location, green "help on the way" screens | ✅ |
+| Opening without internet | ✅ |
+| Notifications ("Allow notifications?") | ⚠️ only when opened from the **home-screen icon**, not in a Safari tab |
+| Siren / chime sound | ⚠️ muted if the side **silent switch** is on; also needs one tap on the screen |
+| Alerts while the app is closed or in the background | ❌ iPhone pauses web apps in the background (true push is on the roadmap) |
+
+**Demo tip:** use an iPhone as the **reporter**. Keep coordinator and agency (the siren screens) on a laptop
+or Android, with the silent switch off. These limits come from Apple's rules for web apps; not yet tested
+on a real iPhone (14 Oct).
+
+## 7. Change and deploy
 - Code rules (≤60 lines per file, no repetition, beginner-readable): `docs/core-structure.md`.
 - Deploy: `npm run build -w web` then `firebase deploy --only hosting` (details `docs/deployment.md`).
 - After every change: log bugs in `docs/bug-fix.md`, progress in `docs/progress.md`, then commit + push.
 
-## 7. Where everything is
+## 8. Where everything is
 | Doc | For |
 |---|---|
 | `docs/prd.md` | What we build and why, trust rules |
@@ -86,4 +106,4 @@ Use **two windows**: one browser window logs in as ONE person for all its tabs.
 | `docs/deployment.md` | Going live, test links |
 | `docs/testing-e2e.md` / `docs/testing-user.md` | Test checklists |
 | `docs/bug-fix.md` / `docs/progress.md` | What broke and how it was fixed / daily log |
-| `AGENTS.md` | Instructions for AI coding agents |
+| `AGENTS.md` | Instructions for AI coding agents (Claude reads `CLAUDE.md`, Gemini/Antigravity `GEMINI.md`, both point here) |

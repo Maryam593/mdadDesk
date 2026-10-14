@@ -42,6 +42,8 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E18 | Signed out | Header shows only "🆘 Report SOS" + "🔑 Staff login" |
 | E19 | Login as fire-saddar | Lands on the agency inbox; only "🚒 Agency inbox" tab |
 | E20 | Coordinator: Verify, then click the same spot again quickly | Nothing happens (no button there); case stays verified. "Not an emergency?" link asks Yes/Cancel before closing |
+| E21 | Android: install from Chrome; iPhone: Safari → Share → Add to Home Screen | Red MadadDesk icon on the home screen; opens without address bar; opens in airplane mode |
+| E22 | iPhone, installed app: send an SOS | Works; note whether the chime plays (silent switch off) and whether notifications are offered |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |
 
 ## Results (copy this table, fill it, send it to the developer)

@@ -110,3 +110,6 @@
   (rules for any AI agent), `CLAUDE.md` / `GEMINI.md` pointing to it, Claude skill `madaddesk-demo`.
 - Install on phones: PNG icons (192, 512, maskable 512, apple-touch-icon 180) made from `icon.svg`
   (Android/iPhone don't use SVG icons for installing). Manifest + iPhone meta tags updated.
+- Docs: phone install steps for Android + iPhone and the iPhone limits (notifications only from the
+  home-screen app, silent switch mutes sound, no alerts in the background) → `docs/how-to-start.md` §6,
+  test cases E21–E22. Demo tip: iPhone as reporter, siren screens on laptop/Android.
