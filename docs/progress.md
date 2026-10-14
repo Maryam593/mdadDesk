@@ -27,7 +27,7 @@
   Plan B: Firebase Spark (Hosting + Firestore + Auth) + Gemini without a server; the map comes from elsewhere.
 
 - Map added early (planned for 15 Oct): Leaflet + OpenStreetMap on the coordinator page. Shows the demo
-  building and one coloured dot per incident (amber reported, red verified, blue response, green resolved);
+  building and one coloured dot per incident (amber reported, red verified, blue response, green resolved; open ones drawn on top, resolved small and faded);
   clicking a dot opens the incident. Shows a notice when offline.
 
 **Not yet verified:** Firestore writes (no Firebase project yet), so no incident dots appear yet; deployment.

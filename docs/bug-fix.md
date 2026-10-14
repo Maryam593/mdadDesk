@@ -12,6 +12,14 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Map showed only the resolved dot; other reports from the same house were hidden
+**Symptom:** 3 incidents in the list, but on the map only one green (resolved) dot.
+**Cause:** all 3 came from the same house, so the same GPS point; real-GPS dots were not nudged, and the
+resolved one was drawn last, on top.
+**Fix:** `IncidentMap.tsx` draws resolved first and reported last (open ones on top); `IncidentMarker.tsx`
+nudges every dot ~6 m apart and makes resolved dots smaller and faded.
+**Check:** typecheck; user to confirm in the browser.
+
 ## 2026-10-14 — Firebase AI Logic: "401 Firebase App Check token is invalid"
 **Symptom:** `npm run check-firebase-ai -w api` → 401 for every model.
 **Cause:** App Check enforcement got turned on for Firebase AI Logic during setup; our app sends no App Check token.

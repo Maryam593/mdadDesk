@@ -11,11 +11,12 @@ interface Props {
 
 // One coloured dot per incident. Clicking it opens the incident on the right.
 export function IncidentMarker({ incident, index, onSelect }: Props) {
-  // All demo incidents share one building, so nudge each dot a few metres apart
-  // (0.00003° ≈ 3 m) so they don't sit exactly on top of each other.
+  // Many reports come from the same spot (same house or building), so nudge each dot
+  // ~6 m apart (0.00006°); otherwise the last one drawn hides the others.
   const base = incident.location ?? DEMO_BUILDING;
-  const nudge = incident.location ? 0 : index * 0.00003; // real GPS dots stay where they are
+  const nudge = index * 0.00006;
   const position: [number, number] = [base.lat + nudge, base.lng + nudge];
+  const done = incident.status === "resolved"; // finished: smaller and faded
   const color = STATUS_COLOR[incident.status];
 
   // Short label: "smoke · Floor 2 · shop 24". Unknown parts are written as "?".
@@ -28,8 +29,8 @@ export function IncidentMarker({ incident, index, onSelect }: Props) {
   return (
     <CircleMarker
       center={position}
-      radius={10}
-      pathOptions={{ color, fillColor: color, fillOpacity: 0.7 }}
+      radius={done ? 6 : 10}
+      pathOptions={{ color, fillColor: color, fillOpacity: done ? 0.35 : 0.7 }}
       eventHandlers={{ click: () => onSelect(incident.id) }}
     >
       <Popup>
