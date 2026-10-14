@@ -28,7 +28,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/hooks/       useCollection / useDoc (realtime), useIncidents, useReportSubmit, useOnline,
                    useAuthUser, useClaims (role + agencyId), useArrivals (new items since page load),
                    useStepChange (reporter step went up), useTour (seen once per device),
-                   usePages (split any list into pages), useAccountLabel ("Coordinator", "Fire staff")
+                   usePages (split any list into pages), useAccountLabel ("Coordinator", "Fire staff"),
+                   useLocationPermission (granted / prompt / denied, live)
                    submitSteps.ts (deliver + readWithAi, used by useReportSubmit)
   src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone),
                    siren.ts / chime.ts (sounds made in code), systemNotify.ts (phone/PC notifications),
@@ -56,7 +57,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)
     report/        ReportForm (numbered steps), QuickTypeButtons + FlipTile (SOS cards), SubmitStatus,
-                   OfflineFallback (no internet → Send by SMS / Call 1122; text from lib/sms.ts)
+                   OfflineFallback (no internet → Send by SMS / Call 1122; text from lib/sms.ts),
+                   LocationPrompt (asks for location when the page opens, before any emergency)
     map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident),
                    MapFocus (flies to the selected incident)
   src/pages/       ReportPage, TrackPage (/track/:reportId), CoordinatorPage, AgencyPage, LoginPage

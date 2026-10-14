@@ -49,6 +49,7 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E24 | Agency inbox, then coordinator sends help | Count goes up; a red dot appears where the reporter is and a red arc from the teal station dot to it |
 | E25 | More than 6 incidents / 5 requests | "Prev · Page 1 of N · Next" appears under the list |
 | E26 | Sign in as fire-saddar, tap Sign out | Signed out at once, back on the report page, header shows "Staff login" |
+| E27 | First open on a phone (location not yet allowed) | Blue banner "Turn on location…"; tapping it shows "Allow location?"; after Allow the banner disappears and stays gone on reload |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |
 
 ## Results (copy this table, fill it, send it to the developer)

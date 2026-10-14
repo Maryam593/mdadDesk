@@ -6,6 +6,7 @@ import { SubmitStatus } from "@/components/report/SubmitStatus";
 import { MyReports } from "@/components/track/MyReports";
 import { LiveStatus } from "@/components/track/LiveStatus";
 import { OfflineFallback } from "@/components/report/OfflineFallback";
+import { LocationPrompt } from "@/components/report/LocationPrompt";
 import { useReportSubmit } from "@/hooks/useReportSubmit";
 import { Tour } from "@/components/tour/Tour";
 
@@ -15,6 +16,7 @@ export function ReportPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <Tour id="report" />
+      <LocationPrompt />
       <Card>
         <div className="mb-5">
           <p className="text-xs font-bold uppercase tracking-widest text-danger">Emergency in this building?</p>

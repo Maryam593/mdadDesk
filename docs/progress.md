@@ -153,3 +153,6 @@
 - **Offline SOS** (owner tested with Wi-Fi off): besides waiting on the phone and sending itself later,
   the report page now offers **Send by SMS** (pre-written SOS + location link, only mobile signal needed)
   and **Call 1122** when offline or after 5 s without delivery. SMS number via `VITE_SOS_SMS_NUMBER`.
+- **Location prompt on open** (owner: "jb app open ho to prompt aye map enable kro"): report page shows
+  "Turn on location so rescuers can find you" until location is allowed; the button triggers the phone's
+  permission question and warms up GPS. If blocked, it explains how to allow it. Hidden once granted.
