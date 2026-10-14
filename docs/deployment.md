@@ -46,8 +46,9 @@ Firebase console → **Hosting** → release history → ⋮ on the previous rel
 ```
 npm run check-firebase-ai -w api
 ```
-Expect `OK` for at least one model. If you see **"App Check token is invalid"**: Firebase console →
-**Security → App Check → APIs** → Firebase AI Logic → **Unenforce** (we don't use App Check yet).
+This script can't pass App Check (no browser), so expect **"App Check token is invalid"**: that only
+proves AI Logic is on. The real check is in the browser: send an SOS → "What we understood" appears, and
+App Check → APIs → Firebase AI Logic shows verified requests. Setup: `docs/firebase-setup.md` step 9.
 The `api/` server is no longer needed online; it only runs the eval on the developer's PC.
 
 ## After changing code

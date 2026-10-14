@@ -15,8 +15,11 @@ Add newest entries at the top. Format:
 ## 2026-10-14 — Firebase AI Logic: "401 Firebase App Check token is invalid"
 **Symptom:** `npm run check-firebase-ai -w api` → 401 for every model.
 **Cause:** App Check enforcement got turned on for Firebase AI Logic during setup; our app sends no App Check token.
-**Fix:** Console → Security → App Check → APIs → Firebase AI Logic → Unenforce. (Later: add reCAPTCHA App Check.)
-**Check:** pending, rerun `check-firebase-ai`.
+**Cause (corrected):** AI Logic shows "Basic - Enforced" with no Unenforce option; App Check becomes mandatory
+for AI Logic on 2 Nov 2026 anyway.
+**Fix:** App Check with free reCAPTCHA v3: `web/src/lib/appCheck.ts`, `VITE_RECAPTCHA_SITE_KEY`, setup in
+`docs/firebase-setup.md` step 9. (reCAPTCHA Enterprise / "Fraud Defense" skipped: may need billing.)
+**Check:** pending, browser test after step 9.
 
 ## 2026-10-14 — Eval after moving to JSON Schema: 3/20 timeouts
 **Symptom:** `npm run eval`: 90.6% accuracy, 0 invented, but 3 "AI timeout" (before: 0 failures).

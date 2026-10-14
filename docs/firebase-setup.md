@@ -98,6 +98,23 @@ because one window can only be signed in as one person.
 
 The ambulance shows "(busy)" on purpose (seed data) to show an unavailable agency.
 
+## 9. Turn on AI (Firebase AI Logic + App Check)
+Firebase AI Logic only answers apps that pass **App Check** (required for all projects from 2 Nov 2026;
+on our project it was already "Basic - Enforced" and can't be switched off). We use free **reCAPTCHA v3**.
+1. Firebase console → **AI services → AI Logic → Get started** → choose **Gemini Developer API**
+   (not Vertex AI / Agent Platform: that one needs billing).
+2. Open https://www.google.com/recaptcha/admin/create (same Google account):
+   - Label: `madaddesk`
+   - Type: **Score based (v3)**
+   - Domains: `localhost`, `mdaddeskv1-6af42.web.app`, `mdaddeskv1-6af42.firebaseapp.com`, `web.app`
+     (`web.app` lets teammates' preview links work too)
+   - Submit. You get a **site key** and a **secret key**.
+3. Firebase console → **Security → App Check → Apps** → the web app → **reCAPTCHA** (v3, *not*
+   "Fraud Defense / reCAPTCHA Enterprise") → paste the **secret key** → Save.
+4. Put the **site key** in `web\.env`: `VITE_RECAPTCHA_SITE_KEY=...` (site key is public; never share the secret key).
+5. Restart `npm run dev`, send an SOS → "What we understood" appears.
+   App Check → APIs → Firebase AI Logic should start showing **Verified requests**.
+
 ---
 
 ## Later: put it online (still free)
@@ -117,4 +134,5 @@ online without a paid server (see `docs/progress.md`).
 | Seed: "Could not load the default credentials" | Step 7.3/7.4: file name or `GOOGLE_APPLICATION_CREDENTIALS` path is wrong. |
 | Agency inbox says "sign in with an agency account" after signing in | Sign out and in again (roles are read at sign-in). |
 | Rules changed in a later update | Run `firebase deploy --only firestore:rules` again. |
+| "App Check token is invalid" / AI never answers | Step 9: secret key saved in App Check? site key in `web\.env`? domain listed in reCAPTCHA? Restart dev server. |
 | `firebase` is not recognized | Close and reopen the terminal after step 5. |

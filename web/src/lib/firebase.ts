@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { startAppCheck } from "./appCheck";
 import {
   initializeFirestore,
   persistentLocalCache,
@@ -19,6 +20,7 @@ const firebaseConfig = {
 export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
 
 export const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
+if (app) startAppCheck(app);
 
 // Persistent cache = offline support: writes queue in IndexedDB and sync when back online.
 export const db: Firestore | null = app
