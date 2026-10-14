@@ -112,7 +112,7 @@ on our project it was already "Basic - Enforced" and can't be switched off). We 
    - Copy the key ID (the **site key**, starts with `6L`).
 3. Back in App Check paste that site key into "reCAPTCHA Enterprise site key" → **Save**.
    (Enterprise has no secret key to paste: Firebase talks to Google Cloud directly.)
-4. Put the **site key** in `web\.env`: `VITE_RECAPTCHA_SITE_KEY=...` (site key is public; never share the secret key).
+4. Put the **site key** in `web\.env`: `VITE_RECAPTCHA_SITE_KEY=...` (the site key is public, safe to put in the app).
 5. Restart `npm run dev`, send an SOS → "What we understood" appears.
    App Check → APIs → Firebase AI Logic should start showing **Verified requests**.
 
