@@ -19,6 +19,9 @@ fire-saddar, which may not list all incidents.
 **Fix:** `components/layout/RoleGate.tsx` on the coordinator and agency pages: shows who is signed in, which
 account the page needs, and the Incognito tip. Page bodies moved to `CoordinatorDesk` / `AgencyInbox`.
 The agency alert now waits for `agencyId` before arming (else old requests would ring on load).
+**Follow-up (same day):** the user still saw the message because the *normal* window kept the earlier
+fire-saddar login (header showed "👤 fire-saddar"). Added a **Switch account** button to RoleGate
+(signs out and opens /login) and the message now says "This window is signed in as…".
 **Check:** typecheck + build; browser check by user.
 
 ## 2026-10-14 — Demo password was in the code before making the repo public
