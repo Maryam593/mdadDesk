@@ -52,8 +52,26 @@ open; real push notifications (app closed) stay on the roadmap.
 9. **PWA**: installable; app opens offline; reports queue offline and sync when online.
 
 ## Out of scope (roadmap slide)
-Push notifications (FCM), geohash agency matching, SMS/call fallback, nearby public alerts,
+Push notifications (FCM), geohash agency matching, nearby public alerts,
 history/analytics layers, volunteers, hardware SOS buttons, real agency integration.
+
+## Reaching help with no internet / no balance
+**Today (built):**
+| Situation | What works |
+|---|---|
+| Internet | SOS + GPS in the app, instantly |
+| Signal, no internet | **Call 1122 / 15 / 16** (toll-free, no balance needed); **Send by SMS** (pre-written SOS + location; needs balance) |
+| Nothing | SOS waits on the phone and sends itself as soon as any internet appears |
+
+**Roadmap (needs a native app or a mobile-operator partner):**
+1. **Bluetooth mesh** (native Android/iOS app, like Bridgefy): the SOS hops phone-to-phone over Bluetooth until
+   one phone has internet. Web apps can't do this (Web Bluetooth can't link two phones, isn't on iPhone,
+   and can't run in the background).
+2. **Free SOS short code** with operators (Jazz, Zong, Telenor, Ufone) / PTA: an SMS to e.g. `1122x` that
+   costs nothing, so it works with zero balance.
+3. **USSD menu** (e.g. dial `*1122#`): works on any phone, even without data or a smartphone; operator integration.
+4. **Zero-rated app**: operators let MadadDesk work without data balance (like "free Facebook").
+5. **Satellite SOS** on phones that support it, for when there is no network at all.
 
 ## Trust rules (non-negotiable)
 - AI never invents facts and never dispatches. Humans verify, assign and close.
