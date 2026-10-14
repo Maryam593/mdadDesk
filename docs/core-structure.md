@@ -20,16 +20,20 @@ api/               Express on Cloud Run — Gemini only
   scripts/         eval.ts (accuracy on data/), seed.ts (demo users + agencies)
 web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/lib/         firebase.ts (offline cache), api.ts (never-throw POST), labels.ts
-  src/services/    reports.ts, incidents.ts, events.ts — all Firestore writes
+  src/services/    reports.ts, incidents.ts, events.ts, assignments.ts — all Firestore writes
                    newRecords.ts — starting data for a new report/incident
-  src/hooks/       useCollection (realtime), useReportSubmit, useOnline, useAuthUser
+  src/hooks/       useCollection / useDoc (realtime), useIncidents, useReportSubmit, useOnline,
+                   useAuthUser, useClaims (role + agencyId)
+  src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone)
   src/components/
-    ui/            Button, Card, Badge, Notice, TextField, tone.ts (colours + cx)
+    ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField, tone.ts
     layout/        AppShell (nav), StatusBanners (offline / config)
-    incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, Timeline
+    incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline
+    track/         HelpProgress (reporter checklist), MyReports (links on the report page)
+    agency/        AssignmentCard (one help request + "On the way")
     report/        ReportForm, SubmitStatus
     map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident)
-  src/pages/       ReportPage, CoordinatorPage, AgencyPage, LoginPage
+  src/pages/       ReportPage, TrackPage (/track/:reportId), CoordinatorPage, AgencyPage, LoginPage
 data/              synthetic-reports.json (labelled test set)
 firestore.rules    role-based access via custom claims {role, agencyId}
 ```
@@ -38,14 +42,19 @@ firestore.rules    role-based access via custom claims {role, agencyId}
 | Collection | Key fields |
 |---|---|
 | `reports/{clientId}` | text, clientCreatedAt, receivedAt (server), aiStatus, extraction, incidentId |
-| `incidents/{inc_<reportId>}` | status reported→verified→response→resolved, location fields, reportIds, lead/support agency |
+| `incidents/{inc_<reportId>}` | status reported→verified→response→resolved, location fields, reportIds, notifiedAgencyIds, respondingKinds, lead/support agency |
 | `incidents/{id}/events` | append-only timeline (kind, message, actorUid, at) |
 | `agencies/{id}` | name, kind, available, availabilityUpdatedAt |
-| `assignments/{incidentId_agencyId}` | role lead/support, status notified/accepted/declined/busy |
+| `assignments/{incidentId_agencyId}` | agencyKind, agencyName, role lead/support, status notified/accepted/declined/busy |
 
 ## Key flows
 - **Report:** save report + incident first (delivery), then Gemini (enrichment). AI failure never blocks delivery.
 - **Offline:** Firestore persistent cache queues writes in IndexedDB; the service worker serves the app shell.
+- **Help loop:** coordinator Verify → `sendAgency` (assignment + `notifiedAgencyIds`) → agency
+  `markOnTheWay` (assignment accepted, incident `response` + `respondingKinds`) → coordinator Resolved.
+  The reporter's `/track` page reads only the incident doc and turns it into a step (`lib/helpSteps.ts`).
+- **Who can read an incident:** anyone with its id (`get`), since the id is a random code only the
+  reporter's phone and assigned agencies have. Listing all incidents is coordinator-only.
 - **Status change:** `services/incidents.changeIncident` updates the incident and appends a timeline event in one batch.
 
 ## Decisions

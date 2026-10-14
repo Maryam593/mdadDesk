@@ -75,13 +75,25 @@ Check: the terminal lists 4 users and 3 agencies, and prints the demo password.
 In the console: Authentication shows `coordinator@madaddesk.demo`, `fire-saddar@madaddesk.demo`, and two more;
 Firestore shows an `agencies` collection.
 
-## 8. Try it
+## 8. Try the full help loop
 ```
 npm run dev
 ```
-1. http://localhost:5173 → send a test SOS. Expect "SOS delivered to the coordinator."
-2. http://localhost:5173/login → sign in as `coordinator@madaddesk.demo` with the demo password.
-3. http://localhost:5173/coordinator → the report appears in the list and as a dot on the map.
+Use **two browser windows**: a normal one (reporter + coordinator) and an **Incognito** one (agency),
+because one window can only be signed in as one person.
+
+| # | Window | Do this | Expect |
+|---|---|---|---|
+| 1 | Normal | http://localhost:5173 → send a test SOS | "SOS delivered"; under "Your reports" a new link appears |
+| 2 | Normal | Click that link (opens `/track/...`) and keep this tab open | Step 1 "Sent: waiting for the coordinator" |
+| 3 | Normal, new tab | `/login` → `coordinator@madaddesk.demo` + demo password, then `/coordinator` | The report is in the list and on the map |
+| 4 | Normal | Select it → **Verify** | Track tab: "Seen and confirmed" |
+| 5 | Normal | Under "Send help" → **Send Saddar Fire Station** | Track tab: "Help requested" |
+| 6 | Incognito | `/login` → `fire-saddar@madaddesk.demo`, then `/agency` | The request is in the inbox |
+| 7 | Incognito | **On the way** | Track tab: "Fire service on the way" |
+| 8 | Normal | Coordinator → **Confirm resolved** | Track tab: "Closed" |
+
+The ambulance shows "(busy)" on purpose (seed data) to show an unavailable agency.
 
 ---
 
@@ -100,4 +112,6 @@ online without a paid server (see `docs/progress.md`).
 | "Dev mode: Firebase is not configured" | `web\.env` is missing or a value is empty. Restart `npm run dev` after editing it. |
 | "Missing or insufficient permissions" | Rules not uploaded (step 6), or you are not signed in as the coordinator. |
 | Seed: "Could not load the default credentials" | Step 7.3/7.4: file name or `GOOGLE_APPLICATION_CREDENTIALS` path is wrong. |
+| Agency inbox says "sign in with an agency account" after signing in | Sign out and in again (roles are read at sign-in). |
+| Rules changed in a later update | Run `firebase deploy --only firestore:rules` again. |
 | `firebase` is not recognized | Close and reopen the terminal after step 5. |

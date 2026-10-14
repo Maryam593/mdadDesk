@@ -29,7 +29,7 @@ export function CoordinatorPage() {
           )}
         </Card>
         {selected ? (
-          <IncidentDetail incident={selected} onSetStatus={setStatus} showTimeline={!isSample} />
+          <IncidentDetail incident={selected} onSetStatus={setStatus} live={!isSample} />
         ) : (
           <Card>
             <p className="text-sm text-slate-500">Select an incident (or a dot on the map) to review and verify it.</p>

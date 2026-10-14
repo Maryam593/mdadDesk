@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { AiStatus, DeliveryStatus, Extraction } from "@shared";
 import { clarifyReport, extractReport } from "@/lib/api";
 import { isFirebaseConfigured } from "@/lib/firebase";
+import { rememberReport } from "@/lib/myReports";
 import { applyExtraction, newReportId, sendReport } from "@/services/reports";
 
 interface SubmitState {
@@ -26,6 +27,7 @@ export function useReportSubmit() {
     setState({ ...INITIAL, delivery: isFirebaseConfigured ? "pending" : null, ai: "pending" });
 
     if (isFirebaseConfigured) {
+      rememberReport(id, text); // so the reporter can open its status page, even offline
       sendReport(id, text, Date.now())
         .then(() => patch({ delivery: "sent" }))
         .catch(() => patch({ delivery: "failed" }));

@@ -35,3 +35,16 @@
 **Next (14 Oct)**
 - Add the Gemini key → `npm run eval`; tune prompts until ≥90% / 0 invented.
 - Clarification answer input on the report page; editable fields on the coordinator card.
+
+## 2026-10-14
+**Done**
+- MVP help loop (docs/prd.md) built end to end:
+  - Reporter: "Your reports" links on the report page (saved on the phone) → live `/track/<id>` page
+    with 5 steps: sent → seen → help requested → "<agency> on the way" → closed.
+  - Coordinator: "Send help" buttons per agency after Verify (busy agencies disabled); Resolve button.
+  - Agency: inbox of requests for the signed-in agency with **On the way**.
+  - Rules: open `get` of one incident by id; agencies can only set `response`/`respondingKinds` on
+    incidents they were asked to help; agencies read only their own assignments.
+- Shared `ActionButton` (busy + error message) replaces repeated try/catch in buttons.
+- Verified: typecheck + production build. **Not yet verified against a real Firebase project**
+  (user is creating it now); test steps in `docs/firebase-setup.md` step 8.

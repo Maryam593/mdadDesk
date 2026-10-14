@@ -20,6 +20,8 @@ function sample(id: string, minutesAgo: number, fields: Partial<Incident>): Inci
     location: null,
     leadAgencyId: null,
     supportAgencyIds: [],
+    notifiedAgencyIds: [],
+    respondingKinds: [],
     createdAt: Date.now() - minutesAgo * MINUTE,
     updatedAt: Date.now(),
     ...fields,

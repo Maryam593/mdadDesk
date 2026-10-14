@@ -3,6 +3,7 @@ import { Notice } from "@/components/ui/Notice";
 import { FieldGrid } from "@/components/incident/FieldGrid";
 import { ReportForm } from "@/components/report/ReportForm";
 import { SubmitStatus } from "@/components/report/SubmitStatus";
+import { MyReports } from "@/components/track/MyReports";
 import { useReportSubmit } from "@/hooks/useReportSubmit";
 
 export function ReportPage() {
@@ -23,6 +24,7 @@ export function ReportPage() {
           </div>
         </Card>
       )}
+      <MyReports />
     </div>
   );
 }

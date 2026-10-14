@@ -35,6 +35,8 @@ export function newIncident(reportId: string, text: string, createdAt: number) {
     location: null,
     leadAgencyId: null,
     supportAgencyIds: [],
+    notifiedAgencyIds: [],
+    respondingKinds: [],
     createdAt,
     updatedAt: Date.now(),
   };

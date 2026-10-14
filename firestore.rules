@@ -20,11 +20,23 @@ service cloud.firestore {
     }
 
     match /incidents/{id} {
+      function hasAssignment() {
+        return exists(/databases/$(database)/documents/assignments/$(id + '_' + request.auth.token.agencyId));
+      }
       allow create: if request.resource.data.status == 'reported';
       allow update: if isCoordinator()
+        // the reporter's phone saves what the AI understood
         || (resource.data.status == 'reported' && onlyChanges([
-          'incidentType', 'building', 'floor', 'landmark', 'peopleReported', 'summary', 'updatedAt']));
-      allow read: if isCoordinator() || (isAgency() && resource.data.status != 'reported');
+          'incidentType', 'building', 'floor', 'landmark', 'peopleReported', 'summary', 'updatedAt']))
+        // an agency that was asked for help taps "On the way"
+        || (isAgency() && hasAssignment()
+          && resource.data.status in ['verified', 'response']
+          && request.resource.data.status == 'response'
+          && onlyChanges(['status', 'respondingKinds', 'updatedAt']));
+      // Reading one incident by id is open: the id is a long random code that only the
+      // reporter's phone (and assigned agencies) know. Listing all incidents is coordinator-only.
+      allow get: if true;
+      allow list: if isCoordinator();
 
       match /events/{eventId} {
         allow read: if isCoordinator() || isAgency();
@@ -38,7 +50,8 @@ service cloud.firestore {
     }
 
     match /assignments/{id} {
-      allow read, create: if isCoordinator() || isAgency();
+      allow create: if isCoordinator();
+      allow read: if isCoordinator() || (isAgency() && resource.data.agencyId == request.auth.token.agencyId);
       allow update: if isCoordinator()
         || (isAgency() && resource.data.agencyId == request.auth.token.agencyId && onlyChanges(['status', 'updatedAt']));
     }

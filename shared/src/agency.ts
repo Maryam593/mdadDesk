@@ -15,6 +15,8 @@ export interface Assignment {
   id: string; // `${incidentId}_${agencyId}`
   incidentId: string;
   agencyId: string;
+  agencyKind: AgencyKind; // copied here so the agency inbox and reporter page need no extra lookup
+  agencyName: string;
   role: "lead" | "support" | null;
   status: AssignmentStatus;
   updatedAt: number;

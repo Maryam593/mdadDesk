@@ -3,15 +3,16 @@ import { Card } from "@/components/ui/Card";
 import { FieldGrid } from "./FieldGrid";
 import { StatusBadge } from "./StatusBadge";
 import { IncidentActions } from "./IncidentActions";
+import { DispatchPanel } from "./DispatchPanel";
 import { Timeline } from "./Timeline";
 
 interface Props {
   incident: Incident;
   onSetStatus: (id: string, status: IncidentStatus) => Promise<void>;
-  showTimeline: boolean; // false for sample data (it has no saved history)
+  live: boolean; // false for sample data: it has no saved history and no agencies
 }
 
-export function IncidentDetail({ incident, onSetStatus, showTimeline }: Props) {
+export function IncidentDetail({ incident, onSetStatus, live }: Props) {
   return (
     <Card
       title={<>Incident <StatusBadge status={incident.status} /></>}
@@ -20,7 +21,8 @@ export function IncidentDetail({ incident, onSetStatus, showTimeline }: Props) {
       <div className="space-y-4">
         <p className="text-sm">{incident.summary}</p>
         <FieldGrid values={incident} />
-        {showTimeline && (
+        {live && <DispatchPanel incident={incident} />}
+        {live && (
           <div>
             <h3 className="mb-2 text-sm font-semibold">Timeline</h3>
             <Timeline incidentId={incident.id} />

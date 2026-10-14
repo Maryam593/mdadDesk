@@ -1,21 +1,26 @@
-import { doc, writeBatch } from "firebase/firestore";
+import { doc, writeBatch, type WriteBatch } from "firebase/firestore";
 import type { Incident, IncidentEventKind, IncidentStatus } from "@shared";
 import { requireDb } from "@/lib/firebase";
 import { addEvent } from "./events";
 
 type EditableFields = Partial<Pick<Incident, "incidentType" | "building" | "floor" | "landmark" | "peopleReported">>;
 
-/** One write path for every incident change, so each change also lands on the timeline. */
-async function changeIncident(
+/**
+ * One write path for every incident change, so each change also lands on the timeline.
+ * `alsoWrite` lets a caller save one more document in the same all-or-nothing batch.
+ */
+export async function changeIncident(
   id: string,
-  patch: Partial<Incident>,
+  patch: Record<string, unknown>,
   kind: IncidentEventKind,
   message: string,
+  alsoWrite?: (batch: WriteBatch) => void,
 ) {
   const db = requireDb();
   const batch = writeBatch(db);
   batch.update(doc(db, "incidents", id), { ...patch, updatedAt: Date.now() });
   addEvent(batch, id, kind, message);
+  if (alsoWrite) alsoWrite(batch);
   await batch.commit();
 }
 

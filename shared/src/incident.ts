@@ -1,3 +1,4 @@
+import type { AgencyKind } from "./agency";
 import type { IncidentType } from "./extraction";
 
 export const INCIDENT_STATUSES = ["reported", "verified", "response", "resolved"] as const;
@@ -17,6 +18,8 @@ export interface Incident {
   location: { lat: number; lng: number } | null;
   leadAgencyId: string | null;
   supportAgencyIds: string[];
+  notifiedAgencyIds: string[]; // coordinator asked these agencies for help
+  respondingKinds: AgencyKind[]; // agencies that tapped "On the way" (fire / ambulance / police)
   createdAt: number;
   updatedAt: number;
 }
