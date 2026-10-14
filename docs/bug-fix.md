@@ -17,8 +17,9 @@ Add newest entries at the top. Format:
 **Cause:** App Check enforcement got turned on for Firebase AI Logic during setup; our app sends no App Check token.
 **Cause (corrected):** AI Logic shows "Basic - Enforced" with no Unenforce option; App Check becomes mandatory
 for AI Logic on 2 Nov 2026 anyway.
-**Fix:** App Check with free reCAPTCHA v3: `web/src/lib/appCheck.ts`, `VITE_RECAPTCHA_SITE_KEY`, setup in
-`docs/firebase-setup.md` step 9. (reCAPTCHA Enterprise / "Fraud Defense" skipped: may need billing.)
+**Fix:** App Check with reCAPTCHA Enterprise ("Fraud Defense"): `web/src/lib/appCheck.ts`,
+`VITE_RECAPTCHA_SITE_KEY`, setup in `docs/firebase-setup.md` step 9. First tried classic reCAPTCHA v3:
+the console now marks it deprecated and points to Fraud Defense.
 **Check:** pending, browser test after step 9.
 
 ## 2026-10-14 — Eval after moving to JSON Schema: 3/20 timeouts
