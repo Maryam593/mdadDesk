@@ -1,4 +1,4 @@
-import type { AgencyKind, Incident } from "@shared";
+import type { AgencyKind, Incident, IncidentType } from "@shared";
 
 // What the reporter sees on their status page, step by step.
 
@@ -30,4 +30,26 @@ export function onTheWayText(incident: Incident): string {
   const names = incident.respondingKinds.map((kind) => KIND_LABEL[kind]);
   if (names.length === 0) return HELP_STEPS[3];
   return `${names.join(" and ")} on the way`;
+}
+
+/** Text for one step; step 3 names who is coming. */
+export const stepText = (incident: Incident, step: number) =>
+  step === 3 ? onTheWayText(incident) : HELP_STEPS[step];
+
+// Splash emojis: who is coming, plus the "opposite" of the danger (fire → extinguisher + water).
+const KIND_EMOJI: Record<AgencyKind, string> = { fire: "🚒", ambulance: "🚑", police: "🚓" };
+const REMEDY: Record<IncidentType, string> = {
+  fire: "🧯💧",
+  smoke: "🧯",
+  medical: "🩺",
+  trapped: "🪜",
+  collapse: "👷",
+  other: "🦺",
+};
+
+export function splashEmoji(incident: Incident, step: number): string {
+  if (step === 4) return "💚";
+  const vehicles = incident.respondingKinds.map((kind) => KIND_EMOJI[kind]).join("");
+  const lead = ["📨", "✅", "📞", vehicles][step];
+  return lead + REMEDY[incident.incidentType ?? "other"];
 }

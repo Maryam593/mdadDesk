@@ -1,7 +1,7 @@
 import type { AiStatus, DeliveryStatus } from "@shared";
 import { Notice } from "@/components/ui/Notice";
 import type { Tone } from "@/lib/labels";
-import type { LocationStatus } from "@/hooks/useReportSubmit";
+import type { LocationStatus } from "@/hooks/submitSteps";
 
 const DELIVERY: Record<DeliveryStatus, [Tone, string]> = {
   pending: ["warn", "SOS pending — not delivered yet. Keep this page open; it will send when online."],

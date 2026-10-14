@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
+import { Overlay } from "@/components/ui/Overlay";
 import { startSiren } from "@/lib/siren";
 import { showSystemNotification } from "@/lib/systemNotify";
 
@@ -21,17 +22,14 @@ export function EmergencyAlert({ title, body, onClose, children }: Props) {
   }, []);
 
   return (
-    <div role="alertdialog" className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
-      <div className="absolute inset-0 animate-pulse bg-red-700/90" />
-      <div className="relative w-full max-w-lg space-y-4">
-        <h2 className="text-center text-3xl font-black tracking-wide text-white">🚨 {title}</h2>
-        {children}
-        <div className="text-center">
-          <Button variant="secondary" onClick={onClose}>
-            Silence and close
-          </Button>
-        </div>
+    <Overlay tone="danger">
+      <h2 className="text-center text-3xl font-black tracking-wide text-white">🚨 {title}</h2>
+      {children}
+      <div className="text-center">
+        <Button variant="secondary" onClick={onClose}>
+          Silence and close
+        </Button>
       </div>
-    </div>
+    </Overlay>
   );
 }

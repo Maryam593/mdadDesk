@@ -4,7 +4,7 @@
 
 let sound: AudioContext | null = null;
 
-function getSound(): AudioContext {
+export function getSound(): AudioContext {
   if (!sound) sound = new AudioContext();
   return sound;
 }

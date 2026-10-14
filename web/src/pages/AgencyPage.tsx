@@ -3,6 +3,7 @@ import type { Assignment } from "@shared";
 import { Notice } from "@/components/ui/Notice";
 import { AssignmentCard } from "@/components/agency/AssignmentCard";
 import { NewRequestAlert } from "@/components/alert/NewRequestAlert";
+import { Tour } from "@/components/tour/Tour";
 import { useClaims } from "@/hooks/useClaims";
 import { useCollection } from "@/hooks/useCollection";
 
@@ -27,6 +28,7 @@ export function AgencyPage() {
   const newestFirst = [...inbox.data].sort((a, b) => b.updatedAt - a.updatedAt);
   return (
     <div className="mx-auto max-w-2xl space-y-4">
+      <Tour id="agency" />
       <NewRequestAlert assignments={inbox.data} ready={!inbox.loading} />
       <h2 className="text-lg font-semibold">Agency inbox</h2>
       {inbox.error && <Notice tone="danger">{inbox.error}</Notice>}

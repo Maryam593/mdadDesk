@@ -1,22 +1,18 @@
 import { useState } from "react";
-import type { AiStatus, DeliveryStatus, Extraction, IncidentType } from "@shared";
-import { clarifyReport, extractReport } from "@/lib/ai";
+import type { IncidentType } from "@shared";
 import { isFirebaseConfigured } from "@/lib/firebase";
-import { rememberReport } from "@/lib/myReports";
-import { getLocation } from "@/lib/geo";
-import { applyExtraction, attachLocation, newReportId, sendReport } from "@/services/reports";
+import { askNotificationPermission } from "@/lib/systemNotify";
+import { newReportId } from "@/services/reports";
+import { deliver, readWithAi, type SubmitState } from "./submitSteps";
 
-interface SubmitState {
-  delivery: DeliveryStatus | null;
-  ai: AiStatus | null;
-  extraction: Extraction | null;
-  question: string | null;
-  location: LocationStatus | null;
-}
-
-export type LocationStatus = "pending" | "shared" | "off";
-
-const INITIAL: SubmitState = { delivery: null, ai: null, extraction: null, question: null, location: null };
+const INITIAL: SubmitState = {
+  delivery: null,
+  ai: null,
+  extraction: null,
+  question: null,
+  location: null,
+  reportId: null,
+};
 
 /**
  * Delivery first, AI second: the report is saved before Gemini runs,
@@ -24,33 +20,22 @@ const INITIAL: SubmitState = { delivery: null, ai: null, extraction: null, quest
  */
 export function useReportSubmit() {
   const [state, setState] = useState<SubmitState>(INITIAL);
-  const patch = (p: Partial<SubmitState>) => setState((s) => ({ ...s, ...p }));
+  const patch = (changes: Partial<SubmitState>) => setState((s) => ({ ...s, ...changes }));
 
   const submit = async (text: string, type: IncidentType) => {
+    askNotificationPermission(); // so "help is on the way" can pop up later, even in the background
     const id = newReportId();
     const live = isFirebaseConfigured;
-    setState({ ...INITIAL, delivery: live ? "pending" : null, ai: "pending", location: live ? "pending" : null });
+    setState({
+      ...INITIAL,
+      delivery: live ? "pending" : null,
+      ai: "pending",
+      location: live ? "pending" : null,
+      reportId: live ? id : null,
+    });
 
-    if (isFirebaseConfigured) {
-      rememberReport(id, text); // so the reporter can open its status page, even offline
-      sendReport(id, text, Date.now(), type)
-        .then(() => patch({ delivery: "sent" }))
-        .catch(() => patch({ delivery: "failed" }));
-      getLocation().then((point) => {
-        patch({ location: point ? "shared" : "off" });
-        if (point) attachLocation(id, point).catch(console.error);
-      });
-    }
-
-    const res = await extractReport({ text });
-    const extraction = res.ok ? res.extraction : null;
-    patch({ ai: res.ok ? "ok" : "failed", extraction });
-    if (live) applyExtraction(id, extraction).catch(console.error);
-
-    if (extraction?.missingFields.length) {
-      const q = await clarifyReport({ text, extraction });
-      if (q.ok) patch({ question: q.question });
-    }
+    if (live) deliver(id, text, type, patch);
+    await readWithAi(id, text, live, patch);
   };
 
   return { ...state, submit, reset: () => setState(INITIAL) };

@@ -26,16 +26,22 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/services/    reports.ts, incidents.ts, events.ts, assignments.ts — all Firestore writes
                    newRecords.ts — starting data for a new report/incident
   src/hooks/       useCollection / useDoc (realtime), useIncidents, useReportSubmit, useOnline,
-                   useAuthUser, useClaims (role + agencyId), useArrivals (new items since page load)
+                   useAuthUser, useClaims (role + agencyId), useArrivals (new items since page load),
+                   useStepChange (reporter step went up), useTour (seen once per device)
+                   submitSteps.ts (deliver + readWithAi, used by useReportSubmit)
   src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone),
-                   siren.ts (alarm sound, made in code), systemNotify.ts (phone/PC notifications),
+                   siren.ts / chime.ts (sounds made in code), systemNotify.ts (phone/PC notifications),
+                   tours.ts (tour text),
                    geo.ts (phone GPS + Google Maps link)
   src/components/
-    ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField, tone.ts
+    ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField,
+                   Overlay (full-screen layer: danger / good / neutral), tone.ts
     layout/        AppShell (nav), StatusBanners (offline / config)
     incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline,
                    LocationLine (GPS ± metres + "Open in Google Maps")
-    track/         HelpProgress (reporter checklist), MyReports (links on the report page)
+    track/         LiveStatus (live card, on report page + /track), HelpProgress (checklist),
+                   HelpSplash (green good-news screen + chime), MyReports (links on the report page)
+    tour/          Tour (first-visit guide per page + "How it works" button; text in lib/tours.ts)
     agency/        AssignmentCard (one help request + "On the way")
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)

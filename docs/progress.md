@@ -81,3 +81,13 @@
 - App Check: reCAPTCHA key registered in Firebase App Check (Fraud Defense); site key in `web/.env`.
   Build includes it. Browser check by the user pending.
 - Eval rerun: 92.6%, 0 invented, 1/20 timeout.
+
+**Later the same day (4): feedback from the first browser test**
+- Header showed "Login" after signing in → now shows "👤 coordinator" (opens sign-out page).
+- Reporter good-news splash: each time their SOS moves forward (verified, help requested, on the way,
+  closed) a green full-screen splash with a chime and a phone notification. Emojis = who is coming +
+  the "opposite" of the danger (fire → 🚒🧯💧, medical → 🚑🩺, trapped → 🪜…). The live status card now
+  also shows on the report page right after sending (no need to open /track).
+- First-visit tour on report, coordinator and agency pages (+ "❓ How it works" button).
+- Refactors: `Overlay` shared by alert / splash / tour; `submitSteps.ts` split out of useReportSubmit (≤60 lines).
+- User confirmed: login, coordinator page and map work.

@@ -5,6 +5,7 @@ import { IncidentList } from "@/components/incident/IncidentList";
 import { IncidentDetail } from "@/components/incident/IncidentDetail";
 import { IncidentMap } from "@/components/map/IncidentMap";
 import { NewSosAlert } from "@/components/alert/NewSosAlert";
+import { Tour } from "@/components/tour/Tour";
 import { useIncidents } from "@/hooks/useIncidents";
 
 export function CoordinatorPage() {
@@ -14,6 +15,7 @@ export function CoordinatorPage() {
 
   return (
     <div className="space-y-4">
+      <Tour id="coordinator" />
       <NewSosAlert incidents={data} ready={!loading && !isSample} onOpen={setSelectedId} />
       {error && <Notice tone="danger">{error}</Notice>}
       {isSample && (

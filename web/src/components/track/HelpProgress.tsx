@@ -1,6 +1,6 @@
 import type { Incident } from "@shared";
 import { cx } from "@/components/ui/tone";
-import { HELP_STEPS, helpStep, onTheWayText } from "@/lib/helpSteps";
+import { HELP_STEPS, helpStep, stepText } from "@/lib/helpSteps";
 
 /** The reporter's checklist: done steps are filled, the current one is bold. */
 export function HelpProgress({ incident }: { incident: Incident }) {
@@ -10,7 +10,7 @@ export function HelpProgress({ incident }: { incident: Incident }) {
     <ol className="space-y-3">
       {HELP_STEPS.map((label, index) => {
         const done = index <= current;
-        const text = index === 3 && done ? onTheWayText(incident) : label;
+        const text = done ? stepText(incident, index) : label;
         return (
           <li
             key={label}

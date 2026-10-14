@@ -32,6 +32,9 @@ AI extraction stays in (already working) but is not required for the loop: a rep
 **After the loop works**, in this order: follow-up question reply, field editing, related-report flag,
 busy/decline + escalation, lead vs support agencies.
 
+**Reporter good news (14 Oct):** each step shows a green splash with a chime and an emoji of who is coming
+plus the "opposite" of the danger (fire → 🚒🧯💧). **Tour:** first-visit guide on every page.
+
 **Alerts (added 14 Oct):** a new SOS (coordinator) or help request (agency) turns the screen red
 with a siren, plus a phone/PC notification when the tab is in the background. Only while the app is
 open; real push notifications (app closed) stay on the roadmap.
