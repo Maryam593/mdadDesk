@@ -12,6 +12,14 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Install option missing on a Realme phone (Samsung fine)
+**Symptom:** on Android Chrome (Realme) no install popup / install did nothing; on Samsung it installed.
+**Checked:** live site has manifest, PNG icons 192/512 + maskable, service worker registered, HTTPS → installable.
+**Likely cause:** Realme/Oppo/Xiaomi block "create home-screen shortcuts" for Chrome by default; Chrome also
+shows install only in the ⋮ menu, not always as a popup.
+**Fix:** user steps in `docs/how-to-start.md` §6 (allow shortcut permission, update Chrome, clear site data).
+**Check:** pending, user to retry on Realme.
+
 ## 2026-10-14 — Clicking Verify closed the case ("Close: no help needed")
 **Symptom:** after tapping Verify, the case ended up resolved without anyone being sent.
 **Cause (from the timeline):** collapse case verified 8:33:28, resolved 8:33:35. After Verify, the

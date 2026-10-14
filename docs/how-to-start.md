@@ -77,6 +77,10 @@ Use **two windows**: one browser window logs in as ONE person for all its tabs.
 **iPhone:** open the link in **Safari** → Share (⬆️ box) → **Add to Home Screen** → Add.
 (iOS 16.4+ also allows it from Chrome's Share menu; Safari works on every iPhone.) Always open it from the icon.
 
+**Realme / Oppo / Xiaomi:** if "Install" does nothing, the phone is blocking home-screen icons for Chrome:
+Settings → Apps → Chrome → Permissions / Other permissions → **Create desktop shortcuts** (or "Home screen
+shortcuts") → Allow. Also update Chrome. Developer mode is not needed. (Worked on Samsung right away, 14 Oct.)
+
 After installing: red MadadDesk icon, opens without the address bar, opens offline, an SOS sent offline
 is sent automatically when back online, and updates arrive by themselves on the next launch.
 
