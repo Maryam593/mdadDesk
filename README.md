@@ -2,7 +2,7 @@
 
 From scattered distress messages to a verified emergency picture.
 AI-assisted SOS intake (English / Urdu / Roman Urdu), coordinator verification and simulated
-multi-agency response for building emergencies. Built for **AI Builder Cup 2026**.
+multi-agency response for building emergencies.
 
 > Prototype for drills and demos only — not a deployed emergency service.
 

@@ -1,6 +1,6 @@
 # MadadDesk — Product Requirements (hackathon MVP)
 
-**Event:** AI Builder Cup 2026 (JAPAC) · **Theme:** Sustainability & Social Impact
+**Theme:** Sustainability & Social Impact
 **Deadline:** 18 Oct 2026 · **Source proposal:** `MadadDesk_Initial_Proposal.pdf`
 
 ## Problem
