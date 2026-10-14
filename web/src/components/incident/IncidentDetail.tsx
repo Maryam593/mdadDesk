@@ -21,9 +21,9 @@ export function IncidentDetail({ incident, onSetStatus, live }: Props) {
     >
       <div className="space-y-4">
         <p className="text-sm">{incident.summary}</p>
+        {live && <DispatchPanel incident={incident} />}
         <FieldGrid values={incident} />
         <LocationLine location={incident.location} />
-        {live && <DispatchPanel incident={incident} />}
         {live && (
           <div>
             <h3 className="mb-2 text-sm font-semibold">Timeline</h3>

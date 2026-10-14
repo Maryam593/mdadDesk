@@ -12,6 +12,16 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Agency inbox empty after Verify: incident was closed instead of sent
+**Symptom:** coordinator verified a fire SOS, fire-saddar's inbox stayed empty.
+**Cause (from Firestore):** the incident went verified → resolved with `notifiedAgencyIds: []` and 0 assignments.
+After Verify, the same top-right spot showed "Close as resolved", which looked like the next step; the real
+next step ("Send help") sat lower in the card.
+**Fix:** `IncidentActions.tsx`: after Verify the top button is grey "Close: no help needed".
+`DispatchPanel.tsx`: red box "👇 Next: send help" with red buttons until help is sent, placed right under
+the summary (`IncidentDetail.tsx`).
+**Check:** typecheck + build; browser check by user.
+
 ## 2026-10-14 — Coordinator tab: "Missing or insufficient permissions"
 **Symptom:** after signing in as fire-saddar in a second tab, the coordinator tab showed the raw Firebase error.
 **Cause:** not a bug in the rules: all tabs of one browser share one login, so the coordinator tab became

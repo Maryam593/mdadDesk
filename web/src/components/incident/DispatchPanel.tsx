@@ -16,15 +16,19 @@ export function DispatchPanel({ incident }: { incident: Incident }) {
   const { data: agencies, error } = useCollection<Agency>("agencies");
   if (incident.status !== "verified" && incident.status !== "response") return null;
 
+  const nothingSentYet = incident.notifiedAgencyIds.length === 0;
   return (
-    <div>
-      <h3 className="mb-2 text-sm font-semibold">Send help</h3>
+    // Red box until help is sent, so the next step can't be missed after Verify.
+    <div className={nothingSentYet ? "rounded-lg border-2 border-danger bg-red-50 p-3" : ""}>
+      <h3 className="mb-2 text-sm font-semibold">
+        {nothingSentYet ? "👇 Next: send help (the agency gets a red alert)" : "Help sent. Send more if needed:"}
+      </h3>
       {error && <p className="text-sm text-danger">{error}</p>}
       <div className="flex flex-wrap gap-2">
         {agencies.map((agency) => (
           <ActionButton
             key={agency.id}
-            variant="secondary"
+            variant={nothingSentYet ? "danger" : "secondary"}
             disabled={!agency.available || incident.notifiedAgencyIds.includes(agency.id)}
             onClick={() => sendAgency(incident, agency)}
           >

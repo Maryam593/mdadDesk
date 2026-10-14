@@ -5,10 +5,12 @@ import { ActionButton } from "@/components/ui/ActionButton";
  * Next allowed human step for each status. AI never moves an incident forward.
  * "Response" is set by the agency tapping "On the way", not by the coordinator.
  */
-const NEXT: Partial<Record<IncidentStatus, { to: IncidentStatus; label: string }>> = {
-  reported: { to: "verified", label: "Verify" },
-  verified: { to: "resolved", label: "Close as resolved" },
-  response: { to: "resolved", label: "Confirm resolved" },
+type Step = { to: IncidentStatus; label: string; variant: "danger" | "primary" | "secondary" };
+const NEXT: Partial<Record<IncidentStatus, Step>> = {
+  reported: { to: "verified", label: "Verify", variant: "danger" },
+  // After Verify the real next step is "Send help" below; closing is only for false alarms.
+  verified: { to: "resolved", label: "Close: no help needed", variant: "secondary" },
+  response: { to: "resolved", label: "Confirm resolved", variant: "primary" },
 };
 
 interface Props {
@@ -23,7 +25,7 @@ export function IncidentActions({ incident, onSetStatus }: Props) {
 
   return (
     <ActionButton
-      variant={next.to === "verified" ? "danger" : "primary"}
+      variant={next.variant}
       onClick={() => onSetStatus(incident.id, next.to)}
     >
       {next.label}
