@@ -20,6 +20,9 @@ was "granted" (banner hidden).
 **Fix:** new "checking" state in `useLocationPermission.ts`; `LocationPrompt` shows nothing until the answer
 is known, so the banner only appears when location really is off.
 **Check:** typecheck + build + deployed; phone check by user.
+**Follow-up:** still flashed on the phone. Most likely the installed app first shows the OLD saved version
+(with the flash), then the auto-update reloads into the new one. Added the build time to the footer
+("Version 2026-10-14 18:xx UTC") so we can see which version a phone is running.
 
 ## 2026-10-14 — Phone with Wi-Fi off: "SOS was not sent"
 **What happened:** with no internet the SOS cannot reach the server (no app can). The app did what it was

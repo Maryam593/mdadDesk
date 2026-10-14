@@ -120,6 +120,8 @@ Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`
 - Where they are used: HoldButton → "Hold to confirm resolved", "Hold to close without sending help";
   ParticleButton → agency "On the way"; Loader → every loading state; WaveText → "Reading your report…".
 
+- Footer shows "Version <build time UTC>" (`__BUILD_TIME__` from vite.config.ts) to check which version a phone runs.
+
 ## Decisions
 - Map: Leaflet + OpenStreetMap instead of Google Maps (no billing). One demo building in
   `web/src/lib/building.ts`; incidents without their own location show there, nudged ~3 m apart.

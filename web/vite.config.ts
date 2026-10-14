@@ -5,6 +5,8 @@ import { VitePWA } from "vite-plugin-pwa";
 import { fileURLToPath } from "node:url";
 
 export default defineConfig({
+  // Build time, shown in the footer, so you can see which version a phone is running.
+  define: { __BUILD_TIME__: JSON.stringify(new Date().toISOString().slice(0, 16).replace("T", " ")) },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
