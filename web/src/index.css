@@ -13,21 +13,23 @@ body {
   @apply bg-slate-100 text-slate-900 antialiased;
 }
 
-/* SOS tile flip (components/report/FlipTile.tsx): front = name, back = emoji. */
+/* SOS card flip (components/report/FlipTile.tsx), in the style of a real card:
+   tap → springy turn, a light sweep over the face, and a small tilt toward the mouse. */
 .flip {
-  perspective: 800px;
+  perspective: 1100px;
 }
+.tilt,
 .flip-inner {
-  transition: transform 0.6s;
   transform-style: preserve-3d;
 }
-.flip.flipped .flip-inner {
-  transform: rotateY(180deg);
+.tilt {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
-@media (hover: hover) {
-  .flip.flipped:hover .flip-inner {
-    transform: rotateY(0deg); /* mouse over: turn back to the name */
-  }
+.flip-inner {
+  transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); /* overshoots a little = spring */
+}
+.flip-inner.flipped {
+  transform: rotateY(180deg);
 }
 .flip-face {
   backface-visibility: hidden;
@@ -35,8 +37,29 @@ body {
 .flip-back {
   transform: rotateY(180deg);
 }
+.sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 35%, rgb(255 255 255 / 0.55) 50%, transparent 65%);
+  background-size: 250% 100%;
+  background-position: 150% 0;
+}
+.flip-inner:not(.flipped) .face-front .sheen,
+.flip-inner.flipped .flip-back .sheen {
+  animation: sheen 0.9s ease-out;
+}
+@keyframes sheen {
+  to {
+    background-position: -50% 0;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
+  .tilt,
   .flip-inner {
     transition: none;
+  }
+  .sheen {
+    animation: none;
   }
 }

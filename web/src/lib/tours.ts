@@ -28,7 +28,7 @@ const FLOW: TourStep = {
 export const TOURS: Record<TourId, TourStep[]> = {
   report: [
     TABS,
-    { emoji: "🆘", title: "Need help? One tap.", text: "Tap what is happening (Fire, Medical…). Your SOS is sent at once." },
+    { emoji: "🆘", title: "Need help? Two taps.", text: "Tap what is happening (Fire, Medical…). The card turns over: tap Send SOS." },
     { emoji: "✍️", title: "Add details first if you can", text: "Floor, shop, how many people. Any language: English, اردو or Roman Urdu." },
     { emoji: "📍", title: "Allow location", text: "Your phone's location helps rescuers find you faster." },
     FLOW,

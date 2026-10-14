@@ -94,7 +94,8 @@ Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`
 - Font: Plus Jakarta Sans (Google Fonts; falls back to the system font offline).
 - Logo = `web/public/icon.svg` (pin + help cross + signal waves). Phone install icons are PNG copies
   (`icon-192/512.png`, `icon-maskable-512.png`, `apple-touch-icon.png`): re-make them if the logo changes.
-- SOS tiles flip (FlipTile + `.flip` CSS in index.css); numbered steps on the report page.
+- SOS cards (FlipTile + `.flip` CSS, `useTilt`): tap → springy flip with a light sweep → "Send SOS" / Cancel
+  on the back (style of kokonutui "card flip", rebuilt small without extra libraries).
 
 - Credit line is only in README.md (`<!-- taggie -->` block, managed by the taggie CLI), not in the app.
 

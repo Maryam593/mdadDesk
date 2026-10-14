@@ -5,7 +5,7 @@ For anyone new to MadadDesk, human or AI agent. Read this first, then the other 
 **Live app:** https://mdaddeskv1-6af42.web.app · **Code:** https://github.com/Maryam593/mdadDesk
 
 ## 1. What it is, in one minute
-Someone in a building emergency taps one button (🔥 Fire, 🚑 Medical…). Their SOS + phone location
+Someone in a building emergency taps a card (🔥 Fire, 🚑 Medical…), it flips, they tap Send SOS. Their SOS + phone location
 reach the building's **coordinator**, who checks it, taps **Verify**, then **sends** Fire / Ambulance /
 Police. The **agency** gets a red alert and taps **On the way**. The reporter sees every step on a green screen.
 Gemini (AI) only reads the message (floor, shop, people); **humans decide and dispatch**.
@@ -51,7 +51,8 @@ Use **two windows**: one browser window logs in as ONE person for all its tabs.
 1. **Before you start:** open the Agency inbox (Incognito) and click once anywhere on it
    (browsers only play the siren after one click). Open the Coordinator desk (normal window).
 2. **Reporter** (phone or a new normal tab, signed out view): type details, e.g.
-   `TEST 2nd floor shop 24 ke paas dhuaan hai, hum 3 log hain` → tap **Smoke** → allow location.
+   `TEST 2nd floor shop 24 ke paas dhuaan hai, hum 3 log hain` → tap the **Smoke** card → it flips →
+   **Send 💨 SOS** → allow location.
    Show: "SOS delivered", "📍 Location shared", "What we understood" (Unknown = not said, never guessed).
 3. **Coordinator:** red screen + siren "NEW SOS" → **Open incident** → **Verify**.
    Reporter gets a green "✅ Seen and confirmed".

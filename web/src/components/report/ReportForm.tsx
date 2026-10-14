@@ -19,7 +19,7 @@ function StepLabel({ n, children }: { n: number; children: ReactNode }) {
   );
 }
 
-/** Optional details box + one-tap tiles. Tapping a tile sends the SOS (with the details, if any). */
+/** Optional details box + SOS cards. Sending from a card includes the details, if any. */
 export function ReportForm({ onSubmit, disabled }: Props) {
   const [text, setText] = useState("");
 
@@ -44,7 +44,7 @@ export function ReportForm({ onSubmit, disabled }: Props) {
         />
       </div>
       <div>
-        <StepLabel n={2}>Tap what is happening: SOS + location are sent at once</StepLabel>
+        <StepLabel n={2}>Tap what is happening, then "Send SOS" (your location goes too)</StepLabel>
         <QuickTypeButtons onPick={send} disabled={disabled} />
       </div>
     </div>

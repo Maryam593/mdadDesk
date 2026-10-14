@@ -116,3 +116,7 @@
 - Attribution via **taggie CLI** (`npm i -g taggie-cli`): "Crafted with ❤ by Maryam Saba for safer
   buildings", **only at the end of README.md** (owner didn't want it inside the app). It is a
   `<!-- taggie -->` block: change it with taggie, not by hand.
+- SOS cards redone in the style of kokonutui's "Card Flip" (user's reference): white card with depth
+  shadow → tap → springy 3D flip with a light sweep → red back with **Send SOS** / Cancel; small tilt
+  toward the mouse. Built without shadcn/motion (60-line rule, bundle size). Trade-off: SOS is now two
+  taps (prevents accidental sends). Tour + docs + tests updated (TOUR_VERSION 4).
