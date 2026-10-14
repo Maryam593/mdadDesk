@@ -1,4 +1,4 @@
-import type { AiStatus, DeliveryStatus, Extraction, IncidentType } from "@shared";
+import type { AiStatus, DeliveryStatus, Extraction, GeoPoint, IncidentType } from "@shared";
 import { clarifyReport, extractReport } from "@/lib/ai";
 import { getLocation } from "@/lib/geo";
 import { rememberReport } from "@/lib/myReports";
@@ -15,6 +15,8 @@ export interface SubmitState {
   question: string | null;
   location: LocationStatus | null;
   reportId: string | null; // set once sent to Firebase, for the live status card
+  message: string | null; // the SOS text, reused for the SMS fallback when offline
+  point: GeoPoint | null; // phone GPS, also for the SMS fallback
 }
 
 type Patch = (changes: Partial<SubmitState>) => void;
@@ -26,7 +28,7 @@ export function deliver(id: string, text: string, type: IncidentType, patch: Pat
     .then(() => patch({ delivery: "sent" }))
     .catch(() => patch({ delivery: "failed" }));
   getLocation().then((point) => {
-    patch({ location: point ? "shared" : "off" });
+    patch({ location: point ? "shared" : "off", point });
     if (point) attachLocation(id, point).catch(console.error);
   });
 }

@@ -34,6 +34,7 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E9 | Coordinator **holds** "Hold to confirm resolved" (~1 s; letting go early cancels) | Status page shows "Closed"; map dot turns green |
 | E10 | Coordinator: open the incident's timeline | Every step above is listed with a time |
 | E11 | Reporter phone: airplane mode → send an SOS → turn airplane mode off | First "SOS pending", then "SOS delivered" by itself |
+| E11b | Phone: Wi-Fi + mobile data off → send an SOS | Red box "No internet": **Send by SMS** opens the SMS app with the SOS (+ location link if GPS worked); **Call 1122** opens the dialer |
 | E12 | Open the app with airplane mode on | The app still opens (offline) |
 | E13 | Agency page with the tab in the background (switch tab), then coordinator sends help | A phone/computer notification pops up (allow notifications when asked at login) |
 | E14 | Login as fire, open `/coordinator` | Message "You are signed in as fire-saddar… This page needs the coordinator account"; no incident data shown |

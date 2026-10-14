@@ -12,6 +12,15 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Phone with Wi-Fi off: "SOS was not sent"
+**What happened:** with no internet the SOS cannot reach the server (no app can). The app did what it was
+built for: saved it on the phone ("SOS pending") to send automatically when internet returns. But in an
+emergency waiting is not enough, and the screen didn't offer anything else.
+**Fix:** `OfflineFallback.tsx` (shown when offline, or after 5 s without delivery = Wi-Fi without internet):
+**Send by SMS** (opens the SMS app with the SOS + Google Maps link already written; needs only mobile
+signal; number = `VITE_SOS_SMS_NUMBER`, optional) and **Call 1122**. Text built in `lib/sms.ts`.
+**Check:** typecheck + build + deployed; phone test by user (testing-e2e E11b).
+
 ## 2026-10-14 — Header showed "Coordinator" twice (tab + account pill)
 **Symptom:** signed in as coordinator, the header had a "Coordinator" tab and a "coordinator" pill side by side.
 **Cause:** the account was shown as a second nav link (to /login) labelled with the role/email, next to a tab

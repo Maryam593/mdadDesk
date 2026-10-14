@@ -55,7 +55,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    settings in lib/globe.ts)
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)
-    report/        ReportForm (numbered steps), QuickTypeButtons + FlipTile (one-tap SOS tiles), SubmitStatus
+    report/        ReportForm (numbered steps), QuickTypeButtons + FlipTile (SOS cards), SubmitStatus,
+                   OfflineFallback (no internet → Send by SMS / Call 1122; text from lib/sms.ts)
     map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident),
                    MapFocus (flies to the selected incident)
   src/pages/       ReportPage, TrackPage (/track/:reportId), CoordinatorPage, AgencyPage, LoginPage

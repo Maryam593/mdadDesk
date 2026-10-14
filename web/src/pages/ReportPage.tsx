@@ -5,11 +5,12 @@ import { ReportForm } from "@/components/report/ReportForm";
 import { SubmitStatus } from "@/components/report/SubmitStatus";
 import { MyReports } from "@/components/track/MyReports";
 import { LiveStatus } from "@/components/track/LiveStatus";
+import { OfflineFallback } from "@/components/report/OfflineFallback";
 import { useReportSubmit } from "@/hooks/useReportSubmit";
 import { Tour } from "@/components/tour/Tour";
 
 export function ReportPage() {
-  const { delivery, ai, extraction, question, location, reportId, submit } = useReportSubmit();
+  const { delivery, ai, extraction, question, location, reportId, message, point, submit } = useReportSubmit();
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
@@ -22,6 +23,7 @@ export function ReportPage() {
         </div>
         <ReportForm onSubmit={submit} disabled={delivery === "pending" || ai === "pending"} />
       </Card>
+      {delivery === "pending" && message && <OfflineFallback message={message} point={point} />}
       <SubmitStatus delivery={delivery} ai={ai} location={location} />
       {reportId && <LiveStatus reportId={reportId} />}
       {extraction && (

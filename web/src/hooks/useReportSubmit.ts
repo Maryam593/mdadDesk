@@ -12,6 +12,8 @@ const INITIAL: SubmitState = {
   question: null,
   location: null,
   reportId: null,
+  message: null,
+  point: null,
 };
 
 /**
@@ -32,6 +34,7 @@ export function useReportSubmit() {
       ai: "pending",
       location: live ? "pending" : null,
       reportId: live ? id : null,
+      message: text,
     });
 
     if (live) deliver(id, text, type, patch);

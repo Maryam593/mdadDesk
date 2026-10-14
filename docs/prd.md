@@ -20,6 +20,7 @@ The one thing the MVP must prove: **someone reports, and help reaches them — a
 
 | # | Who | What happens | Reporter sees |
 |---|---|---|---|
+| 0 | Reporter, no internet | SOS waits on the phone and sends itself later; meanwhile **Send by SMS** / **Call 1122** (need only mobile signal) | "No internet: send it another way" |
 | 1 | Reporter | Taps a card (🔥 Fire, 🚑 Medical, 🆘 Trapped…), it flips, then **Send SOS** (two taps so pockets/children can't send by accident), optionally after typing details. Phone GPS is attached automatically if allowed | "Sent — waiting for coordinator" + "📍 Location shared" |
 | 2 | Coordinator | Sees it instantly on the list and map; taps **Verify** | "Seen and confirmed" |
 | 3 | Coordinator | Taps **Send Fire / Ambulance / Police** | "Help requested" |

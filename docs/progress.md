@@ -150,3 +150,6 @@
   (sticky on wide screens), right = requests; phones stack them. Built with cobe v2 **arcs** instead of
   three.js (~600 KB): a red arc flies from the agency's station (teal dot, demo building for now) to every
   live request, plus a legend. Globe settings moved to `lib/globe.ts`.
+- **Offline SOS** (owner tested with Wi-Fi off): besides waiting on the phone and sending itself later,
+  the report page now offers **Send by SMS** (pre-written SOS + location link, only mobile signal needed)
+  and **Call 1122** when offline or after 5 s without delivery. SMS number via `VITE_SOS_SMS_NUMBER`.
