@@ -46,6 +46,8 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E22 | iPhone, installed app: send an SOS | Works; note whether the chime plays (silent switch off) and whether notifications are offered |
 | E23 | Phone: open the app | Header shows logo + ☰; tapping ☰ opens the menu; choosing a tab closes it |
 | E24 | Agency inbox, then coordinator sends help | Banner count goes up and a red dot appears on the grey globe where the reporter is |
+| E25 | More than 6 incidents / 5 requests | "Prev · Page 1 of N · Next" appears under the list |
+| E26 | Sign in as fire-saddar | Header shows "Fire staff" (not "fire-saddar") |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |
 
 ## Results (copy this table, fill it, send it to the developer)

@@ -12,6 +12,19 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Every report shows Building / Floor / Landmark "Unknown" (AI never ran) — OPEN
+**Symptom:** "Fire at first floor of alfatah, sargodha" → all fields Unknown. Not related to the map.
+**Found (Firestore):** every report since the move to Firebase AI Logic has `aiStatus: "failed"`, `extraction: null`.
+**Likely cause:** App Check gives no valid token, so AI Logic answers 401 "App Check token is invalid". The
+reCAPTCHA key in use was created on the classic reCAPTCHA (v3) site, while the app uses the Enterprise
+provider; App Check accepted the key in the console, but tokens may not be issued for it.
+**Tried from the terminal:** minting an App Check token with firebase-admin needs the IAM Credentials API
+(disabled); listing reCAPTCHA Enterprise keys → PERMISSION_DENIED for the service account. So the exact
+browser error is still needed.
+**Next:** F12 → Console → "[ai] failed: …" message (logging added in `submitSteps.ts`). If it is App Check:
+create a real reCAPTCHA Enterprise key in Google Cloud console (Security → reCAPTCHA) and register that.
+The SOS itself is always delivered; only the automatic reading is missing.
+
 ## 2026-10-14 — Install option missing on a Realme phone (Samsung fine) → just needed a short wait
 **Symptom:** on Android Chrome (Realme) no install popup / install did nothing; on Samsung it installed.
 **Checked:** live site has manifest, PNG icons 192/512 + maskable, service worker registered, HTTPS → installable.

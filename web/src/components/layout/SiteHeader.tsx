@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LogIn, Menu, UserRound, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { useAccountLabel } from "@/hooks/useAccountLabel";
 import { useClaims } from "@/hooks/useClaims";
 import { tabsFor } from "@/lib/nav";
 import { Logo } from "./Logo";
@@ -11,10 +12,11 @@ import { NavItems } from "./NavItems";
  * as a list under the bar. Each person only sees their own tabs (lib/nav.ts).
  */
 export function SiteHeader() {
-  const { role, email } = useClaims();
+  const { role } = useClaims();
+  const accountLabel = useAccountLabel(); // "Coordinator", "Fire staff", … or null
   const [menuOpen, setMenuOpen] = useState(false);
-  const account = email
-    ? { to: "/login", label: email.split("@")[0], icon: UserRound }
+  const account = accountLabel
+    ? { to: "/login", label: accountLabel, icon: UserRound }
     : { to: "/login", label: "Staff login", icon: LogIn };
   const links = [...tabsFor(role), account];
 

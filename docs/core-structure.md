@@ -27,7 +27,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    newRecords.ts — starting data for a new report/incident
   src/hooks/       useCollection / useDoc (realtime), useIncidents, useReportSubmit, useOnline,
                    useAuthUser, useClaims (role + agencyId), useArrivals (new items since page load),
-                   useStepChange (reporter step went up), useTour (seen once per device)
+                   useStepChange (reporter step went up), useTour (seen once per device),
+                   usePages (split any list into pages), useAccountLabel ("Coordinator", "Fire staff")
                    submitSteps.ts (deliver + readWithAi, used by useReportSubmit)
   src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone),
                    siren.ts / chime.ts (sounds made in code), systemNotify.ts (phone/PC notifications),
@@ -35,7 +36,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    geo.ts (phone GPS + Google Maps link), nav.ts (tabs per role + where each role lands)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField,
-                   HoldButton (press-and-hold to confirm), ParticleButton (spark burst),
+                   HoldButton (press-and-hold to confirm), ParticleButton (spark burst), Pager (Prev/Next),
                    Loader (rings + waving label), WaveText (rippling letters),
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
     layout/        AppShell (frame), SiteHeader (row of tabs on wide screens, ☰ menu on phones),

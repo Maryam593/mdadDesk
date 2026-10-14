@@ -141,3 +141,8 @@
   "Live" = waiting, or accepted in the last 3 hours (assignments stay "accepted" after a case closes).
   Assignments now store the reporter's GPS when sent (`location`), so the globe needs no extra reads.
   Stops moving with "reduce motion". Not yet seen in a browser (WebGL can't be checked from the terminal).
+- Header shows a role name ("Coordinator", "Fire staff", "Police staff") instead of the email name.
+- Pagination: coordinator incident list (6 per page) and agency requests (5 per page), via reusable
+  `usePages` + `Pager`.
+- Found: AI has failed on every report since the move to Firebase AI Logic (App Check). Logged in
+  bug-fix (OPEN); console logging added to find the exact cause.

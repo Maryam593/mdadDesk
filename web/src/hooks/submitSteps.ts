@@ -35,6 +35,7 @@ export function deliver(id: string, text: string, type: IncidentType, patch: Pat
 export async function readWithAi(id: string, text: string, saveToFirebase: boolean, patch: Patch) {
   const res = await extractReport({ text });
   const extraction = res.ok ? res.extraction : null;
+  if (!res.ok) console.warn("[ai] failed:", res.error); // F12 → Console shows why (App Check, model, …)
   patch({ ai: res.ok ? "ok" : "failed", extraction });
   if (saveToFirebase) applyExtraction(id, extraction).catch(console.error);
 
