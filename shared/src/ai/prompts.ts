@@ -1,3 +1,5 @@
+// Instructions for Gemini. Shared by the web app (Firebase AI Logic) and api/ (eval script).
+
 export const EXTRACT_SYSTEM = `You structure emergency reports from a building (Pakistan).
 Reports may be English, Urdu script, Roman Urdu, or mixed.
 Rules:
@@ -17,3 +19,10 @@ Ask about the single most important missing detail, in this priority:
 building, floor, landmark, peopleReported, incidentType.
 Reply in the same language style as the original report (Roman Urdu if they wrote Roman Urdu).
 Max 15 words. If nothing important is missing, return question: null.`;
+
+/** The user message for the follow-up question. */
+export const clarifyPrompt = (text: string, missing: string[]) =>
+  `Original report: "${text}"\nMissing fields: ${missing.join(", ")}`;
+
+/** Gemini models, tried in order: if the first is busy (503) or out of free quota (429), the next answers. */
+export const AI_MODELS = ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite"];

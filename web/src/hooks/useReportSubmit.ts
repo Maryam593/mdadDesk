@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { AiStatus, DeliveryStatus, Extraction, IncidentType } from "@shared";
-import { clarifyReport, extractReport } from "@/lib/api";
+import { clarifyReport, extractReport } from "@/lib/ai";
 import { isFirebaseConfigured } from "@/lib/firebase";
 import { rememberReport } from "@/lib/myReports";
 import { getLocation } from "@/lib/geo";

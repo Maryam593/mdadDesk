@@ -12,7 +12,8 @@
     "types": ["vite/client", "vite-plugin-pwa/client"],
     "paths": {
       "@/*": ["./src/*"],
-      "@shared": ["../shared/src"]
+      "@shared": ["../shared/src"],
+      "@shared/*": ["../shared/src/*"]
     }
   },
   "include": ["src", "../shared/src"]

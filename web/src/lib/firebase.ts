@@ -18,7 +18,7 @@ const firebaseConfig = {
 /** False until web/.env is filled; the UI then runs in AI-preview mode only. */
 export const isFirebaseConfigured = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
 
-const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
+export const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
 
 // Persistent cache = offline support: writes queue in IndexedDB and sync when back online.
 export const db: Firestore | null = app

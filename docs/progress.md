@@ -71,3 +71,10 @@
   "± metres" and an "Open in Google Maps" link; the map flies to the selected incident.
   Rules updated (reporter may add `location` while `reported`) and deployed.
 - Verified: typecheck + build + rules deploy. Browser test pending (testing-e2e E1, E1b, E1c).
+
+**Later the same day (3): AI without a server**
+- Firebase AI Logic enabled (Gemini Developer API, Spark). Web now calls Gemini directly via
+  `firebase/ai` (`web/src/lib/ai.ts`); prompts/schemas/fallback moved to `shared/src/ai/`.
+  Removed `web/src/lib/api.ts`, `VITE_API_URL`, `VITE_MAPS_API_KEY`.
+- Eval with the shared JSON Schema: 90.6%, 0 invented, 3/20 timeouts (see bug-fix).
+- Blocked: App Check enforcement returns 401 → user to unenforce in console.

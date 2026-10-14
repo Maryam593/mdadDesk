@@ -8,9 +8,9 @@ Everything here is free (Firebase **Spark** plan, no card).
 |---|---|---|
 | Web app (React PWA) | Firebase Hosting → `https://mdaddeskv1-6af42.web.app` | Ready to deploy (Part A) |
 | Database + login | Firebase Firestore + Auth (project `mdaddeskv1-6af42`) | ✅ Live since 14 Oct (rules + demo data uploaded) |
-| AI API (Gemini) | Needs a small server. Cloud Run is blocked (no billing) | Runs only on the developer's PC for now (Part B) |
+| AI (Gemini) | Firebase AI Logic, called from the app; no server | Enabled 14 Oct; App Check must not block it (see below) |
 
-If the AI API can't be reached, the app still works: the SOS is delivered and the coordinator
+If the AI can't be reached, the app still works: the SOS is delivered and the coordinator
 reads the message by hand ("Automatic reading unavailable"). So Part A alone is enough for testing the help loop.
 
 ---
@@ -42,27 +42,18 @@ with testers; it expires by itself. Login works there too (Firebase allows its o
 ### Undo a bad deploy
 Firebase console → **Hosting** → release history → ⋮ on the previous release → **Rollback**.
 
-## Part B: AI API online (optional, not tried yet)
-The API is a normal Node server (`api/`). Free option without a card: **Render** (render.com) free web service.
-*Not tested yet. Record the result in `docs/progress.md`.*
-
-| Render setting | Value |
-|---|---|
-| Root directory | (empty: repo root) |
-| Build command | `npm ci && npm run build -w api` |
-| Start command | `npm start -w api` |
-| Environment | `GEMINI_API_KEY` (secret), `GEMINI_MODEL=gemini-3.5-flash-lite,gemini-3.1-flash-lite`, `ALLOWED_ORIGIN=https://mdaddeskv1-6af42.web.app`, `REQUIRE_AUTH=false` |
-
-Then put the Render URL in `web\.env` as `VITE_API_URL=https://<name>.onrender.com`, and run Part A again.
-Free servers sleep after ~15 min idle: the first SOS after a break may skip the AI (fallback). Open
-`<api-url>/health` a minute before a demo to wake it up.
-
-If billing ever works: Cloud Run instructions are in `README.md`.
+## AI check (Firebase AI Logic)
+```
+npm run check-firebase-ai -w api
+```
+Expect `OK` for at least one model. If you see **"App Check token is invalid"**: Firebase console →
+**Security → App Check → APIs** → Firebase AI Logic → **Unenforce** (we don't use App Check yet).
+The `api/` server is no longer needed online; it only runs the eval on the developer's PC.
 
 ## After changing code
 | Changed | Run |
 |---|---|
 | Anything in `web/` | Part A again |
 | `firestore.rules` | `firebase deploy --only firestore:rules` |
-| `api/` | Render redeploys by itself on `git push` (once Part B is set up) |
+| Prompts in `shared/src/ai/` | Part A again (the app carries them); `npm run eval` to re-check accuracy |
 | Demo accounts / agencies | `npm run seed -w api` (safe to run again; it resets the 3 agencies) |

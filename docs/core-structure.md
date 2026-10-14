@@ -13,13 +13,16 @@
 ## Layout
 ```
 shared/src/        types used by web + api (extraction, report, incident, agency, api)
-api/               Express on Cloud Run — Gemini only
-  src/ai/          gemini.ts (single Gemini entry), prompts.ts, schemas.ts (Gemini + zod)
+  ai/              Gemini prompts, model list, JSON schemas, zod checks, model fallback + timeout
+                   (one copy, used by web/src/lib/ai.ts and api/src/ai/gemini.ts)
+api/               Express + Gemini key — now only for eval / local checks (web calls Gemini via Firebase)
+  src/ai/          gemini.ts (Gemini with the secret key, for eval)
   src/routes/      aiRoute.ts (error → {ok:false} wrapper), extract.ts, clarify.ts
   src/auth.ts      Firebase ID-token check (REQUIRE_AUTH=true)
-  scripts/         eval.ts (accuracy on data/), seed.ts (demo users + agencies)
+  scripts/         eval.ts (accuracy on data/), seed.ts (demo users + agencies),
+                   check-ai.ts (models for the key), check-firebase-ai.ts (Gemini via Firebase AI Logic)
 web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
-  src/lib/         firebase.ts (offline cache), api.ts (never-throw POST), labels.ts
+  src/lib/         firebase.ts (offline cache), ai.ts (Gemini via Firebase AI Logic, never throws), labels.ts
   src/services/    reports.ts, incidents.ts, events.ts, assignments.ts — all Firestore writes
                    newRecords.ts — starting data for a new report/incident
   src/hooks/       useCollection / useDoc (realtime), useIncidents, useReportSubmit, useOnline,
@@ -74,4 +77,7 @@ firestore.rules    role-based access via custom claims {role, agencyId}
   `web/src/lib/building.ts`; incidents without their own location show there, nudged ~3 m apart.
   Coloured circles instead of image pins (Leaflet's default pin images break with Vite).
 - shadcn/ui dropped: its generated files break the 60-line rule; own primitives instead.
-- Web writes Firestore directly (realtime + offline); the API only does AI, keeping the Gemini key server-side.
+- Web writes Firestore directly (realtime + offline).
+- AI moved from our API to **Firebase AI Logic** (Gemini Developer API, free on Spark, 14 Oct): GCP billing
+  failed, so no Cloud Run / Cloud Functions. Firebase holds the Gemini key; the whole app is just Hosting.
+  Prompts and schemas moved to `shared/src/ai/` so the eval (api) and the app use the same ones.

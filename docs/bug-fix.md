@@ -12,6 +12,17 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Firebase AI Logic: "401 Firebase App Check token is invalid"
+**Symptom:** `npm run check-firebase-ai -w api` → 401 for every model.
+**Cause:** App Check enforcement got turned on for Firebase AI Logic during setup; our app sends no App Check token.
+**Fix:** Console → Security → App Check → APIs → Firebase AI Logic → Unenforce. (Later: add reCAPTCHA App Check.)
+**Check:** pending, rerun `check-firebase-ai`.
+
+## 2026-10-14 — Eval after moving to JSON Schema: 3/20 timeouts
+**Symptom:** `npm run eval`: 90.6% accuracy, 0 invented, but 3 "AI timeout" (before: 0 failures).
+**Cause:** not known yet; likely Gemini load at that moment (both models timed out on the same reports).
+**Check:** rerun later; if it repeats, raise the 15 s timeout or compare with the old `responseSchema`.
+
 ## 2026-10-14 — Old requests would set off the alarm when a page opens (caught before release)
 **Symptom (found in review):** the agency page first asks "who am I?", then loads the inbox. In between,
 `useCollection` said "done loading, 0 items", so every existing request looked *new* a moment later → siren.
