@@ -7,7 +7,9 @@ import { getFirestore } from "firebase-admin/firestore";
 import type { Agency, AgencyKind } from "../../shared/src";
 
 initializeApp({ projectId: process.env.GOOGLE_CLOUD_PROJECT });
-const PASSWORD = process.env.DEMO_PASSWORD ?? "madad-demo-2026";
+// The password lives only in api/.env (never in the repo, which is public).
+const PASSWORD = process.env.DEMO_PASSWORD;
+if (!PASSWORD) throw new Error("Set DEMO_PASSWORD in api/.env first");
 
 const AGENCIES: Array<{ id: string; name: string; kind: AgencyKind; available: boolean }> = [
   { id: "fire-saddar", name: "Saddar Fire Station", kind: "fire", available: true },
@@ -23,6 +25,7 @@ const USERS = [
 async function upsertUser(email: string, claims: object) {
   const auth = getAuth();
   const user = await auth.getUserByEmail(email).catch(() => auth.createUser({ email, password: PASSWORD }));
+  await auth.updateUser(user.uid, { password: PASSWORD }); // existing accounts get the current password too
   await auth.setCustomUserClaims(user.uid, claims);
   console.log(`user  ${email}  ${JSON.stringify(claims)}`);
 }

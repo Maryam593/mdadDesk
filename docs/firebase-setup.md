@@ -71,7 +71,9 @@ The seed script needs a private key file to act as admin.
    ```
    GOOGLE_APPLICATION_CREDENTIALS=service-account.json
    GOOGLE_CLOUD_PROJECT=<your project id>
+   DEMO_PASSWORD=<pick one; shared only in the team's private group>
    ```
+   Running the seed again also resets every demo account to this password (use it to change it).
 5. Run `npm run seed -w api`
 
 Check: the terminal lists 4 users and 3 agencies, and prints the demo password.

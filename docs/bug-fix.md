@@ -12,6 +12,12 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Demo password was in the code before making the repo public
+**Risk:** `seed.ts` had the default password; a public repo would let anyone log in as coordinator and see
+reports, including testers' GPS locations.
+**Fix:** password only in `api/.env` (`DEMO_PASSWORD`, gitignored); seed now refuses to run without it and
+resets existing accounts to it. Rotated the password, so the old one in git history no longer works.
+
 ## 2026-10-14 — Map showed only the resolved dot; other reports from the same house were hidden
 **Symptom:** 3 incidents in the list, but on the map only one green (resolved) dot.
 **Cause:** all 3 came from the same house, so the same GPS point; real-GPS dots were not nudged, and the

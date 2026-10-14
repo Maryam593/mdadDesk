@@ -6,6 +6,8 @@ multi-agency response for building emergencies. Built for **AI Builder Cup 2026*
 
 > Prototype for drills and demos only — not a deployed emergency service.
 
+**Live demo:** https://mdaddeskv1-6af42.web.app (staff demo logins are shared privately with judges/testers).
+
 ## Quick start (local)
 ```bash
 npm install
@@ -45,3 +47,6 @@ Test links for teammates, rollback and checks: **[docs/deployment.md](docs/deplo
 
 ## Stack
 React + TypeScript + Vite + Tailwind (PWA) · Firebase Hosting · Firestore · Firebase Auth · Gemini via Firebase AI Logic · Leaflet + OpenStreetMap
+
+## License
+[MIT](LICENSE) © 2026 Maryam Saba
