@@ -1,3 +1,4 @@
+import { Inbox, LayoutDashboard, Siren, type LucideIcon } from "lucide-react";
 import type { Role } from "@shared";
 
 // Who sees which tabs (role-based): each person only sees their own job.
@@ -6,11 +7,12 @@ import type { Role } from "@shared";
 export interface NavLinkInfo {
   to: string;
   label: string;
+  icon: LucideIcon;
 }
 
-const REPORT: NavLinkInfo = { to: "/", label: "🆘 Report SOS" };
-const COORDINATOR: NavLinkInfo = { to: "/coordinator", label: "🧭 Coordinator" };
-const AGENCY: NavLinkInfo = { to: "/agency", label: "🚒 Agency inbox" };
+const REPORT: NavLinkInfo = { to: "/", label: "Report SOS", icon: Siren };
+const COORDINATOR: NavLinkInfo = { to: "/coordinator", label: "Coordinator", icon: LayoutDashboard };
+const AGENCY: NavLinkInfo = { to: "/agency", label: "Agency inbox", icon: Inbox };
 
 export function tabsFor(role: Role | null): NavLinkInfo[] {
   if (role === "coordinator") return [COORDINATOR];

@@ -1,5 +1,6 @@
 import { INCIDENT_TYPES, type IncidentType } from "@shared";
-import { TYPE_INFO } from "@/lib/labels";
+import { TYPE_ICON } from "@/lib/icons";
+import { TYPE_NAME } from "@/lib/labels";
 import { FlipTile } from "./FlipTile";
 
 interface Props {
@@ -14,8 +15,8 @@ export function QuickTypeButtons({ onPick, disabled }: Props) {
       {INCIDENT_TYPES.map((type) => (
         <FlipTile
           key={type}
-          emoji={TYPE_INFO[type].emoji}
-          name={TYPE_INFO[type].name}
+          icon={TYPE_ICON[type]}
+          name={TYPE_NAME[type]}
           disabled={disabled}
           onSend={() => onPick(type)}
         />

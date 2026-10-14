@@ -1,4 +1,5 @@
 import { useEffect, type ReactNode } from "react";
+import { Siren } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Overlay } from "@/components/ui/Overlay";
 import { startSiren } from "@/lib/siren";
@@ -16,14 +17,16 @@ export function EmergencyAlert({ title, body, onClose, children }: Props) {
   // Runs once per alert (the key changes for each new one), even if the details update later.
   useEffect(() => {
     const stopSiren = startSiren();
-    showSystemNotification(`🚨 ${title}`, body);
+    showSystemNotification(title, body);
     return stopSiren; // stops when the alert closes
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Overlay tone="danger">
-      <h2 className="text-center text-3xl font-black tracking-wide text-white">🚨 {title}</h2>
+      <h2 className="flex items-center justify-center gap-3 text-3xl font-black tracking-wide text-white">
+        <Siren size={34} aria-hidden /> {title}
+      </h2>
       {children}
       <div className="text-center">
         <Button variant="secondary" onClick={onClose}>

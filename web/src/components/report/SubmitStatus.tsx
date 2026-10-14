@@ -1,4 +1,5 @@
 import type { AiStatus, DeliveryStatus } from "@shared";
+import { MapPin, Sparkles } from "lucide-react";
 import { Notice } from "@/components/ui/Notice";
 import { WaveText } from "@/components/ui/WaveText";
 import type { Tone } from "@/lib/labels";
@@ -17,9 +18,9 @@ const AI: Record<AiStatus, [Tone, string]> = {
 };
 
 const LOCATION: Record<LocationStatus, [Tone, string]> = {
-  pending: ["info", "📍 Finding your location…"],
-  shared: ["success", "📍 Location shared with the coordinator."],
-  off: ["warn", "📍 Location not shared (blocked or no GPS). Please write your floor and shop in a new message."],
+  pending: ["info", "Finding your location…"],
+  shared: ["success", "Location shared with the coordinator."],
+  off: ["warn", "Location not shared (blocked or no GPS). Please write your floor and shop in a new message."],
 };
 
 interface Props {
@@ -32,10 +33,10 @@ export function SubmitStatus({ delivery, ai, location }: Props) {
   return (
     <div className="space-y-2">
       {delivery && <Notice tone={DELIVERY[delivery][0]}>{DELIVERY[delivery][1]}</Notice>}
-      {location && <Notice tone={LOCATION[location][0]}>{LOCATION[location][1]}</Notice>}
+      {location && <Notice tone={LOCATION[location][0]} icon={MapPin}>{LOCATION[location][1]}</Notice>}
       {ai === "pending" && (
-        <Notice tone="info">
-          <WaveText text="🤖 Reading your report…" />
+        <Notice tone="info" icon={Sparkles}>
+          <WaveText text="Reading your report…" />
         </Notice>
       )}
       {ai && ai !== "pending" && <Notice tone={AI[ai][0]}>{AI[ai][1]}</Notice>}

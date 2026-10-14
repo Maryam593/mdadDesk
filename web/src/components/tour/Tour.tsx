@@ -34,7 +34,9 @@ export function Tour({ id }: { id: TourId }) {
     <Overlay tone="neutral">
       <Card>
         <div className="space-y-3 text-center">
-          <div className="text-5xl">{step.emoji}</div>
+          <span className="mx-auto grid h-16 w-16 place-items-center rounded-full bg-brand-soft text-brand">
+            <step.icon size={32} aria-hidden />
+          </span>
           <h2 className="text-lg font-semibold">{step.title}</h2>
           <p className="text-sm text-slate-600">{step.text}</p>
           <p className="text-xs text-slate-400">

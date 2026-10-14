@@ -40,7 +40,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
     layout/        AppShell (frame), SiteHeader (row of tabs on wide screens, ☰ menu on phones),
                    NavItems (the tab pills, shared by both), Logo (uses public/icon.svg), StatusBanners,
-                   Backdrop (soft flowing lines behind every page),
+                   Backdrop (calm gradient + soft glows + faint dot grid, no movement),
                    RoleGate (right account or a clear message)
     coordinator/   CoordinatorDesk (alerts + map + list + detail)
     incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, CloseFalseAlarm (confirmed close), Timeline,
@@ -95,6 +95,8 @@ firestore.rules    role-based access via custom claims {role, agencyId}
 Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`.
 
 ## Look and feel
+- **Icons, not emojis:** lucide-react. Data icons (incident types, agencies, "answer" icons, reporter
+  steps) live only in `web/src/lib/icons.ts`; UI icons are imported where used. `Notice` takes an `icon`.
 - Colours in `web/src/index.css` (`@theme`): brand teal (normal actions), danger red (SOS), ink navy (header).
 - Font: Plus Jakarta Sans (Google Fonts; falls back to the system font offline).
 - GitHub social preview + README banner: `docs/assets/social-preview.svg` → `.png` (1280×640). Upload the
@@ -106,7 +108,7 @@ Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`
 
 - Credit line is only in README.md (`<!-- taggie -->` block, managed by the taggie CLI), not in the app.
 
-- Animations live in `web/src/styles/effects.css` (wave, rings, hold fill, sparks, flowing lines);
+- Animations live in `web/src/styles/effects.css` (wave, rings, hold fill, sparks; dot grid);
   all switch off with "reduce motion". Inspired by Kokonut UI but rebuilt small (owner chose this over
   installing the 150–230-line originals + motion/shadcn).
 - Where they are used: HoldButton → "Hold to confirm resolved", "Hold to close without sending help";

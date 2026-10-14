@@ -1,4 +1,6 @@
-import type { AgencyKind, Incident, IncidentType } from "@shared";
+import type { LucideIcon } from "lucide-react";
+import type { AgencyKind, Incident } from "@shared";
+import { KIND_ICON, REMEDY_ICON, STEP_ICON } from "./icons";
 
 // What the reporter sees on their status page, step by step.
 
@@ -36,20 +38,10 @@ export function onTheWayText(incident: Incident): string {
 export const stepText = (incident: Incident, step: number) =>
   step === 3 ? onTheWayText(incident) : HELP_STEPS[step];
 
-// Splash emojis: who is coming, plus the "opposite" of the danger (fire → extinguisher + water).
-const KIND_EMOJI: Record<AgencyKind, string> = { fire: "🚒", ambulance: "🚑", police: "🚓" };
-const REMEDY: Record<IncidentType, string> = {
-  fire: "🧯💧",
-  smoke: "🧯",
-  medical: "🩺",
-  trapped: "🪜",
-  collapse: "👷",
-  other: "🦺",
-};
-
-export function splashEmoji(incident: Incident, step: number): string {
-  if (step === 4) return "💚";
-  const vehicles = incident.respondingKinds.map((kind) => KIND_EMOJI[kind]).join("");
-  const lead = ["📨", "✅", "📞", vehicles][step];
-  return lead + REMEDY[incident.incidentType ?? "other"];
+/** Big icons on the reporter's splash: what happened + the "answer" to the danger (fire → extinguisher). */
+export function splashIcons(incident: Incident, step: number): LucideIcon[] {
+  if (step === 4) return [STEP_ICON[4]];
+  const coming = incident.respondingKinds.map((kind) => KIND_ICON[kind]);
+  const lead = step === 3 && coming.length > 0 ? coming : [STEP_ICON[step]];
+  return [...lead, REMEDY_ICON[incident.incidentType ?? "other"]];
 }

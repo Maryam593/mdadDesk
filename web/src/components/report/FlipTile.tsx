@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { Send, type LucideIcon } from "lucide-react";
 import { cx } from "@/components/ui/tone";
 import { useTilt } from "@/hooks/useTilt";
 
 interface Props {
-  emoji: string;
+  icon: LucideIcon;
   name: string;
   disabled?: boolean;
   onSend: () => void;
@@ -18,7 +19,7 @@ const BACK = "bg-linear-to-br from-rose-500 to-red-700 text-white shadow-[0_5px_
  * SOS card. Tap it: it flips over (spring + light sweep) and shows "Send SOS".
  * Two taps on purpose, so a pocket or a child can't send an SOS by accident.
  */
-export function FlipTile({ emoji, name, disabled, onSend }: Props) {
+export function FlipTile({ icon: Icon, name, disabled, onSend }: Props) {
   const [flipped, setFlipped] = useState(false);
   const tilt = useTilt();
 
@@ -38,19 +39,19 @@ export function FlipTile({ emoji, name, disabled, onSend }: Props) {
             className={cx(FACE, FRONT, "face-front disabled:opacity-50", flipped && "pointer-events-none")}
           >
             <span className="sheen" />
-            <span className="text-5xl leading-none">{emoji}</span>
+            <span className="grid h-14 w-14 place-items-center rounded-full bg-red-50 text-danger">
+              <Icon size={30} strokeWidth={2.2} aria-hidden />
+            </span>
             <span className="text-lg font-extrabold text-ink">{name}</span>
             <span className="text-xs text-slate-500">Tap to send</span>
           </button>
           <div className={cx(FACE, BACK, "flip-back", !flipped && "pointer-events-none")} aria-hidden={!flipped}>
             <span className="sheen" />
-            <button type="button" onClick={send} className="rounded-xl bg-white px-4 py-2 font-extrabold text-danger shadow">
-              Send {emoji} SOS
+            <button type="button" onClick={send} className="flex items-center gap-2 rounded-xl bg-white px-4 py-2 font-extrabold text-danger shadow">
+              <Send size={16} aria-hidden /> Send {name} SOS
             </button>
             <span className="text-[11px] opacity-90">with your location</span>
-            <button type="button" onClick={() => setFlipped(false)} className="text-xs underline">
-              Cancel
-            </button>
+            <button type="button" onClick={() => setFlipped(false)} className="text-xs underline">Cancel</button>
           </div>
         </div>
       </div>

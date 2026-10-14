@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from "react";
 import type { IncidentType } from "@shared";
 import { TextArea } from "@/components/ui/TextField";
-import { TYPE_INFO } from "@/lib/labels";
+import { TYPE_NAME } from "@/lib/labels";
 import { QuickTypeButtons } from "./QuickTypeButtons";
 
 interface Props {
@@ -25,7 +25,7 @@ export function ReportForm({ onSubmit, disabled }: Props) {
 
   const send = (type: IncidentType) => {
     // No details typed? Send the tile's name so the coordinator still gets a message.
-    const message = text.trim() || `${TYPE_INFO[type].emoji} ${TYPE_INFO[type].name} (one-tap SOS, no details)`;
+    const message = text.trim() || `${TYPE_NAME[type]} (SOS card, no details)`;
     onSubmit(message, type);
     setText("");
   };

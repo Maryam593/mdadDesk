@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LogIn, Menu, UserRound, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useClaims } from "@/hooks/useClaims";
 import { tabsFor } from "@/lib/nav";
@@ -6,13 +7,15 @@ import { Logo } from "./Logo";
 import { NavItems } from "./NavItems";
 
 /**
- * Navy top bar. Wide screens: links in a row. Phones: a ☰ button that opens the links
+ * Navy top bar. Wide screens: links in a row. Phones: a menu button that opens the links
  * as a list under the bar. Each person only sees their own tabs (lib/nav.ts).
  */
 export function SiteHeader() {
   const { role, email } = useClaims();
   const [menuOpen, setMenuOpen] = useState(false);
-  const account = { to: "/login", label: email ? `👤 ${email.split("@")[0]}` : "🔑 Staff login" };
+  const account = email
+    ? { to: "/login", label: email.split("@")[0], icon: UserRound }
+    : { to: "/login", label: "Staff login", icon: LogIn };
   const links = [...tabsFor(role), account];
 
   return (
@@ -29,9 +32,9 @@ export function SiteHeader() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
-          className="grid h-11 w-11 place-items-center rounded-xl text-2xl text-white hover:bg-white/10 sm:hidden"
+          className="grid h-11 w-11 place-items-center rounded-xl text-white hover:bg-white/10 sm:hidden"
         >
-          {menuOpen ? "✕" : "☰"}
+          {menuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
       {menuOpen && (

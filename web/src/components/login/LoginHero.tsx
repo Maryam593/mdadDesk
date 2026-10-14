@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import { LayoutDashboard, Lock, Siren } from "lucide-react";
 import { Logo } from "@/components/layout/Logo";
 
 const POINTS = [
-  { emoji: "🧭", text: "Coordinators verify every SOS and decide who goes." },
-  { emoji: "🚒", text: "Fire, Ambulance and Police get a red alert with the exact spot." },
-  { emoji: "🔒", text: "Each person sees only their own job." },
+  { icon: LayoutDashboard, text: "Coordinators verify every SOS and decide who goes." },
+  { icon: Siren, text: "Fire, Ambulance and Police get a red alert with the exact spot." },
+  { icon: Lock, text: "Each person sees only their own job." },
 ];
 
 /** Left side of the login page: what this place is, for whom. */
@@ -21,7 +22,9 @@ export function LoginHero() {
         <ul className="space-y-3">
           {POINTS.map((p) => (
             <li key={p.text} className="flex gap-3 text-sm text-slate-200">
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/10">{p.emoji}</span>
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/10">
+                <p.icon size={16} aria-hidden />
+              </span>
               <span className="pt-1">{p.text}</span>
             </li>
           ))}

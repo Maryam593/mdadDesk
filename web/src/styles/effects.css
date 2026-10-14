@@ -1,4 +1,4 @@
-/* Small animations used by the reusable UI pieces (components/ui/*, layout/Backdrop).
+/* Small effects used by the reusable UI pieces (components/ui/*, layout/Backdrop).
    Inspired by Kokonut UI, rebuilt small. Everything stops for people who prefer reduced motion. */
 
 /* WaveText: letters bob one after another */
@@ -27,14 +27,13 @@
 }
 .spark { animation: spark 0.7s ease-out forwards; }
 
-/* Backdrop: slow flowing lines behind every page */
-@keyframes flow { to { stroke-dashoffset: -1000; } }
-.flow-line {
-  stroke-dasharray: 28 12;
-  animation: flow 60s linear infinite;
+/* Backdrop: very faint dot grid */
+.dot-grid {
+  background-image: radial-gradient(rgb(15 23 42 / 0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wave-letter, .ring-outer, .ring-inner, .flow-line, .spark { animation: none; }
+  .wave-letter, .ring-outer, .ring-inner, .spark { animation: none; }
   .hold-fill { animation-duration: 1ms; }
 }

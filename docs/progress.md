@@ -132,3 +132,7 @@
 - Background lines: 14 lines instead of 4, stronger colour and longer dashes (were nearly invisible).
 - GitHub social preview made (`docs/assets/social-preview.png`, 1280×640) and used as the README banner.
   Must be uploaded by hand in repo Settings → Social preview.
+- Owner feedback "bg bht distracting, emojis too much AI": background is now calm and still (soft gradient,
+  two blurred glows, faint dot grid). **All emojis replaced by lucide-react icons** (SOS cards, tabs, menu,
+  tour, alerts, reporter splash, login, location, notices); data icons centralised in `lib/icons.ts`.
+  Scan confirms 0 emojis left in `web/src`. TOUR_VERSION 5.

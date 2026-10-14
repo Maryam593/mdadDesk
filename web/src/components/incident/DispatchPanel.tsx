@@ -1,3 +1,4 @@
+import { ArrowDown } from "lucide-react";
 import type { Agency, Incident } from "@shared";
 import { ActionButton } from "@/components/ui/ActionButton";
 import { useCollection } from "@/hooks/useCollection";
@@ -20,8 +21,9 @@ export function DispatchPanel({ incident }: { incident: Incident }) {
   return (
     // Red box until help is sent, so the next step can't be missed after Verify.
     <div className={nothingSentYet ? "rounded-lg border-2 border-danger bg-red-50 p-3" : ""}>
-      <h3 className="mb-2 text-sm font-semibold">
-        {nothingSentYet ? "👇 Next: send help (the agency gets a red alert)" : "Help sent. Send more if needed:"}
+      <h3 className="mb-2 flex items-center gap-1.5 text-sm font-semibold">
+        {nothingSentYet && <ArrowDown size={16} aria-hidden />}
+        {nothingSentYet ? "Next: send help (the agency gets a red alert)" : "Help sent. Send more if needed:"}
       </h3>
       {error && <p className="text-sm text-danger">{error}</p>}
       <div className="flex flex-wrap gap-2">

@@ -8,14 +8,14 @@ export const FIELD_LABELS: Record<LocationField, string> = {
   peopleReported: "People reported",
 };
 
-// Big one-tap buttons on the report page.
-export const TYPE_INFO: Record<IncidentType, { emoji: string; name: string }> = {
-  fire: { emoji: "🔥", name: "Fire" },
-  smoke: { emoji: "💨", name: "Smoke" },
-  medical: { emoji: "🚑", name: "Medical" },
-  trapped: { emoji: "🆘", name: "Trapped" },
-  collapse: { emoji: "🧱", name: "Collapse" },
-  other: { emoji: "❓", name: "Other" },
+// SOS card names (their icons are in lib/icons.ts → TYPE_ICON).
+export const TYPE_NAME: Record<IncidentType, string> = {
+  fire: "Fire",
+  smoke: "Smoke",
+  medical: "Medical",
+  trapped: "Trapped",
+  collapse: "Collapse",
+  other: "Other",
 };
 
 export type Tone = "neutral" | "info" | "warn" | "danger" | "success";

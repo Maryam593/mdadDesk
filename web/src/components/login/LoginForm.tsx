@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LayoutDashboard, ShieldCheck, Truck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Notice } from "@/components/ui/Notice";
@@ -7,9 +8,9 @@ import { useStaffLogin } from "@/hooks/useStaffLogin";
 
 // Demo accounts: tapping one fills in the email (the password is shared privately).
 const DEMO = [
-  { label: "🧭 Coordinator", email: "coordinator@madaddesk.demo" },
-  { label: "🚒 Fire", email: "fire-saddar@madaddesk.demo" },
-  { label: "🚓 Police", email: "police-saddar@madaddesk.demo" },
+  { label: "Coordinator", icon: LayoutDashboard, email: "coordinator@madaddesk.demo" },
+  { label: "Fire", icon: Truck, email: "fire-saddar@madaddesk.demo" },
+  { label: "Police", icon: ShieldCheck, email: "police-saddar@madaddesk.demo" },
 ];
 
 /** Right side of the login page: the sign-in form. */
@@ -26,9 +27,9 @@ export function LoginForm() {
               key={d.email}
               type="button"
               onClick={() => form.setEmail(d.email)}
-              className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold hover:border-brand hover:text-brand"
+              className="flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold hover:border-brand hover:text-brand"
             >
-              {d.label}
+              <d.icon size={14} aria-hidden /> {d.label}
             </button>
           ))}
         </div>
