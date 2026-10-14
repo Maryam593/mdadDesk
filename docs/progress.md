@@ -78,3 +78,6 @@
   Removed `web/src/lib/api.ts`, `VITE_API_URL`, `VITE_MAPS_API_KEY`.
 - Eval with the shared JSON Schema: 90.6%, 0 invented, 3/20 timeouts (see bug-fix).
 - Blocked: App Check enforcement returns 401 → user to unenforce in console.
+- App Check: reCAPTCHA key registered in Firebase App Check (Fraud Defense); site key in `web/.env`.
+  Build includes it. Browser check by the user pending.
+- Eval rerun: 92.6%, 0 invented, 1/20 timeout.

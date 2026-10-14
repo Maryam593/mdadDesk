@@ -26,6 +26,7 @@ the console now marks it deprecated and points to Fraud Defense.
 **Symptom:** `npm run eval`: 90.6% accuracy, 0 invented, but 3 "AI timeout" (before: 0 failures).
 **Cause:** not known yet; likely Gemini load at that moment (both models timed out on the same reports).
 **Check:** rerun later; if it repeats, raise the 15 s timeout or compare with the old `responseSchema`.
+**Rerun (same day):** 92.6% (88/95), 0 invented, 1/20 timeout → it was Gemini load, not the schema.
 
 ## 2026-10-14 — Old requests would set off the alarm when a page opens (caught before release)
 **Symptom (found in review):** the agency page first asks "who am I?", then loads the inbox. In between,
