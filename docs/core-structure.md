@@ -96,6 +96,8 @@ Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`
   (`icon-192/512.png`, `icon-maskable-512.png`, `apple-touch-icon.png`): re-make them if the logo changes.
 - SOS tiles flip (FlipTile + `.flip` CSS in index.css); numbered steps on the report page.
 
+- Footer credit is managed by taggie (`{/* taggie */}` block in AppShell): update with `taggie` in `web/`.
+
 ## Decisions
 - Map: Leaflet + OpenStreetMap instead of Google Maps (no billing). One demo building in
   `web/src/lib/building.ts`; incidents without their own location show there, nudged ~3 m apart.

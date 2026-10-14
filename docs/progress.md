@@ -113,3 +113,6 @@
 - Docs: phone install steps for Android + iPhone and the iPhone limits (notifications only from the
   home-screen app, silent switch mutes sound, no alerts in the background) → `docs/how-to-start.md` §6,
   test cases E21–E22. Demo tip: iPhone as reporter, siren screens on laptop/Android.
+- Attribution via **taggie CLI** (`npm i -g taggie-cli`): footer now says "Crafted with ❤ by Maryam Saba
+  for safer buildings". It lives in a `{/* taggie */}` block in `AppShell.tsx`: change it with
+  `taggie` (run in `web/`), not by hand. `taggie --check` verifies it.

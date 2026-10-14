@@ -41,6 +41,9 @@ export function AppShell() {
         <Outlet />
       </main>
       <footer className="pb-16 pt-2 text-center text-xs text-slate-500">
+    {/* taggie */}
+    <p>Crafted with ❤ by Maryam Saba for safer buildings</p>
+    {/* /taggie */}
         Prototype for drills and demos. In real danger also call 1122 · 16 · 15.
       </footer>
     </div>
