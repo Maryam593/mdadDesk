@@ -12,6 +12,17 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — RBAC: every user saw every tab (Report, Coordinator, Agency)
+**Symptom:** the public saw Coordinator and Agency tabs; the coordinator saw the Agency tab; agencies saw
+the Coordinator tab. Confusing, and it suggested people could do jobs that aren't theirs.
+**Cause:** the header had one fixed list of tabs for everyone; roles were only checked inside the pages
+(`RoleGate`) and in `firestore.rules`.
+**Fix:** `web/src/lib/nav.ts` → `tabsFor(role)`: public = Report SOS + Staff login, coordinator = Coordinator,
+agency = Agency inbox. `AppShell.tsx` uses it. `LoginPage.tsx` sends each role to its own page after
+sign-in (`homeFor`). Tour step 1 rewritten (TOUR_VERSION 3).
+**Note:** hiding tabs is convenience only; data stays protected by `firestore.rules` + `RoleGate`.
+**Check:** typecheck + build + deployed; browser check by user (testing-e2e E17–E19).
+
 ## 2026-10-14 — Agency inbox empty after Verify: incident was closed instead of sent
 **Symptom:** coordinator verified a fire SOS, fire-saddar's inbox stayed empty.
 **Cause (from Firestore):** the incident went verified → resolved with `notifiedAgencyIds: []` and 0 assignments.
