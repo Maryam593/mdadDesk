@@ -108,3 +108,5 @@
   sign-in each role lands on its own page (`lib/nav.ts`). Tour step 1 explains this (TOUR_VERSION 3).
 - Onboarding: `docs/how-to-start.md` (setup, accounts, 3-minute demo script, pitfalls), `AGENTS.md`
   (rules for any AI agent), `CLAUDE.md` / `GEMINI.md` pointing to it, Claude skill `madaddesk-demo`.
+- Install on phones: PNG icons (192, 512, maskable 512, apple-touch-icon 180) made from `icon.svg`
+  (Android/iPhone don't use SVG icons for installing). Manifest + iPhone meta tags updated.

@@ -92,7 +92,8 @@ Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`
 ## Look and feel
 - Colours in `web/src/index.css` (`@theme`): brand teal (normal actions), danger red (SOS), ink navy (header).
 - Font: Plus Jakarta Sans (Google Fonts; falls back to the system font offline).
-- Logo = `web/public/icon.svg` (pin + help cross + signal waves); also the app/PWA icon.
+- Logo = `web/public/icon.svg` (pin + help cross + signal waves). Phone install icons are PNG copies
+  (`icon-192/512.png`, `icon-maskable-512.png`, `apple-touch-icon.png`): re-make them if the logo changes.
 - SOS tiles flip (FlipTile + `.flip` CSS in index.css); numbered steps on the report page.
 
 ## Decisions
