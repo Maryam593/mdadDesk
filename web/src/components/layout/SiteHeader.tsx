@@ -1,24 +1,21 @@
 import { useState } from "react";
-import { LogIn, Menu, UserRound, X } from "lucide-react";
+import { LogIn, Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import { useAccountLabel } from "@/hooks/useAccountLabel";
 import { useClaims } from "@/hooks/useClaims";
 import { tabsFor } from "@/lib/nav";
 import { Logo } from "./Logo";
 import { NavItems } from "./NavItems";
+import { SignOutButton } from "./SignOutButton";
 
 /**
  * Navy top bar. Wide screens: links in a row. Phones: a menu button that opens the links
  * as a list under the bar. Each person only sees their own tabs (lib/nav.ts).
  */
 export function SiteHeader() {
-  const { role } = useClaims();
-  const accountLabel = useAccountLabel(); // "Coordinator", "Fire staff", … or null
+  const { role, email } = useClaims();
   const [menuOpen, setMenuOpen] = useState(false);
-  const account = accountLabel
-    ? { to: "/login", label: accountLabel, icon: UserRound }
-    : { to: "/login", label: "Staff login", icon: LogIn };
-  const links = [...tabsFor(role), account];
+  // Signed out: "Staff login" link. Signed in: the Sign out button instead (SignOutButton).
+  const links = email ? tabsFor(role) : [...tabsFor(role), { to: "/login", label: "Staff login", icon: LogIn }];
 
   return (
     <header className="sticky top-0 z-[1100] bg-ink shadow-lg">
@@ -26,8 +23,9 @@ export function SiteHeader() {
         <NavLink to="/" onClick={() => setMenuOpen(false)}>
           <Logo light />
         </NavLink>
-        <div className="hidden sm:block">
+        <div className="hidden items-center gap-3 sm:flex">
           <NavItems links={links} />
+          <SignOutButton />
         </div>
         <button
           type="button"
@@ -42,6 +40,7 @@ export function SiteHeader() {
       {menuOpen && (
         <div className="border-t border-white/10 px-4 pb-4 pt-2 sm:hidden">
           <NavItems links={links} stacked onPick={() => setMenuOpen(false)} />
+          <SignOutButton stacked />
         </div>
       )}
     </header>

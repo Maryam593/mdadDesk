@@ -12,6 +12,15 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Header showed "Coordinator" twice (tab + account pill)
+**Symptom:** signed in as coordinator, the header had a "Coordinator" tab and a "coordinator" pill side by side.
+**Cause:** the account was shown as a second nav link (to /login) labelled with the role/email, next to a tab
+named after the same role.
+**Fix:** tabs renamed to **Desk** (coordinator) and **Inbox** (agency) in `lib/nav.ts`; the account link was
+replaced by `SignOutButton.tsx`: small grey role name ("Fire staff") + a **Sign out** button that signs out
+directly and goes to the report page. Signed out, the header shows "Staff login" instead.
+**Check:** typecheck + build + deployed; browser check by user (testing-e2e E17).
+
 ## 2026-10-14 — Every report shows Building / Floor / Landmark "Unknown" (AI never ran) — OPEN
 **Symptom:** "Fire at first floor of alfatah, sargodha" → all fields Unknown. Not related to the map.
 **Found (Firestore):** every report since the move to Firebase AI Logic has `aiStatus: "failed"`, `extraction: null`.

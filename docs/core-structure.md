@@ -40,7 +40,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    Loader (rings + waving label), WaveText (rippling letters),
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
     layout/        AppShell (frame), SiteHeader (row of tabs on wide screens, ☰ menu on phones),
-                   NavItems (the tab pills, shared by both), Logo (uses public/icon.svg), StatusBanners,
+                   NavItems (the tab pills, shared by both), SignOutButton (role name + Sign out), Logo (uses public/icon.svg), StatusBanners,
                    Backdrop (calm gradient + soft glows + faint dot grid, no movement),
                    RoleGate (right account or a clear message)
     coordinator/   CoordinatorDesk (alerts + map + list + detail)
@@ -92,9 +92,9 @@ firestore.rules    role-based access via custom claims {role, agencyId}
 ## Who sees what (role-based)
 | Signed in as | Tabs | After login |
 |---|---|---|
-| nobody (public) | 🆘 Report SOS + "Staff login" | — |
-| coordinator | 🧭 Coordinator | /coordinator |
-| agency | 🚒 Agency inbox | /agency |
+| nobody (public) | Report SOS + Staff login | — |
+| coordinator | Desk (+ role name + Sign out) | /coordinator |
+| agency | Inbox (+ role name + Sign out) | /agency |
 Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`.
 
 ## Look and feel

@@ -11,8 +11,8 @@ export interface NavLinkInfo {
 }
 
 const REPORT: NavLinkInfo = { to: "/", label: "Report SOS", icon: Siren };
-const COORDINATOR: NavLinkInfo = { to: "/coordinator", label: "Coordinator", icon: LayoutDashboard };
-const AGENCY: NavLinkInfo = { to: "/agency", label: "Agency inbox", icon: Inbox };
+const COORDINATOR: NavLinkInfo = { to: "/coordinator", label: "Desk", icon: LayoutDashboard };
+const AGENCY: NavLinkInfo = { to: "/agency", label: "Inbox", icon: Inbox };
 
 export function tabsFor(role: Role | null): NavLinkInfo[] {
   if (role === "coordinator") return [COORDINATOR];

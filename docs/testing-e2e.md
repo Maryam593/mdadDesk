@@ -38,16 +38,16 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E13 | Agency page with the tab in the background (switch tab), then coordinator sends help | A phone/computer notification pops up (allow notifications when asked at login) |
 | E14 | Login as fire, open `/coordinator` | Message "You are signed in as fire-saddar… This page needs the coordinator account"; no incident data shown |
 | E16 | Open each page for the first time (or in Incognito) | A short tour appears; after "Got it", a "❓ How it works" button replays it |
-| E17 | Login as coordinator | Lands on Coordinator; header shows only "🧭 Coordinator" + "👤 coordinator" (no Report / Agency tabs) |
+| E17 | Login as coordinator | Lands on the desk; header shows only the "Desk" tab + "Coordinator" (grey) + "Sign out" |
 | E18 | Signed out | Header shows only "🆘 Report SOS" + "🔑 Staff login" |
-| E19 | Login as fire-saddar | Lands on the agency inbox; only "🚒 Agency inbox" tab |
+| E19 | Login as fire-saddar | Lands on the inbox; only the "Inbox" tab + "Fire staff" + "Sign out" |
 | E20 | Coordinator: Verify, then click the same spot again quickly | Nothing happens (no button there); case stays verified. "Not an emergency? Hold to close…" only closes after a full press-and-hold |
 | E21 | Android: install from Chrome; iPhone: Safari → Share → Add to Home Screen | Red MadadDesk icon on the home screen; opens without address bar; opens in airplane mode |
 | E22 | iPhone, installed app: send an SOS | Works; note whether the chime plays (silent switch off) and whether notifications are offered |
 | E23 | Phone: open the app | Header shows logo + ☰; tapping ☰ opens the menu; choosing a tab closes it |
 | E24 | Agency inbox, then coordinator sends help | Count goes up; a red dot appears where the reporter is and a red arc from the teal station dot to it |
 | E25 | More than 6 incidents / 5 requests | "Prev · Page 1 of N · Next" appears under the list |
-| E26 | Sign in as fire-saddar | Header shows "Fire staff" (not "fire-saddar") |
+| E26 | Sign in as fire-saddar, tap Sign out | Signed out at once, back on the report page, header shows "Staff login" |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |
 
 ## Results (copy this table, fill it, send it to the developer)
