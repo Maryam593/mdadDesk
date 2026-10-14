@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 
-export type LocationPermission = "granted" | "prompt" | "denied" | "unknown";
+export type LocationPermission = "checking" | "granted" | "prompt" | "denied" | "unknown";
 
 /**
  * Has this phone allowed the app to use location? Updates live if the person changes it.
+ * "checking" = still asking the browser (show nothing yet, so nothing flashes on screen).
  * "unknown" = the browser can't tell us (older phones); we then just offer the button.
  */
 export function useLocationPermission(): LocationPermission {
-  const [state, setState] = useState<LocationPermission>("unknown");
+  const [state, setState] = useState<LocationPermission>(navigator.permissions ? "checking" : "unknown");
 
   useEffect(() => {
     if (!navigator.permissions) return;

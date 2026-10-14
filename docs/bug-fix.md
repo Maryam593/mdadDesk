@@ -12,6 +12,15 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Location banner flashed and vanished
+**Symptom:** on a phone where location was already allowed, the "Turn on location" banner appeared for a
+moment and disappeared.
+**Cause:** the hook started as "unknown" (banner shown) and only then learned from the browser that location
+was "granted" (banner hidden).
+**Fix:** new "checking" state in `useLocationPermission.ts`; `LocationPrompt` shows nothing until the answer
+is known, so the banner only appears when location really is off.
+**Check:** typecheck + build + deployed; phone check by user.
+
 ## 2026-10-14 — Phone with Wi-Fi off: "SOS was not sent"
 **What happened:** with no internet the SOS cannot reach the server (no app can). The app did what it was
 built for: saved it on the phone ("SOS pending") to send automatically when internet returns. But in an

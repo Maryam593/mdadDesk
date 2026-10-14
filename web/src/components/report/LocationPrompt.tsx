@@ -12,7 +12,7 @@ export function LocationPrompt() {
   const permission = useLocationPermission();
   const [hidden, setHidden] = useState(false);
   const [asking, setAsking] = useState(false);
-  if (permission === "granted" || hidden) return null;
+  if (permission === "checking" || permission === "granted" || hidden) return null;
 
   const turnOn = async () => {
     setAsking(true);
