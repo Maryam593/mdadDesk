@@ -146,3 +146,7 @@
   `usePages` + `Pager`.
 - Found: AI has failed on every report since the move to Firebase AI Logic (App Check). Logged in
   bug-fix (OPEN); console logging added to find the exact cause.
+- Agency page now two columns like Aceternity's "GitHub globe" (owner's reference): left = globe panel
+  (sticky on wide screens), right = requests; phones stack them. Built with cobe v2 **arcs** instead of
+  three.js (~600 KB): a red arc flies from the agency's station (teal dot, demo building for now) to every
+  live request, plus a legend. Globe settings moved to `lib/globe.ts`.

@@ -51,7 +51,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
     login/         LoginHero (navy brand panel), LoginForm (demo-account chips, show password)
     tour/          Tour (first-visit guide per page + "How it works" button; text in lib/tours.ts)
     agency/        AgencyInbox (requests for the signed-in agency), AssignmentCard (one request + "On the way"),
-                   GlobeBanner + RequestGlobe (grey cobe globe, red dot per live request)
+                   GlobePanel + RequestGlobe (grey cobe globe: red dot + arc from the station per live request;
+                   settings in lib/globe.ts)
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)
     report/        ReportForm (numbered steps), QuickTypeButtons + FlipTile (one-tap SOS tiles), SubmitStatus
