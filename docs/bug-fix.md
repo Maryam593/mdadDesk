@@ -20,6 +20,8 @@ emergency waiting is not enough, and the screen didn't offer anything else.
 **Send by SMS** (opens the SMS app with the SOS + Google Maps link already written; needs only mobile
 signal; number = `VITE_SOS_SMS_NUMBER`, optional) and **Call 1122**. Text built in `lib/sms.ts`.
 **Check:** typecheck + build + deployed; phone test by user (testing-e2e E11b).
+**Follow-up:** "what if there is no balance?" → SMS needs balance, but 1122 / 15 / 16 are toll-free and work
+without balance. The call button now says "Call 1122 (free)" and the note explains it.
 
 ## 2026-10-14 — Header showed "Coordinator" twice (tab + account pill)
 **Symptom:** signed in as coordinator, the header had a "Coordinator" tab and a "coordinator" pill side by side.

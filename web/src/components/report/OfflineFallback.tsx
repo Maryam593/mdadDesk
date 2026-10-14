@@ -35,11 +35,12 @@ export function OfflineFallback({ message, point }: Props) {
           <MessageSquareText size={20} aria-hidden /> Send by SMS
         </a>
         <a href="tel:1122" className={`${BIG} border-2 border-danger bg-white text-danger`}>
-          <Phone size={20} aria-hidden /> Call 1122
+          <Phone size={20} aria-hidden /> Call 1122 (free)
         </a>
       </div>
       <p className="text-xs text-slate-600">
-        SMS and calls need only mobile signal. Your SOS is also saved here and sends itself when internet is back.
+        1122, 15 and 16 are free: they work without balance, only mobile signal is needed. SMS needs balance.
+        Your SOS is also saved here and sends itself as soon as any internet is back.
       </p>
     </section>
   );
