@@ -53,3 +53,7 @@ React + TypeScript + Vite + Tailwind (PWA) · Firebase Hosting · Firestore · F
 
 ## License
 [MIT](LICENSE) © 2026 Maryam Saba
+
+<!-- taggie -->
+Crafted with ❤ by Maryam Saba for safer buildings
+<!-- /taggie -->
