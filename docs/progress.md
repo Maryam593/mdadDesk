@@ -95,3 +95,5 @@
   report tours explain the flow (SOS → Verify → Send → On the way); agency tour says an empty inbox is
   normal until the coordinator sends a request, and shows before sign-in. `TOUR_VERSION` in
   `useTour.ts` makes changed tours show again once.
+- **Deployed** to https://mdaddeskv1-6af42.web.app (Firebase Hosting). Checked: `/`, `/coordinator` and
+  `sw.js` return 200. Phone test (GPS, App Check on the live domain, siren) pending.

@@ -6,7 +6,7 @@ Everything here is free (Firebase **Spark** plan, no card).
 ## What runs where
 | Part | Where | Status |
 |---|---|---|
-| Web app (React PWA) | Firebase Hosting → `https://mdaddeskv1-6af42.web.app` | Ready to deploy (Part A) |
+| Web app (React PWA) | Firebase Hosting → `https://mdaddeskv1-6af42.web.app` | ✅ Live since 14 Oct |
 | Database + login | Firebase Firestore + Auth (project `mdaddeskv1-6af42`) | ✅ Live since 14 Oct (rules + demo data uploaded) |
 | AI (Gemini) | Firebase AI Logic, called from the app; no server | Enabled 14 Oct; App Check must not block it (see below) |
 
