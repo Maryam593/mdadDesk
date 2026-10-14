@@ -14,7 +14,8 @@ export function IncidentMarker({ incident, index, onSelect }: Props) {
   // All demo incidents share one building, so nudge each dot a few metres apart
   // (0.00003° ≈ 3 m) so they don't sit exactly on top of each other.
   const base = incident.location ?? DEMO_BUILDING;
-  const position: [number, number] = [base.lat + index * 0.00003, base.lng + index * 0.00003];
+  const nudge = incident.location ? 0 : index * 0.00003; // real GPS dots stay where they are
+  const position: [number, number] = [base.lat + nudge, base.lng + nudge];
   const color = STATUS_COLOR[incident.status];
 
   // Short label: "smoke · Floor 2 · shop 24". Unknown parts are written as "?".

@@ -1,4 +1,4 @@
-import type { Incident, Report } from "@shared";
+import type { Incident, IncidentType, Report } from "@shared";
 
 // Builds the starting data for a brand-new SOS report and its incident.
 // Everything the AI hasn't read yet starts as null (= "Unknown").
@@ -20,11 +20,11 @@ export function newReport(id: string, text: string, createdAt: number, uid: stri
   return report;
 }
 
-export function newIncident(reportId: string, text: string, createdAt: number) {
+export function newIncident(reportId: string, text: string, createdAt: number, type: IncidentType | null) {
   const incident: Incident = {
     id: incidentIdFor(reportId),
     status: "reported",
-    incidentType: null,
+    incidentType: type, // the button the reporter tapped (null if they only typed)
     building: null,
     floor: null,
     landmark: null,

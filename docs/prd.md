@@ -20,7 +20,7 @@ The one thing the MVP must prove: **someone reports, and help reaches them — a
 
 | # | Who | What happens | Reporter sees |
 |---|---|---|---|
-| 1 | Reporter | Sends SOS: message + building floor/landmark (optional "share my location") | "Sent — waiting for coordinator" |
+| 1 | Reporter | Taps one big button (🔥 Fire, 🚑 Medical, 🆘 Trapped…), optionally after typing details. Phone GPS is attached automatically if allowed | "Sent — waiting for coordinator" + "📍 Location shared" |
 | 2 | Coordinator | Sees it instantly on the list and map; taps **Verify** | "Seen and confirmed" |
 | 3 | Coordinator | Taps **Send Fire / Ambulance / Police** | "Help requested" |
 | 4 | Agency | Sees it in their inbox; taps **On the way** | "Fire service on the way" |

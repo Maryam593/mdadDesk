@@ -21,7 +21,7 @@ export function CoordinatorPage() {
           Sample data: Firebase is not connected, so these 4 example incidents are shown. Changes reset on reload.
         </Notice>
       )}
-      <IncidentMap incidents={data} onSelect={setSelectedId} />
+      <IncidentMap incidents={data} onSelect={setSelectedId} focus={selected?.location ?? null} />
       <div className="grid gap-4 md:grid-cols-[320px_1fr]">
         <Card title={`Incidents (${data.length})`}>
           {loading ? (

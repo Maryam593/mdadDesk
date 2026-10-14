@@ -1,19 +1,21 @@
 import "leaflet/dist/leaflet.css";
 import { CircleMarker, MapContainer, TileLayer, Tooltip } from "react-leaflet";
-import type { Incident } from "@shared";
+import type { GeoPoint, Incident } from "@shared";
 import { Notice } from "@/components/ui/Notice";
 import { useOnline } from "@/hooks/useOnline";
 import { DEMO_BUILDING, MAP_ZOOM } from "@/lib/building";
 import { IncidentMarker } from "./IncidentMarker";
+import { MapFocus } from "./MapFocus";
 
 interface Props {
   incidents: Incident[];
   onSelect: (id: string) => void;
+  focus: GeoPoint | null; // GPS spot of the selected incident; the map flies there
 }
 
 // Free map: Leaflet + OpenStreetMap. No API key or billing needed.
 // The map pictures come from the internet, so offline it stays grey (the rest of the app still works).
-export function IncidentMap({ incidents, onSelect }: Props) {
+export function IncidentMap({ incidents, onSelect, focus }: Props) {
   const online = useOnline();
   const center: [number, number] = [DEMO_BUILDING.lat, DEMO_BUILDING.lng];
 
@@ -30,6 +32,7 @@ export function IncidentMap({ incidents, onSelect }: Props) {
         <CircleMarker center={center} radius={22} pathOptions={{ color: "#475569", fillOpacity: 0.05 }}>
           <Tooltip>{DEMO_BUILDING.name}</Tooltip>
         </CircleMarker>
+        <MapFocus point={focus} />
         {incidents.map((incident, index) => (
           <IncidentMarker key={incident.id} incident={incident} index={index} onSelect={onSelect} />
         ))}

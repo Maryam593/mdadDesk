@@ -1,4 +1,4 @@
-import type { IncidentStatus, LocationField } from "@shared";
+import type { IncidentStatus, IncidentType, LocationField } from "@shared";
 
 export const FIELD_LABELS: Record<LocationField, string> = {
   incidentType: "Incident",
@@ -6,6 +6,16 @@ export const FIELD_LABELS: Record<LocationField, string> = {
   floor: "Floor",
   landmark: "Shop / landmark",
   peopleReported: "People reported",
+};
+
+// Big one-tap buttons on the report page.
+export const TYPE_LABELS: Record<IncidentType, string> = {
+  fire: "🔥 Fire",
+  smoke: "💨 Smoke",
+  medical: "🚑 Medical",
+  trapped: "🆘 Trapped",
+  collapse: "🧱 Collapse",
+  other: "❓ Other",
 };
 
 export type Tone = "neutral" | "info" | "warn" | "danger" | "success";

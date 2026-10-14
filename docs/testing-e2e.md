@@ -21,7 +21,9 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 ## Test cases
 | ID | Steps | Expected |
 |---|---|---|
-| E1 | Report page → type a Roman Urdu SOS with floor + shop → Send | "SOS delivered"; "What we understood" shows floor and shop; unstated fields say **Unknown** |
+| E1 | Report page → type a Roman Urdu SOS with floor + shop → tap **🔥 Fire** → allow location | "SOS delivered" + "📍 Location shared"; "What we understood" shows floor and shop; unstated fields say **Unknown** |
+| E1b | Without typing anything tap **🚑 Medical**, and **block** location | SOS still delivered; "Location not shared" warning; coordinator sees "No GPS location" |
+| E1c | Coordinator: open the E1 incident | "📍 GPS location (±N m) · Open in Google Maps" opens your real spot; map flies to the dot |
 | E2 | Tap the new link under "Your reports" | Status page, step 1 "Sent: waiting for the coordinator" |
 | E3 | Device 2: login as coordinator → Coordinator page, then send another SOS from device 1 | Coordinator screen turns **red, siren plays**, "NEW SOS" with the details |
 | E4 | On the red screen tap **Open incident** | Alert closes; the incident is selected; dot on the map |

@@ -1,5 +1,6 @@
 import type { Incident, IncidentStatus } from "@shared";
 import { Card } from "@/components/ui/Card";
+import { LocationLine } from "./LocationLine";
 import { FieldGrid } from "./FieldGrid";
 import { StatusBadge } from "./StatusBadge";
 import { IncidentActions } from "./IncidentActions";
@@ -21,6 +22,7 @@ export function IncidentDetail({ incident, onSetStatus, live }: Props) {
       <div className="space-y-4">
         <p className="text-sm">{incident.summary}</p>
         <FieldGrid values={incident} />
+        <LocationLine location={incident.location} />
         {live && <DispatchPanel incident={incident} />}
         {live && (
           <div>

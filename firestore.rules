@@ -25,9 +25,9 @@ service cloud.firestore {
       }
       allow create: if request.resource.data.status == 'reported';
       allow update: if isCoordinator()
-        // the reporter's phone saves what the AI understood
+        // the reporter's phone saves what the AI understood and its GPS location
         || (resource.data.status == 'reported' && onlyChanges([
-          'incidentType', 'building', 'floor', 'landmark', 'peopleReported', 'summary', 'updatedAt']))
+          'incidentType', 'building', 'floor', 'landmark', 'peopleReported', 'summary', 'location', 'updatedAt']))
         // an agency that was asked for help taps "On the way"
         || (isAgency() && hasAssignment()
           && resource.data.status in ['verified', 'response']

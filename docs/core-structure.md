@@ -25,17 +25,20 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/hooks/       useCollection / useDoc (realtime), useIncidents, useReportSubmit, useOnline,
                    useAuthUser, useClaims (role + agencyId), useArrivals (new items since page load)
   src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone),
-                   siren.ts (alarm sound, made in code), systemNotify.ts (phone/PC notifications)
+                   siren.ts (alarm sound, made in code), systemNotify.ts (phone/PC notifications),
+                   geo.ts (phone GPS + Google Maps link)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField, tone.ts
     layout/        AppShell (nav), StatusBanners (offline / config)
-    incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline
+    incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline,
+                   LocationLine (GPS ± metres + "Open in Google Maps")
     track/         HelpProgress (reporter checklist), MyReports (links on the report page)
     agency/        AssignmentCard (one help request + "On the way")
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)
-    report/        ReportForm, SubmitStatus
-    map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident)
+    report/        ReportForm (details box), QuickTypeButtons (one-tap SOS), SubmitStatus
+    map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident),
+                   MapFocus (flies to the selected incident)
   src/pages/       ReportPage, TrackPage (/track/:reportId), CoordinatorPage, AgencyPage, LoginPage
 data/              synthetic-reports.json (labelled test set)
 firestore.rules    role-based access via custom claims {role, agencyId}
@@ -51,7 +54,9 @@ firestore.rules    role-based access via custom claims {role, agencyId}
 | `assignments/{incidentId_agencyId}` | agencyKind, agencyName, role lead/support, status notified/accepted/declined/busy |
 
 ## Key flows
-- **Report:** save report + incident first (delivery), then Gemini (enrichment). AI failure never blocks delivery.
+- **Report:** tap a type button → save report + incident first (delivery), then in parallel: GPS
+  (`attachLocation`, up to 10 s) and Gemini (enrichment). Neither can block delivery.
+  GPS gives the street, not the floor: floor / shop still come from the message.
 - **Offline:** Firestore persistent cache queues writes in IndexedDB; the service worker serves the app shell.
 - **Help loop:** coordinator Verify → `sendAgency` (assignment + `notifiedAgencyIds`) → agency
   `markOnTheWay` (assignment accepted, incident `response` + `respondingKinds`) → coordinator Resolved.

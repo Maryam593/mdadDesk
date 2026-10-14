@@ -64,3 +64,10 @@
 - User runs `docs/testing-e2e.md` E1–E10 locally; fix what fails.
 - Deploy Part A and send the preview link to the team.
 - Editable fields on the coordinator card; clarification reply on the report page.
+
+**Later the same day (2)**
+- One-tap SOS: 6 big buttons (fire, smoke, medical, trapped, collapse, other). Typing is optional.
+- Phone GPS sent with the SOS (after delivery, never blocking it). Coordinator + agency see
+  "± metres" and an "Open in Google Maps" link; the map flies to the selected incident.
+  Rules updated (reporter may add `location` while `reported`) and deployed.
+- Verified: typecheck + build + rules deploy. Browser test pending (testing-e2e E1, E1b, E1c).

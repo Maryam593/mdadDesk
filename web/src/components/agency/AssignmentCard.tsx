@@ -2,6 +2,7 @@ import type { Assignment, Incident } from "@shared";
 import { ActionButton } from "@/components/ui/ActionButton";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
+import { LocationLine } from "@/components/incident/LocationLine";
 import { FieldGrid } from "@/components/incident/FieldGrid";
 import { StatusBadge } from "@/components/incident/StatusBadge";
 import { useDoc } from "@/hooks/useDoc";
@@ -26,6 +27,7 @@ export function AssignmentCard({ assignment }: { assignment: Assignment }) {
       <div className="space-y-3">
         <p className="text-sm">{incident.summary}</p>
         <FieldGrid values={incident} />
+        <LocationLine location={incident.location} />
       </div>
     </Card>
   );

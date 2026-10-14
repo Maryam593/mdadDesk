@@ -1,7 +1,8 @@
 import { doc, serverTimestamp, writeBatch } from "firebase/firestore";
-import { LOCATION_FIELDS, type Extraction } from "@shared";
+import { LOCATION_FIELDS, type Extraction, type GeoPoint, type IncidentType } from "@shared";
 import { auth, requireDb } from "@/lib/firebase";
 import { addEvent } from "./events";
+import { changeIncident } from "./incidents";
 import { incidentIdFor, newIncident, newReport } from "./newRecords";
 
 export const newReportId = () => crypto.randomUUID();
@@ -11,10 +12,10 @@ export const newReportId = () => crypto.randomUUID();
  * - The id is made on the phone, so sending twice overwrites instead of duplicating.
  * - The promise finishes only when the server confirms. Offline, it waits and sends later.
  */
-export async function sendReport(id: string, text: string, createdAt: number) {
+export async function sendReport(id: string, text: string, createdAt: number, type: IncidentType | null) {
   const db = requireDb();
   const report = newReport(id, text, createdAt, auth?.currentUser?.uid ?? null);
-  const incident = newIncident(id, text, createdAt);
+  const incident = newIncident(id, text, createdAt, type);
 
   const batch = writeBatch(db); // all-or-nothing: either everything saves or nothing does
   batch.set(doc(db, "reports", id), { ...report, receivedAt: serverTimestamp() });
@@ -42,3 +43,7 @@ export async function applyExtraction(reportId: string, extraction: Extraction |
   }
   await batch.commit();
 }
+
+/** Step 3 (if the phone allowed it): add the GPS position, a few seconds after sending. */
+export const attachLocation = (reportId: string, point: GeoPoint) =>
+  changeIncident(incidentIdFor(reportId), { location: point }, "update", `GPS location shared (±${point.accuracyM} m)`);
