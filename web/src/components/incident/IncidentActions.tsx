@@ -2,14 +2,14 @@ import type { Incident, IncidentStatus } from "@shared";
 import { ActionButton } from "@/components/ui/ActionButton";
 
 /**
- * Next allowed human step for each status. AI never moves an incident forward.
- * "Response" is set by the agency tapping "On the way", not by the coordinator.
+ * The main button at the top of an incident. AI never moves an incident forward.
+ * - verified: no button here on purpose. The next step is "Send help" below, and closing a false
+ *   alarm is a separate, confirmed link (CloseFalseAlarm). A button here got double-clicked.
+ * - "response" is set by the agency tapping "On the way", not by the coordinator.
  */
 type Step = { to: IncidentStatus; label: string; variant: "danger" | "primary" | "secondary" };
 const NEXT: Partial<Record<IncidentStatus, Step>> = {
   reported: { to: "verified", label: "Verify", variant: "danger" },
-  // After Verify the real next step is "Send help" below; closing is only for false alarms.
-  verified: { to: "resolved", label: "Close: no help needed", variant: "secondary" },
   response: { to: "resolved", label: "Confirm resolved", variant: "primary" },
 };
 

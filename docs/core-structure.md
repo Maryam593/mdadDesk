@@ -39,7 +39,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
     layout/        AppShell (navy header + nav + footer), Logo (uses public/icon.svg), StatusBanners,
                    RoleGate (right account or a clear message)
     coordinator/   CoordinatorDesk (alerts + map + list + detail)
-    incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline,
+    incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, CloseFalseAlarm (confirmed close), Timeline,
                    LocationLine (GPS ± metres + "Open in Google Maps")
     track/         LiveStatus (live card, on report page + /track), HelpProgress (checklist),
                    HelpSplash (green good-news screen + chime), MyReports (links on the report page)

@@ -5,6 +5,7 @@ import { FieldGrid } from "./FieldGrid";
 import { StatusBadge } from "./StatusBadge";
 import { IncidentActions } from "./IncidentActions";
 import { DispatchPanel } from "./DispatchPanel";
+import { CloseFalseAlarm } from "./CloseFalseAlarm";
 import { Timeline } from "./Timeline";
 
 interface Props {
@@ -22,6 +23,7 @@ export function IncidentDetail({ incident, onSetStatus, live }: Props) {
       <div className="space-y-4">
         <p className="text-sm">{incident.summary}</p>
         {live && <DispatchPanel incident={incident} />}
+        <CloseFalseAlarm incident={incident} onSetStatus={onSetStatus} />
         <FieldGrid values={incident} />
         <LocationLine location={incident.location} />
         {live && (

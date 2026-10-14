@@ -12,6 +12,16 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Clicking Verify closed the case ("Close: no help needed")
+**Symptom:** after tapping Verify, the case ended up resolved without anyone being sent.
+**Cause (from the timeline):** collapse case verified 8:33:28, resolved 8:33:35. After Verify, the
+"Close: no help needed" button appeared in exactly the same spot as Verify, so the next click / double
+click closed the case. (The earlier fix only renamed and greyed that button.)
+**Fix:** no top button while `verified` (`IncidentActions.tsx`); new `CloseFalseAlarm.tsx`: a small link
+at the bottom, "Not an emergency? Close without sending help", that asks "Yes, close it / Cancel" first,
+and disappears once help was sent.
+**Check:** typecheck + build + deployed; browser check by user (testing-e2e E20).
+
 ## 2026-10-14 — RBAC: every user saw every tab (Report, Coordinator, Agency)
 **Symptom:** the public saw Coordinator and Agency tabs; the coordinator saw the Agency tab; agencies saw
 the Coordinator tab. Confusing, and it suggested people could do jobs that aren't theirs.

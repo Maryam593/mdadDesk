@@ -41,6 +41,7 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E17 | Login as coordinator | Lands on Coordinator; header shows only "🧭 Coordinator" + "👤 coordinator" (no Report / Agency tabs) |
 | E18 | Signed out | Header shows only "🆘 Report SOS" + "🔑 Staff login" |
 | E19 | Login as fire-saddar | Lands on the agency inbox; only "🚒 Agency inbox" tab |
+| E20 | Coordinator: Verify, then click the same spot again quickly | Nothing happens (no button there); case stays verified. "Not an emergency?" link asks Yes/Cancel before closing |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |
 
 ## Results (copy this table, fill it, send it to the developer)
