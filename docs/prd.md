@@ -32,6 +32,10 @@ AI extraction stays in (already working) but is not required for the loop: a rep
 **After the loop works**, in this order: follow-up question reply, field editing, related-report flag,
 busy/decline + escalation, lead vs support agencies.
 
+**Alerts (added 14 Oct):** a new SOS (coordinator) or help request (agency) turns the screen red
+with a siren, plus a phone/PC notification when the tab is in the background. Only while the app is
+open; real push notifications (app closed) stay on the roadmap.
+
 ## Full scope (from the proposal)
 1. Text SOS intake with a stable report ID; delivery state is shown honestly (pending / sent / failed).
 2. Gemini extraction: incident type, building, floor, landmark, people, help requested. **Unstated = Unknown.**

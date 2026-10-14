@@ -23,14 +23,17 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/services/    reports.ts, incidents.ts, events.ts, assignments.ts — all Firestore writes
                    newRecords.ts — starting data for a new report/incident
   src/hooks/       useCollection / useDoc (realtime), useIncidents, useReportSubmit, useOnline,
-                   useAuthUser, useClaims (role + agencyId)
-  src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone)
+                   useAuthUser, useClaims (role + agencyId), useArrivals (new items since page load)
+  src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone),
+                   siren.ts (alarm sound, made in code), systemNotify.ts (phone/PC notifications)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField, tone.ts
     layout/        AppShell (nav), StatusBanners (offline / config)
     incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, Timeline
     track/         HelpProgress (reporter checklist), MyReports (links on the report page)
     agency/        AssignmentCard (one help request + "On the way")
+    alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
+                   NewRequestAlert (agency)
     report/        ReportForm, SubmitStatus
     map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident)
   src/pages/       ReportPage, TrackPage (/track/:reportId), CoordinatorPage, AgencyPage, LoginPage
@@ -55,6 +58,10 @@ firestore.rules    role-based access via custom claims {role, agencyId}
   The reporter's `/track` page reads only the incident doc and turns it into a step (`lib/helpSteps.ts`).
 - **Who can read an incident:** anyone with its id (`get`), since the id is a random code only the
   reporter's phone and assigned agencies have. Listing all incidents is coordinator-only.
+- **Alerts:** `useArrivals` remembers what was on screen when the page loaded; anything newer that
+  still needs action raises `EmergencyAlert` (red screen, siren, system notification if the tab is
+  hidden). It closes by itself once handled (verified / "On the way"). Works only while the page is
+  open (no push server on the free plan).
 - **Status change:** `services/incidents.changeIncident` updates the incident and appends a timeline event in one batch.
 
 ## Decisions

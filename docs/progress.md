@@ -3,7 +3,7 @@
 | Day | Target | Status |
 |---|---|---|
 | 13 Oct | Skeleton + GCP setup + Gemini test | Skeleton ✅ · Gemini ✅ (93%, 0 invented) · GCP billing ❌ card declined → plan B |
-| 14 Oct | Intake → extract → editable card → clarification loop | |
+| 14 Oct | Intake → extract → editable card → clarification loop | Help loop ✅ · Firebase live ✅ · alerts ✅ · editable card / clarification reply ⏳ |
 | 15 Oct | Coordinator realtime, verify, map marker, timeline | |
 | 16 Oct | Agencies, accept/decline/busy, lead/support, rules | |
 | 17 Oct | Fallback, related flag, eval, deploy, **freeze** | |
@@ -48,3 +48,19 @@
 - Shared `ActionButton` (busy + error message) replaces repeated try/catch in buttons.
 - Verified: typecheck + production build. **Not yet verified against a real Firebase project**
   (user is creating it now); test steps in `docs/firebase-setup.md` step 8.
+
+**Later the same day**
+- Firebase project `mdaddeskv1-6af42` created (Spark, Firestore in Mumbai). `web/.env`, `.firebaserc`,
+  `api/.env` filled; `api/service-account.json` in place (gitignored).
+  Rules deployed ("Deploy complete"); seed created 3 agencies + 4 demo accounts.
+- "Movie-style" alerts: full red flashing screen + siren (Web Audio, no file) + system notification when
+  the tab is hidden. Coordinator: new SOS. Agency: new help request. Closes itself once handled.
+- Docs: `deployment.md` (Hosting + preview link for testers + Render option for the AI API),
+  `testing-e2e.md` (15 cases E1–E15 for teammates), `testing-user.md` (sessions with real people).
+- Verified: typecheck + build. **Not yet verified by a person in the browser:** help loop on real
+  Firebase, siren, notifications.
+
+**Next**
+- User runs `docs/testing-e2e.md` E1–E10 locally; fix what fails.
+- Deploy Part A and send the preview link to the team.
+- Editable fields on the coordinator card; clarification reply on the report page.

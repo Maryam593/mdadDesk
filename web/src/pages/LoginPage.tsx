@@ -1,4 +1,4 @@
-﻿import { useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -6,6 +6,7 @@ import { Notice } from "@/components/ui/Notice";
 import { TextInput } from "@/components/ui/TextField";
 import { auth } from "@/lib/firebase";
 import { useAuthUser } from "@/hooks/useAuthUser";
+import { askNotificationPermission } from "@/lib/systemNotify";
 
 export function LoginPage() {
   const { user } = useAuthUser();
@@ -17,6 +18,7 @@ export function LoginPage() {
     e.preventDefault();
     if (!auth) return setError("Firebase is not configured");
     setError(null);
+    askNotificationPermission(); // so emergency alerts can pop up even when this tab is hidden
     await signInWithEmailAndPassword(auth, email, password).catch((err: Error) => setError(err.message));
   };
 

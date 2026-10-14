@@ -4,6 +4,7 @@ import { Notice } from "@/components/ui/Notice";
 import { IncidentList } from "@/components/incident/IncidentList";
 import { IncidentDetail } from "@/components/incident/IncidentDetail";
 import { IncidentMap } from "@/components/map/IncidentMap";
+import { NewSosAlert } from "@/components/alert/NewSosAlert";
 import { useIncidents } from "@/hooks/useIncidents";
 
 export function CoordinatorPage() {
@@ -13,6 +14,7 @@ export function CoordinatorPage() {
 
   return (
     <div className="space-y-4">
+      <NewSosAlert incidents={data} ready={!loading && !isSample} onOpen={setSelectedId} />
       {error && <Notice tone="danger">{error}</Notice>}
       {isSample && (
         <Notice tone="info">

@@ -12,6 +12,19 @@ Add newest entries at the top. Format:
 
 ---
 
+## 2026-10-14 — Old requests would set off the alarm when a page opens (caught before release)
+**Symptom (found in review):** the agency page first asks "who am I?", then loads the inbox. In between,
+`useCollection` said "done loading, 0 items", so every existing request looked *new* a moment later → siren.
+**Cause:** `loading` was only true on the very first load, not when the path/query changed.
+**Fix:** `web/src/hooks/useCollection.ts` remembers which query its data belongs to; `loading` stays
+true until data for the current query arrives. `useArrivals` only starts watching after that.
+**Check:** typecheck + build. Browser check pending (testing-e2e E3, E7).
+
+## 2026-10-14 — `npm install firebase` in the root folder
+**Symptom:** root `package.json` got a `firebase` dependency (copied from the Firebase console's SDK step).
+**Cause:** the console tells you to install the SDK; this project already has it in `web/`.
+**Fix:** reverted root `package.json` / lock. Skip the console's "npm install" step.
+
 ## 2026-10-13 — Gemini: model 404, then 503/429 on every report
 **Symptom:** `gemini-2.5-flash` → 404 "no longer available to new users". After switching to
 `gemini-3.8-flash`: eval 20/20 failed with 503 "high demand", 429 "free tier limit: 5 per minute", and timeouts.

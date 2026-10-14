@@ -1,5 +1,8 @@
 # Firebase setup (free plan, no card)
 
+> Done on 14 Oct for project `mdaddeskv1-6af42`. Only needed again for a new project.
+> Skip the console's "npm install firebase" step: the SDK is already in `web/`.
+
 Takes about 15 minutes. Everything here works on the free **Spark** plan, so no billing is needed.
 Do the steps in order. Anything in `code style` is exactly what you type or click.
 

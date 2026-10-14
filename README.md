@@ -53,6 +53,10 @@ npm run build -w web && firebase deploy --only hosting,firestore:rules
 - [docs/core-structure.md](docs/core-structure.md) — folders, data model, code rules
 - [docs/progress.md](docs/progress.md) — daily log
 - [docs/bug-fix.md](docs/bug-fix.md) — bugs and fixes
+- [docs/firebase-setup.md](docs/firebase-setup.md) — create the Firebase project (done for `mdaddeskv1-6af42`)
+- [docs/deployment.md](docs/deployment.md) — put it online, test links for teammates
+- [docs/testing-e2e.md](docs/testing-e2e.md) — step-by-step test checklist for the team
+- [docs/testing-user.md](docs/testing-user.md) — testing with real people
 
 ## Stack
 React + TypeScript + Vite + Tailwind (PWA) · Express on Cloud Run · Firestore · Firebase Auth · Gemini

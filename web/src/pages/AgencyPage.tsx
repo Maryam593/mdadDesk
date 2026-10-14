@@ -2,13 +2,14 @@ import { where } from "firebase/firestore";
 import type { Assignment } from "@shared";
 import { Notice } from "@/components/ui/Notice";
 import { AssignmentCard } from "@/components/agency/AssignmentCard";
+import { NewRequestAlert } from "@/components/alert/NewRequestAlert";
 import { useClaims } from "@/hooks/useClaims";
 import { useCollection } from "@/hooks/useCollection";
 
 /** Agency inbox: help requests sent to the signed-in agency, newest first. */
 export function AgencyPage() {
   const { role, agencyId, loading } = useClaims();
-  const { data, error } = useCollection<Assignment>(
+  const inbox = useCollection<Assignment>(
     agencyId ? "assignments" : null,
     agencyId ? [where("agencyId", "==", agencyId)] : [],
     agencyId ?? "",
@@ -23,11 +24,12 @@ export function AgencyPage() {
     );
   }
 
-  const newestFirst = [...data].sort((a, b) => b.updatedAt - a.updatedAt);
+  const newestFirst = [...inbox.data].sort((a, b) => b.updatedAt - a.updatedAt);
   return (
     <div className="mx-auto max-w-2xl space-y-4">
+      <NewRequestAlert assignments={inbox.data} ready={!inbox.loading} />
       <h2 className="text-lg font-semibold">Agency inbox</h2>
-      {error && <Notice tone="danger">{error}</Notice>}
+      {inbox.error && <Notice tone="danger">{inbox.error}</Notice>}
       {newestFirst.length === 0 && <Notice tone="info">No requests yet. New ones appear here by themselves.</Notice>}
       {newestFirst.map((a) => (
         <AssignmentCard key={a.id} assignment={a} />
