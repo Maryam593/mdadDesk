@@ -12,13 +12,15 @@ Add newest entries at the top. Format:
 
 ---
 
-## 2026-10-14 — Install option missing on a Realme phone (Samsung fine)
+## 2026-10-14 — Install option missing on a Realme phone (Samsung fine) → just needed a short wait
 **Symptom:** on Android Chrome (Realme) no install popup / install did nothing; on Samsung it installed.
 **Checked:** live site has manifest, PNG icons 192/512 + maskable, service worker registered, HTTPS → installable.
 **Likely cause:** Realme/Oppo/Xiaomi block "create home-screen shortcuts" for Chrome by default; Chrome also
 shows install only in the ⋮ menu, not always as a popup.
-**Fix:** user steps in `docs/how-to-start.md` §6 (allow shortcut permission, update Chrome, clear site data).
-**Check:** pending, user to retry on Realme.
+**Real cause:** nothing was broken: Chrome shows "Install" only after the page has loaded for a little while
+(service worker has to finish installing on the first visit).
+**Fix:** none needed in code. Docs say: open the link, wait ~15–20 s, then ⋮ → Install app.
+**Check:** ✅ installed on Realme after waiting (user, 14 Oct).
 
 ## 2026-10-14 — Clicking Verify closed the case ("Close: no help needed")
 **Symptom:** after tapping Verify, the case ended up resolved without anyone being sent.

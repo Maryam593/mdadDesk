@@ -73,13 +73,14 @@ Use **two windows**: one browser window logs in as ONE person for all its tabs.
 | Tour keeps showing / want to see it again | Green **?** button bottom-right. |
 
 ## 6. Install on a phone (it's a PWA)
-**Android (Chrome):** open the live link → "Install app" popup, or menu ⋮ → **Install app / Add to Home screen**.
+**Android (Chrome):** open the live link and **wait 15–20 seconds** on the first visit (the app sets itself up),
+then the "Install app" popup, or menu ⋮ → **Install app / Add to Home screen**.
 **iPhone:** open the link in **Safari** → Share (⬆️ box) → **Add to Home Screen** → Add.
 (iOS 16.4+ also allows it from Chrome's Share menu; Safari works on every iPhone.) Always open it from the icon.
 
 **Realme / Oppo / Xiaomi:** if "Install" does nothing, the phone is blocking home-screen icons for Chrome:
 Settings → Apps → Chrome → Permissions / Other permissions → **Create desktop shortcuts** (or "Home screen
-shortcuts") → Allow. Also update Chrome. Developer mode is not needed. (Worked on Samsung right away, 14 Oct.)
+shortcuts") → Allow. Also update Chrome. Developer mode is not needed. (Tested 14 Oct: Samsung ✅, Realme ✅ after the short wait.)
 
 After installing: red MadadDesk icon, opens without the address bar, opens offline, an SOS sent offline
 is sent automatically when back online, and updates arrive by themselves on the next launch.
