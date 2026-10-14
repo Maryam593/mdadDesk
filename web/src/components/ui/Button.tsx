@@ -1,15 +1,13 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cx } from "./tone";
 
-type Variant = "primary" | "secondary" | "danger" | "ghost" | "sos";
+type Variant = "primary" | "secondary" | "danger" | "ghost";
 
 const VARIANTS: Record<Variant, string> = {
   primary: "bg-brand text-white shadow-sm hover:brightness-110",
   secondary: "bg-white text-slate-800 border border-slate-300 hover:bg-slate-50",
   danger: "bg-danger text-white shadow-sm hover:brightness-110",
   ghost: "text-slate-700 hover:bg-slate-100",
-  // Big SOS tiles on the report page
-  sos: "flex-col bg-linear-to-br from-rose-500 to-red-700 text-white shadow-md hover:brightness-110 active:scale-95",
 };
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {

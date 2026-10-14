@@ -1,6 +1,6 @@
 import { INCIDENT_TYPES, type IncidentType } from "@shared";
-import { Button } from "@/components/ui/Button";
 import { TYPE_INFO } from "@/lib/labels";
+import { FlipTile } from "./FlipTile";
 
 interface Props {
   onPick: (type: IncidentType) => void;
@@ -11,11 +11,15 @@ interface Props {
 export function QuickTypeButtons({ onPick, disabled }: Props) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-      {INCIDENT_TYPES.map((type) => (
-        <Button key={type} variant="sos" disabled={disabled} onClick={() => onPick(type)} className="py-5">
-          <span className="text-4xl leading-none">{TYPE_INFO[type].emoji}</span>
-          <span className="text-base">{TYPE_INFO[type].name}</span>
-        </Button>
+      {INCIDENT_TYPES.map((type, index) => (
+        <FlipTile
+          key={type}
+          emoji={TYPE_INFO[type].emoji}
+          name={TYPE_INFO[type].name}
+          delayMs={700 + index * 180}
+          disabled={disabled}
+          onClick={() => onPick(type)}
+        />
       ))}
     </div>
   );

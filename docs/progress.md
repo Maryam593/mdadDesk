@@ -100,3 +100,6 @@
 - **New look** (user: "UI nhi acha, logo bhe nhi acha"): new logo (red tile, white pin, help cross, signal
   waves), navy header with logo + pill nav + footer with emergency numbers, Plus Jakarta Sans, rounder
   cards/buttons, big gradient SOS tiles with numbered steps and a "Need help?" hero, login page with logo.
+- SOS tiles now flip (front: name, then turn over one by one to show the emoji; mouse hover turns them
+  back; no animation with "reduce motion"). `FlipTile.tsx` + `.flip` CSS in index.css. Tour button is a
+  green round "?".

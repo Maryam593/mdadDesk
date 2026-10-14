@@ -19,9 +19,11 @@ export function Tour({ id }: { id: TourId }) {
     return (
       <button
         onClick={restart}
-        className="fixed bottom-4 right-4 z-[1500] rounded-full bg-brand px-4 py-2 text-sm font-medium text-white shadow-lg"
+        aria-label="How it works"
+        title="How it works"
+        className="fixed bottom-4 right-4 z-[1500] grid h-12 w-12 place-items-center rounded-full bg-emerald-500 text-2xl font-extrabold text-white shadow-lg transition hover:bg-emerald-600"
       >
-        ❓ How it works
+        ?
       </button>
     );
   }

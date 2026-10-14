@@ -47,7 +47,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
     agency/        AgencyInbox (requests for the signed-in agency), AssignmentCard (one request + "On the way")
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)
-    report/        ReportForm (details box), QuickTypeButtons (one-tap SOS), SubmitStatus
+    report/        ReportForm (numbered steps), QuickTypeButtons + FlipTile (one-tap SOS tiles), SubmitStatus
     map/           IncidentMap (Leaflet + OpenStreetMap, no key), IncidentMarker (dot per incident),
                    MapFocus (flies to the selected incident)
   src/pages/       ReportPage, TrackPage (/track/:reportId), CoordinatorPage, AgencyPage, LoginPage
@@ -85,7 +85,7 @@ firestore.rules    role-based access via custom claims {role, agencyId}
 - Colours in `web/src/index.css` (`@theme`): brand teal (normal actions), danger red (SOS), ink navy (header).
 - Font: Plus Jakarta Sans (Google Fonts; falls back to the system font offline).
 - Logo = `web/public/icon.svg` (pin + help cross + signal waves); also the app/PWA icon.
-- SOS tiles use the `sos` Button variant; numbered steps on the report page.
+- SOS tiles flip (FlipTile + `.flip` CSS in index.css); numbered steps on the report page.
 
 ## Decisions
 - Map: Leaflet + OpenStreetMap instead of Google Maps (no billing). One demo building in
