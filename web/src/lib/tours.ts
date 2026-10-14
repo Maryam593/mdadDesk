@@ -12,9 +12,9 @@ export type TourId = "report" | "coordinator" | "agency";
 // First step of every tour: what each tab at the top is for.
 const TABS: TourStep = {
   emoji: "🧭",
-  title: "The tabs at the top",
-  text: "Report SOS: for anyone in danger. Coordinator: the building's safety person checks reports. "
-    + "Agency: inbox for Fire, Ambulance and Police. Login: staff sign in here.",
+  title: "Everyone sees only their own job",
+  text: "Public: only Report SOS. The coordinator (building safety person) signs in and sees the Coordinator "
+    + "desk. Fire, Ambulance and Police sign in and see only their inbox. Staff use Staff login at the top.",
 };
 
 // How one SOS travels, so everyone knows what happens next.
@@ -36,7 +36,7 @@ export const TOURS: Record<TourId, TourStep[]> = {
   ],
   coordinator: [
     TABS,
-    { emoji: "🔑", title: "Sign in first", text: "Login tab → coordinator account. Then come back to this tab." },
+    { emoji: "🔑", title: "Sign in first", text: "Staff login → coordinator account. You land on your desk automatically." },
     FLOW,
     { emoji: "🚨", title: "New SOS = red screen", text: "A siren plays when a report arrives. Tap Open incident." },
     { emoji: "✅", title: "Verify", text: "Read the message. Unknown means nobody said it. Nothing goes to agencies until you verify." },
@@ -46,7 +46,7 @@ export const TOURS: Record<TourId, TourStep[]> = {
   ],
   agency: [
     TABS,
-    { emoji: "🔑", title: "Sign in as your agency", text: "Login tab → e.g. fire-saddar@madaddesk.demo. Then come back here." },
+    { emoji: "🔑", title: "Sign in as your agency", text: "Staff login → e.g. fire-saddar@madaddesk.demo. You land on your inbox." },
     { emoji: "⏳", title: "An empty inbox is normal", text: "A request comes only after the coordinator verifies an SOS and sends it to you." },
     { emoji: "🚨", title: "Request = red screen", text: "The screen turns red with a siren. Keep this tab open." },
     { emoji: "📍", title: "Where to go", text: "Floor, landmark and a Google Maps link to the reporter's location." },

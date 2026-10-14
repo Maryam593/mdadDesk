@@ -32,7 +32,7 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
   src/lib/         helpSteps.ts (reporter status steps), myReports.ts (reports sent from this phone),
                    siren.ts / chime.ts (sounds made in code), systemNotify.ts (phone/PC notifications),
                    tours.ts (tour text; bump TOUR_VERSION in hooks/useTour.ts after editing),
-                   geo.ts (phone GPS + Google Maps link)
+                   geo.ts (phone GPS + Google Maps link), nav.ts (tabs per role + where each role lands)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField,
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
@@ -80,6 +80,14 @@ firestore.rules    role-based access via custom claims {role, agencyId}
   hidden). It closes by itself once handled (verified / "On the way"). Works only while the page is
   open (no push server on the free plan).
 - **Status change:** `services/incidents.changeIncident` updates the incident and appends a timeline event in one batch.
+
+## Who sees what (role-based)
+| Signed in as | Tabs | After login |
+|---|---|---|
+| nobody (public) | 🆘 Report SOS + "Staff login" | — |
+| coordinator | 🧭 Coordinator | /coordinator |
+| agency | 🚒 Agency inbox | /agency |
+Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`.
 
 ## Look and feel
 - Colours in `web/src/index.css` (`@theme`): brand teal (normal actions), danger red (SOS), ink navy (header).

@@ -37,7 +37,7 @@ export function RoleGate({ role, children }: { role: StaffRole; children: ReactN
         This page needs {WHO[role]}. Tip: all tabs of one browser share one login, so use an
         Incognito window (Ctrl+Shift+N) for a second account.
       </Notice>
-      <Button onClick={switchAccount}>{claims.email ? "Switch account" : "Go to login"}</Button>
+      <Button onClick={switchAccount}>{claims.email ? "Switch account" : "Go to staff login"}</Button>
     </div>
   );
 }

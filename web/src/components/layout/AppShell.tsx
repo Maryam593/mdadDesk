@@ -1,19 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { cx } from "@/components/ui/tone";
-import { useAuthUser } from "@/hooks/useAuthUser";
+import { useClaims } from "@/hooks/useClaims";
+import { tabsFor } from "@/lib/nav";
 import { Logo } from "./Logo";
 import { StatusBanners } from "./StatusBanners";
 
-const LINKS = [
-  { to: "/", label: "🆘 Report SOS" },
-  { to: "/coordinator", label: "🧭 Coordinator" },
-  { to: "/agency", label: "🚒 Agency" },
-];
-
 export function AppShell() {
-  const { user } = useAuthUser();
-  // Last link: "Login", or who is signed in (e.g. "👤 coordinator"); it opens the sign-out page.
-  const account = { to: "/login", label: user?.email ? `👤 ${user.email.split("@")[0]}` : "🔑 Login" };
+  const { role, email } = useClaims();
+  // Only this person's own tabs (lib/nav.ts), then "Staff login" or who is signed in (opens sign-out).
+  const account = { to: "/login", label: email ? `👤 ${email.split("@")[0]}` : "🔑 Staff login" };
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -23,7 +18,7 @@ export function AppShell() {
             <Logo light />
           </NavLink>
           <nav className="-mx-1 flex gap-1 overflow-x-auto text-sm">
-            {[...LINKS, account].map((l) => (
+            {[...tabsFor(role), account].map((l) => (
               <NavLink
                 key={l.to}
                 to={l.to}

@@ -5,12 +5,16 @@ import { Card } from "@/components/ui/Card";
 import { Notice } from "@/components/ui/Notice";
 import { TextInput } from "@/components/ui/TextField";
 import { auth } from "@/lib/firebase";
+import { useNavigate } from "react-router-dom";
+import type { Role } from "@shared";
 import { useAuthUser } from "@/hooks/useAuthUser";
+import { homeFor } from "@/lib/nav";
 import { Logo } from "@/components/layout/Logo";
 import { askNotificationPermission } from "@/lib/systemNotify";
 
 export function LoginPage() {
   const { user } = useAuthUser();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +24,13 @@ export function LoginPage() {
     if (!auth) return setError("Firebase is not configured");
     setError(null);
     askNotificationPermission(); // so emergency alerts can pop up even when this tab is hidden
-    await signInWithEmailAndPassword(auth, email, password).catch((err: Error) => setError(err.message));
+    try {
+      const signedIn = await signInWithEmailAndPassword(auth, email, password);
+      const token = await signedIn.user.getIdTokenResult();
+      navigate(homeFor((token.claims.role as Role) ?? null)); // coordinator → Coordinator, agency → inbox
+    } catch (err) {
+      setError((err as Error).message);
+    }
   };
 
   if (user)

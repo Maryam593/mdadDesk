@@ -103,3 +103,6 @@
 - SOS tiles now flip (front: name, then turn over one by one to show the emoji; mouse hover turns them
   back; no animation with "reduce motion"). `FlipTile.tsx` + `.flip` CSS in index.css. Tour button is a
   green round "?".
+- **Role-based tabs** (user: "coordinator ko agencies tab nhi dikhna chahiye, user ko sirf help tab"):
+  public sees only Report SOS + Staff login; coordinator only Coordinator; agency only its inbox. After
+  sign-in each role lands on its own page (`lib/nav.ts`). Tour step 1 explains this (TOUR_VERSION 3).
