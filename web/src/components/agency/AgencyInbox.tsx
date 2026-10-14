@@ -3,6 +3,7 @@ import type { Assignment } from "@shared";
 import { Notice } from "@/components/ui/Notice";
 import { AssignmentCard } from "@/components/agency/AssignmentCard";
 import { NewRequestAlert } from "@/components/alert/NewRequestAlert";
+import { GlobeBanner } from "./GlobeBanner";
 import { useClaims } from "@/hooks/useClaims";
 import { useCollection } from "@/hooks/useCollection";
 
@@ -19,7 +20,8 @@ export function AgencyInbox() {
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <NewRequestAlert assignments={inbox.data} ready={agencyId !== null && !inbox.loading} />
-      <h2 className="text-lg font-semibold">Agency inbox</h2>
+      <GlobeBanner assignments={inbox.data} />
+      <h2 className="text-lg font-semibold">Requests</h2>
       {inbox.error && <Notice tone="danger">{inbox.error}</Notice>}
       {newestFirst.length === 0 && <Notice tone="info">No requests yet. A request appears here (with a siren) after the coordinator verifies an SOS and taps "Send" for your agency.</Notice>}
       {newestFirst.map((a) => (

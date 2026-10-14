@@ -136,3 +136,8 @@
   two blurred glows, faint dot grid). **All emojis replaced by lucide-react icons** (SOS cards, tabs, menu,
   tour, alerts, reporter splash, login, location, notices); data icons centralised in `lib/icons.ts`.
   Scan confirms 0 emojis left in `web/src`. TOUR_VERSION 5.
+- **Agency globe** (owner's idea): navy banner at the top of the agency inbox with a grey dotted globe
+  (cobe, WebGL, ~5 KB) and a red dot wherever a live request came from; it sways around that area.
+  "Live" = waiting, or accepted in the last 3 hours (assignments stay "accepted" after a case closes).
+  Assignments now store the reporter's GPS when sent (`location`), so the globe needs no extra reads.
+  Stops moving with "reduce motion". Not yet seen in a browser (WebGL can't be checked from the terminal).

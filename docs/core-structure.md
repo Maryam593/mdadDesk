@@ -49,7 +49,8 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    HelpSplash (green good-news screen + chime), MyReports (links on the report page)
     login/         LoginHero (navy brand panel), LoginForm (demo-account chips, show password)
     tour/          Tour (first-visit guide per page + "How it works" button; text in lib/tours.ts)
-    agency/        AgencyInbox (requests for the signed-in agency), AssignmentCard (one request + "On the way")
+    agency/        AgencyInbox (requests for the signed-in agency), AssignmentCard (one request + "On the way"),
+                   GlobeBanner + RequestGlobe (grey cobe globe, red dot per live request)
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
                    NewRequestAlert (agency)
     report/        ReportForm (numbered steps), QuickTypeButtons + FlipTile (one-tap SOS tiles), SubmitStatus
@@ -68,7 +69,7 @@ firestore.rules    role-based access via custom claims {role, agencyId}
 | `incidents/{inc_<reportId>}` | status reported→verified→response→resolved, location fields, reportIds, notifiedAgencyIds, respondingKinds, lead/support agency |
 | `incidents/{id}/events` | append-only timeline (kind, message, actorUid, at) |
 | `agencies/{id}` | name, kind, available, availabilityUpdatedAt |
-| `assignments/{incidentId_agencyId}` | agencyKind, agencyName, role lead/support, status notified/accepted/declined/busy |
+| `assignments/{incidentId_agencyId}` | agencyKind, agencyName, location (reporter GPS at send time), role lead/support, status notified/accepted/declined/busy |
 
 ## Key flows
 - **Report:** tap a type button → save report + incident first (delivery), then in parallel: GPS

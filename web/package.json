@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "cobe": "^2.0.1",
     "firebase": "^13.0.0",
     "leaflet": "^1.9.4",
     "lucide-react": "^1.57.0",

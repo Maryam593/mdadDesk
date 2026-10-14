@@ -1,3 +1,5 @@
+import type { GeoPoint } from "./incident";
+
 export type AgencyKind = "fire" | "ambulance" | "police";
 export type Role = "coordinator" | "agency" | "reporter";
 
@@ -17,6 +19,7 @@ export interface Assignment {
   agencyId: string;
   agencyKind: AgencyKind; // copied here so the agency inbox and reporter page need no extra lookup
   agencyName: string;
+  location: GeoPoint | null; // reporter's GPS when the request was sent (for the agency globe)
   role: "lead" | "support" | null;
   status: AssignmentStatus;
   updatedAt: number;

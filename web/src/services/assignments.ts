@@ -11,6 +11,7 @@ export async function sendAgency(incident: Incident, agency: Agency) {
     agencyId: agency.id,
     agencyKind: agency.kind,
     agencyName: agency.name,
+    location: incident.location,
     role: null,
     status: "notified",
     updatedAt: Date.now(),
