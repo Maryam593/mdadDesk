@@ -98,6 +98,10 @@ is sent automatically when back online, and updates arrive by themselves on the 
 or Android, with the silent switch off. These limits come from Apple's rules for web apps; not yet tested
 on a real iPhone (14 Oct).
 
+**No internet on the reporter's phone:** a red box offers **Send by SMS** (goes to `VITE_SOS_SMS_NUMBER`
+in `web/.env`, the coordinator's phone; set for the demo on 14 Oct) and **Call 1122**. After changing the
+number: build + deploy again.
+
 ## 7. Change and deploy
 - Code rules (≤60 lines per file, no repetition, beginner-readable): `docs/core-structure.md`.
 - Deploy: `npm run build -w web` then `firebase deploy --only hosting` (details `docs/deployment.md`).
