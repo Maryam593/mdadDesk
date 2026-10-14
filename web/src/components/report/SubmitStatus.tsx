@@ -1,5 +1,6 @@
 import type { AiStatus, DeliveryStatus } from "@shared";
 import { Notice } from "@/components/ui/Notice";
+import { WaveText } from "@/components/ui/WaveText";
 import type { Tone } from "@/lib/labels";
 import type { LocationStatus } from "@/hooks/submitSteps";
 
@@ -32,7 +33,12 @@ export function SubmitStatus({ delivery, ai, location }: Props) {
     <div className="space-y-2">
       {delivery && <Notice tone={DELIVERY[delivery][0]}>{DELIVERY[delivery][1]}</Notice>}
       {location && <Notice tone={LOCATION[location][0]}>{LOCATION[location][1]}</Notice>}
-      {ai && <Notice tone={AI[ai][0]}>{AI[ai][1]}</Notice>}
+      {ai === "pending" && (
+        <Notice tone="info">
+          <WaveText text="🤖 Reading your report…" />
+        </Notice>
+      )}
+      {ai && ai !== "pending" && <Notice tone={AI[ai][0]}>{AI[ai][1]}</Notice>}
     </div>
   );
 }

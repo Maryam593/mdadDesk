@@ -4,6 +4,7 @@ import { useClaims } from "@/hooks/useClaims";
 import { tabsFor } from "@/lib/nav";
 import { Logo } from "./Logo";
 import { StatusBanners } from "./StatusBanners";
+import { Backdrop } from "./Backdrop";
 
 export function AppShell() {
   const { role, email } = useClaims();
@@ -12,6 +13,7 @@ export function AppShell() {
 
   return (
     <div className="flex min-h-dvh flex-col">
+      <Backdrop />
       <header className="sticky top-0 z-[1100] bg-ink shadow-lg">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
           <NavLink to="/">

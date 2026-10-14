@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Notice } from "@/components/ui/Notice";
 import { useClaims } from "@/hooks/useClaims";
 import { auth, isFirebaseConfigured } from "@/lib/firebase";
+import { Loader } from "@/components/ui/Loader";
 
 type StaffRole = "coordinator" | "agency";
 
@@ -21,7 +22,7 @@ export function RoleGate({ role, children }: { role: StaffRole; children: ReactN
   const claims = useClaims();
   const navigate = useNavigate();
   if (!isFirebaseConfigured) return <>{children}</>; // sample mode: no accounts needed
-  if (claims.loading) return <p className="text-sm text-slate-500">Loading…</p>;
+  if (claims.loading) return <Loader />;
   if (claims.role === role) return <>{children}</>;
 
   // Sign out (if needed) and open the login page, ready for the right account.

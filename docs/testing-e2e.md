@@ -31,7 +31,7 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E6 | Coordinator: Ambulance button | Shows "(busy)" and can't be pressed |
 | E7 | Device 3 / Incognito: login as fire → Agency page. Coordinator taps **Send Saddar Fire Station** | Agency screen turns red with siren, "HELP REQUESTED"; status page shows "Help requested" |
 | E8 | Agency taps **On the way** | Red screen closes; reporter: green splash "🚒🧯💧 Fire service on the way"; coordinator button says "on the way" |
-| E9 | Coordinator taps **Confirm resolved** | Status page shows "Closed"; map dot turns green |
+| E9 | Coordinator **holds** "Hold to confirm resolved" (~1 s; letting go early cancels) | Status page shows "Closed"; map dot turns green |
 | E10 | Coordinator: open the incident's timeline | Every step above is listed with a time |
 | E11 | Reporter phone: airplane mode → send an SOS → turn airplane mode off | First "SOS pending", then "SOS delivered" by itself |
 | E12 | Open the app with airplane mode on | The app still opens (offline) |
@@ -41,7 +41,7 @@ Each tester runs the cases below and fills the result table at the end. Takes ab
 | E17 | Login as coordinator | Lands on Coordinator; header shows only "🧭 Coordinator" + "👤 coordinator" (no Report / Agency tabs) |
 | E18 | Signed out | Header shows only "🆘 Report SOS" + "🔑 Staff login" |
 | E19 | Login as fire-saddar | Lands on the agency inbox; only "🚒 Agency inbox" tab |
-| E20 | Coordinator: Verify, then click the same spot again quickly | Nothing happens (no button there); case stays verified. "Not an emergency?" link asks Yes/Cancel before closing |
+| E20 | Coordinator: Verify, then click the same spot again quickly | Nothing happens (no button there); case stays verified. "Not an emergency? Hold to close…" only closes after a full press-and-hold |
 | E21 | Android: install from Chrome; iPhone: Safari → Share → Add to Home Screen | Red MadadDesk icon on the home screen; opens without address bar; opens in airplane mode |
 | E22 | iPhone, installed app: send an SOS | Works; note whether the chime plays (silent switch off) and whether notifications are offered |
 | E15 | Send an SOS that only says "help, something is wrong" | Nothing is guessed: floor, shop, people all **Unknown** |

@@ -1,7 +1,5 @@
-import { useState } from "react";
 import type { Incident, IncidentStatus } from "@shared";
-import { ActionButton } from "@/components/ui/ActionButton";
-import { Button } from "@/components/ui/Button";
+import { HoldButton } from "@/components/ui/HoldButton";
 
 interface Props {
   incident: Incident;
@@ -9,30 +7,19 @@ interface Props {
 }
 
 /**
- * Closing a verified incident WITHOUT sending help (false alarm). Small, at the bottom,
- * and asks "are you sure?" first: it used to sit where Verify was, so a double click closed cases.
+ * Closing a verified incident WITHOUT sending help (false alarm). Sits at the bottom and needs a
+ * press-and-hold, so a slip of the finger can't close a real emergency.
+ * Hidden once help has been sent.
  */
 export function CloseFalseAlarm({ incident, onSetStatus }: Props) {
-  const [asking, setAsking] = useState(false);
   if (incident.status !== "verified" || incident.notifiedAgencyIds.length > 0) return null;
 
-  if (!asking) {
-    return (
-      <button onClick={() => setAsking(true)} className="text-xs text-slate-500 underline hover:text-slate-700">
-        Not an emergency? Close without sending help
-      </button>
-    );
-  }
-
   return (
-    <div className="flex flex-wrap items-center gap-2 text-sm">
-      <span>Close this case? Nobody will be sent.</span>
-      <ActionButton variant="danger" onClick={() => onSetStatus(incident.id, "resolved")}>
-        Yes, close it
-      </ActionButton>
-      <Button variant="ghost" onClick={() => setAsking(false)}>
-        Cancel
-      </Button>
+    <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+      <span>Not an emergency?</span>
+      <HoldButton onConfirm={() => onSetStatus(incident.id, "resolved")}>
+        Hold to close without sending help
+      </HoldButton>
     </div>
   );
 }

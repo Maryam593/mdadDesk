@@ -120,3 +120,10 @@
   shadow → tap → springy 3D flip with a light sweep → red back with **Send SOS** / Cancel; small tilt
   toward the mouse. Built without shadcn/motion (60-line rule, bundle size). Trade-off: SOS is now two
   taps (prevents accidental sends). Tour + docs + tests updated (TOUR_VERSION 4).
+- **Kokonut-style UI** (owner picked "own small versions"): reusable `HoldButton`, `ParticleButton`,
+  `Loader`, `WaveText`, `Backdrop` (all ≤60 lines, CSS in `styles/effects.css`). Close/resolve now need
+  press-and-hold (replaces the Yes/Cancel step); "On the way" bursts sparks; loading states use the
+  rings; AI reading shows waving text; soft flowing-line background on every page.
+- **Login page redone** ("bht dumb hy"): navy brand panel (what the control room is, each role's job,
+  "In danger? Report an SOS →") + form card with demo-account chips (fill email only), show password,
+  friendly error messages, busy state; signed-in view has "Open my desk". Logic in `useStaffLogin`.

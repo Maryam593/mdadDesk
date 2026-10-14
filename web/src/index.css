@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./styles/effects.css";
 
 /* Brand colours and font, used everywhere as bg-brand, text-danger, font-sans, ... */
 @theme {

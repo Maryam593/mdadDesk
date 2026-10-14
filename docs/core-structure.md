@@ -35,14 +35,18 @@ web/               React + Vite + Tailwind v4 + PWA (vite-plugin-pwa)
                    geo.ts (phone GPS + Google Maps link), nav.ts (tabs per role + where each role lands)
   src/components/
     ui/            Button, ActionButton (busy + error), Card, Badge, Notice, TextField,
+                   HoldButton (press-and-hold to confirm), ParticleButton (spark burst),
+                   Loader (rings + waving label), WaveText (rippling letters),
                    Overlay (full-screen layer: danger / good / neutral), tone.ts
     layout/        AppShell (navy header + nav + footer), Logo (uses public/icon.svg), StatusBanners,
+                   Backdrop (soft flowing lines behind every page),
                    RoleGate (right account or a clear message)
     coordinator/   CoordinatorDesk (alerts + map + list + detail)
     incident/      FieldGrid, StatusBadge, IncidentList, IncidentDetail, IncidentActions, DispatchPanel, CloseFalseAlarm (confirmed close), Timeline,
                    LocationLine (GPS ± metres + "Open in Google Maps")
     track/         LiveStatus (live card, on report page + /track), HelpProgress (checklist),
                    HelpSplash (green good-news screen + chime), MyReports (links on the report page)
+    login/         LoginHero (navy brand panel), LoginForm (demo-account chips, show password)
     tour/          Tour (first-visit guide per page + "How it works" button; text in lib/tours.ts)
     agency/        AgencyInbox (requests for the signed-in agency), AssignmentCard (one request + "On the way")
     alert/         EmergencyAlert (red flashing screen + siren), NewSosAlert (coordinator),
@@ -98,6 +102,12 @@ Tabs are only convenience: the real protection is `firestore.rules` + `RoleGate`
   on the back (style of kokonutui "card flip", rebuilt small without extra libraries).
 
 - Credit line is only in README.md (`<!-- taggie -->` block, managed by the taggie CLI), not in the app.
+
+- Animations live in `web/src/styles/effects.css` (wave, rings, hold fill, sparks, flowing lines);
+  all switch off with "reduce motion". Inspired by Kokonut UI but rebuilt small (owner chose this over
+  installing the 150–230-line originals + motion/shadcn).
+- Where they are used: HoldButton → "Hold to confirm resolved", "Hold to close without sending help";
+  ParticleButton → agency "On the way"; Loader → every loading state; WaveText → "Reading your report…".
 
 ## Decisions
 - Map: Leaflet + OpenStreetMap instead of Google Maps (no billing). One demo building in

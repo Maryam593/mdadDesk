@@ -1,5 +1,5 @@
 import type { Assignment, Incident } from "@shared";
-import { ActionButton } from "@/components/ui/ActionButton";
+import { ParticleButton } from "@/components/ui/ParticleButton";
 import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { LocationLine } from "@/components/incident/LocationLine";
@@ -15,9 +15,9 @@ export function AssignmentCard({ assignment }: { assignment: Assignment }) {
 
   const canAccept = assignment.status === "notified" && incident.status !== "resolved";
   const action = canAccept ? (
-    <ActionButton variant="danger" onClick={() => markOnTheWay(assignment)}>
+    <ParticleButton variant="danger" onClick={() => markOnTheWay(assignment)}>
       On the way
-    </ActionButton>
+    </ParticleButton>
   ) : (
     <Badge tone="success">{assignment.status}</Badge>
   );

@@ -59,7 +59,7 @@ Use **two windows**: one browser window logs in as ONE person for all its tabs.
 4. In the red box "👇 Next: send help" → **Send Saddar Fire Station**. Point out Ambulance is "(busy)".
 5. **Agency (Incognito):** red screen + siren "HELP REQUESTED" → **On the way**.
    Reporter gets "🚒🧯💧 Fire service on the way".
-6. **Coordinator:** **Confirm resolved** → reporter sees "💚 Closed". Show the timeline.
+6. **Coordinator:** press and **hold** "Hold to confirm resolved" → reporter sees "💚 Closed". Show the timeline.
 7. Talking points: one-tap SOS works offline (sends when back online); AI never dispatches; each role
    sees only its own job; free stack (Firebase Spark + Gemini via Firebase AI Logic + OpenStreetMap).
 

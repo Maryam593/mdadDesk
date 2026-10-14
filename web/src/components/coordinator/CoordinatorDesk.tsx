@@ -6,6 +6,7 @@ import { IncidentDetail } from "@/components/incident/IncidentDetail";
 import { IncidentMap } from "@/components/map/IncidentMap";
 import { NewSosAlert } from "@/components/alert/NewSosAlert";
 import { useIncidents } from "@/hooks/useIncidents";
+import { Loader } from "@/components/ui/Loader";
 
 /** The coordinator's screen: alerts, map, incident list and the selected incident. */
 export function CoordinatorDesk() {
@@ -26,7 +27,7 @@ export function CoordinatorDesk() {
       <div className="grid gap-4 md:grid-cols-[320px_1fr]">
         <Card title={`Incidents (${data.length})`}>
           {loading ? (
-            <p className="text-sm text-slate-500">Loading…</p>
+            <Loader label="Loading incidents…" />
           ) : (
             <IncidentList incidents={data} selectedId={selectedId} onSelect={setSelectedId} />
           )}
