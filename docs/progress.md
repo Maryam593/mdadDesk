@@ -158,3 +158,5 @@
   permission question and warms up GPS. If blocked, it explains how to allow it. Hidden once granted.
 - README refreshed with the current app (how it works, features, offline fallback, layout, known AI
   issue) and a new `CONTRIBUTING.md` (setup, 60-line/DRY rules, trust rules, checks, docs, secrets).
+- Opened 6 "good first issue" tickets on GitHub (#1–#6): manual field edit, more eval reports,
+  remember "Not now" on the location banner, per-agency stations, offline SMS docs, accessibility pass.
