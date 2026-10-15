@@ -137,5 +137,5 @@ online without a paid server (see `docs/progress.md`).
 | Seed: "Could not load the default credentials" | Step 7.3/7.4: file name or `GOOGLE_APPLICATION_CREDENTIALS` path is wrong. |
 | Agency inbox says "sign in with an agency account" after signing in | Sign out and in again (roles are read at sign-in). |
 | Rules changed in a later update | Run `firebase deploy --only firestore:rules` again. |
-| "App Check token is invalid" / AI never answers | Step 9: site key saved in App Check? site key in `web\.env`? domain listed in reCAPTCHA? Restart dev server. |
+| "App Check token is invalid" / AI never answers | Step 9: site key saved in App Check? site key in `web\.env` **exactly the same** (whole key, not just the start)? domain listed in reCAPTCHA? Restart dev server. |
 | `firebase` is not recognized | Close and reopen the terminal after step 5. |

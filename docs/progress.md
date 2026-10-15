@@ -160,3 +160,5 @@
   issue) and a new `CONTRIBUTING.md` (setup, 60-line/DRY rules, trust rules, checks, docs, secrets).
 - Opened 6 "good first issue" tickets on GitHub (#1–#6): manual field edit, more eval reports,
   remember "Not now" on the location banner, per-agency stations, offline SMS docs, accessibility pass.
+- **AI fixed (15 Oct):** the App Check site key in `web/.env` did not match the key registered in App Check;
+  switched to the registered one and redeployed (details in bug-fix.md).
