@@ -156,3 +156,5 @@
 - **Location prompt on open** (owner: "jb app open ho to prompt aye map enable kro"): report page shows
   "Turn on location so rescuers can find you" until location is allowed; the button triggers the phone's
   permission question and warms up GPS. If blocked, it explains how to allow it. Hidden once granted.
+- README refreshed with the current app (how it works, features, offline fallback, layout, known AI
+  issue) and a new `CONTRIBUTING.md` (setup, 60-line/DRY rules, trust rules, checks, docs, secrets).

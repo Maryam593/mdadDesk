@@ -3,15 +3,36 @@
 ![MadadDesk: from a scattered SOS to help on the way](docs/assets/social-preview.png)
 
 From scattered distress messages to a verified emergency picture.
-AI-assisted SOS intake (English / Urdu / Roman Urdu), coordinator verification and simulated
-multi-agency response for building emergencies.
+A building-emergency SOS app: a person in trouble sends an SOS, a coordinator verifies it and sends
+Fire / Ambulance / Police, the agency taps "On the way", and the reporter sees every step live.
 
-> Prototype for drills and demos only — not a deployed emergency service.
+> Prototype for drills and demos only — not a deployed emergency service. In a real emergency call **1122**.
 
-**Live demo:** https://mdaddeskv1-6af42.web.app (staff demo logins are shared privately with judges/testers).
+**Live demo:** https://mdaddeskv1-6af42.web.app (installable as an app on Android and iPhone).
+Staff demo logins are shared privately with judges and testers.
 
 **New here?** Start with [docs/how-to-start.md](docs/how-to-start.md) (setup, accounts, demo script).
-AI agents: see [AGENTS.md](AGENTS.md).
+Want to help? Read [CONTRIBUTING.md](CONTRIBUTING.md). AI agents: see [AGENTS.md](AGENTS.md).
+
+## How it works
+1. **Reporter** (no login): opens the app, taps an SOS card (Fire, Medical, Trapped, …), flips it and
+   sends. Location is asked for when the page opens, so the SOS carries GPS at once.
+2. **AI** (Gemini) reads the free-text message (English / Urdu / Roman Urdu) and fills the incident
+   card. Anything not said stays "Unknown"; AI never invents details and never dispatches.
+3. **Coordinator** (Desk): sees new incidents on a map, verifies (or holds to close a false alarm),
+   then sends the right agencies.
+4. **Agency** (Inbox): a siren and a request appear next to a live globe; staff tap "On the way".
+5. **Reporter** sees each step (Received → Verified → Help sent → On the way) and a green
+   "Help is coming" screen.
+
+## Features
+- Role-based pages: public sees "Report SOS", coordinator sees "Desk", agency sees "Inbox"
+  (enforced in the app and in `firestore.rules`).
+- **No internet?** After 5 seconds without delivery the reporter gets "Send by SMS" (pre-written
+  with location) and "Call 1122 (free)".
+- Installable PWA, works on phones, guided tours on first visit, calm UI with lucide icons.
+- If AI fails, the SOS is still delivered; fields simply show "Unknown" for the coordinator to confirm.
+- Accuracy check: `npm run eval` scores the AI on 20 labeled reports (last run 92.6%, 0 invented values).
 
 ## Quick start (local)
 ```bash
@@ -19,39 +40,57 @@ npm install
 cp web/.env.example web/.env     # Firebase web config (see docs/firebase-setup.md)
 npm run dev                      # web on http://localhost:5173
 ```
-Gemini runs through **Firebase AI Logic** (free Spark plan), so no server is needed.
-`api/` is only for the accuracy eval: put `GEMINI_API_KEY` in `api/.env`, then `npm run eval`.
-
-## Firebase setup (free, no card)
-Follow **[docs/firebase-setup.md](docs/firebase-setup.md)** step by step.
+Gemini runs through **Firebase AI Logic** (free Spark plan, protected by App Check), so no server is needed.
+`api/` only holds scripts (eval, seed, checks): they read `api/.env` (see `api/.env.example`).
 
 ## Deploy
 ```bash
 npm run build -w web && firebase deploy --only hosting,firestore:rules
 ```
-Test links for teammates, rollback and checks: **[docs/deployment.md](docs/deployment.md)**.
+The footer shows the build time (`Version … UTC`) so you can see which version a phone runs.
+Test links, rollback and checks: **[docs/deployment.md](docs/deployment.md)**.
 
 ## Scripts
 | Command | What |
 |---|---|
 | `npm run dev` | web app with reload |
 | `npm run typecheck` | both workspaces |
-| `npm run eval` | extraction accuracy on `data/synthetic-reports.json` |
-| `npm run seed -w api` | demo accounts + agencies |
+| `npm run build -w web` | production build into `web/dist` |
+| `npm run eval` | AI extraction accuracy on `data/synthetic-reports.json` |
+| `npm run seed -w api` | demo accounts + agencies (needs `DEMO_PASSWORD` in `api/.env`) |
 | `npm run check-firebase-ai -w api` | does Gemini answer through Firebase? |
 
+## Project layout
+```
+web/      React PWA (pages, components, hooks, services = all Firestore writes)
+shared/   types + AI prompts, schemas and fallback, used by web and api
+api/      scripts only: eval, seed, checks
+data/     labeled synthetic reports for the eval
+docs/     product, structure, progress, bugs, testing, deployment
+```
+Details: [docs/core-structure.md](docs/core-structure.md).
+
 ## Docs
-- [docs/prd.md](docs/prd.md) — scope, users, trust rules, demo script
+- [docs/how-to-start.md](docs/how-to-start.md) — run it, accounts, demo script, phone install
+- [docs/prd.md](docs/prd.md) — scope, users, trust rules, no-internet roadmap
 - [docs/core-structure.md](docs/core-structure.md) — folders, data model, code rules
 - [docs/progress.md](docs/progress.md) — daily log
-- [docs/bug-fix.md](docs/bug-fix.md) — bugs and fixes
-- [docs/firebase-setup.md](docs/firebase-setup.md) — create the Firebase project (done for `mdaddeskv1-6af42`)
-- [docs/deployment.md](docs/deployment.md) — put it online, test links for teammates
-- [docs/testing-e2e.md](docs/testing-e2e.md) — step-by-step test checklist for the team
+- [docs/bug-fix.md](docs/bug-fix.md) — bugs and fixes (newest on top)
+- [docs/firebase-setup.md](docs/firebase-setup.md) — create the Firebase project
+- [docs/deployment.md](docs/deployment.md) — put it online, test links
+- [docs/testing-e2e.md](docs/testing-e2e.md) — step-by-step test checklist
 - [docs/testing-user.md](docs/testing-user.md) — testing with real people
 
 ## Stack
-React + TypeScript + Vite + Tailwind (PWA) · Firebase Hosting · Firestore · Firebase Auth · Gemini via Firebase AI Logic · Leaflet + OpenStreetMap
+React 19 + TypeScript + Vite + Tailwind v4 (PWA) · Firebase Hosting, Firestore, Auth, App Check ·
+Gemini via Firebase AI Logic · Leaflet + OpenStreetMap · cobe globe · lucide-react icons
+
+## Known issues
+- AI extraction currently fails on the live site (App Check key setup); SOS reports still arrive and
+  the full help loop works, but card fields show "Unknown". Tracked in [docs/bug-fix.md](docs/bug-fix.md).
+
+## Contributing
+Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 [MIT](LICENSE) © 2026 Maryam Saba
