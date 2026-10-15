@@ -56,13 +56,20 @@ browser error is still needed.
 **Next:** F12 → Console → "[ai] failed: …" message (logging added in `submitSteps.ts`). If it is App Check:
 create a real reCAPTCHA Enterprise key in Google Cloud console (Security → reCAPTCHA) and register that.
 The SOS itself is always delivered; only the automatic reading is missing.
-**Real cause (15 Oct):** read the App Check config with the service account (App Check API works, unlike
-IAM/reCAPTCHA): the site key **registered in App Check** is `…GQPg…`, but `web/.env` had a different key
-`…MprI…` (both start `6Lf5DO8t`, so they looked the same). Tokens made with the wrong key are rejected.
-App Check is ENFORCED only for AI Logic (`firebaseml`), not Firestore/Auth, which is why only AI broke.
-**Fix:** `VITE_RECAPTCHA_SITE_KEY` in `web/.env` = the registered key; rebuilt and redeployed (key checked
-inside the built JS). **Check:** send an SOS on the live site → Firestore `aiStatus: "done"` and filled fields.
-**Tip:** compare the WHOLE key, not the start: App Check → Apps → reCAPTCHA Enterprise → site key.
+**Real cause (15 Oct):** read the App Check config with the service account: the key saved in App Check
+(reCAPTCHA Enterprise provider) is NOT a site key. Google's reCAPTCHA answers "Invalid site key" for it,
+so it is almost surely the **secret key** of the classic pair (site and secret keys start with the same
+letters). The app sends tokens made with the real site key, App Check checks them against the wrong key,
+and rejects every AI call. App Check is ENFORCED only for AI Logic (`firebaseml`), not Firestore/Auth,
+which is why only AI broke.
+**Mistake on the way:** `web/.env` was briefly switched to that key and deployed (~1 h), then switched back
+to the real site key and redeployed. The key was never committed. Treat it as exposed: replace it.
+**Fix (owner, console):** Google Cloud console → Security → reCAPTCHA → Create key (Website, score-based,
+domains `mdaddeskv1-6af42.web.app`, `mdaddeskv1-6af42.firebaseapp.com`, `localhost`) → copy its **key ID**
+→ Firebase App Check → Apps → reCAPTCHA Enterprise → paste → Save; put the same ID in `web/.env`, rebuild,
+deploy. Changing App Check from the terminal was blocked (security setting), so the owner does it.
+**Check:** send an SOS on the live site → Firestore `aiStatus: "ok"` and filled fields.
+**Tip:** App Check needs the SITE key (key ID), never the secret key. Compare the whole key.
 
 ## 2026-10-14 — Install option missing on a Realme phone (Samsung fine) → just needed a short wait
 **Symptom:** on Android Chrome (Realme) no install popup / install did nothing; on Samsung it installed.
