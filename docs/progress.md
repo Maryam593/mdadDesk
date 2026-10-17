@@ -164,3 +164,4 @@
   AI call is rejected. Owner replaces it with a new site key in the console (steps in bug-fix.md).
 - Demo video script + shot list (2 min) in `docs/demo-video.md`.
 - Demo video assembled with ffmpeg from the owner's recordings (1:42, 1080p, captions per step); file kept outside the repo (Downloads/mdadDesk-Demo/MadadDesk-demo.mp4).
+- Submission deck filled from the AI Builder Cup template (14 slides; eval rerun 17 Oct: 92%, 0 invented, 0/20 failures). File kept outside the repo (Downloads).
