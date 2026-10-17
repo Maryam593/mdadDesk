@@ -162,3 +162,4 @@
   remember "Not now" on the location banner, per-agency stations, offline SMS docs, accessibility pass.
 - **AI cause found (15 Oct):** App Check holds the reCAPTCHA *secret* key instead of the site key, so every
   AI call is rejected. Owner replaces it with a new site key in the console (steps in bug-fix.md).
+- Demo video script + shot list (2 min) in `docs/demo-video.md`.
