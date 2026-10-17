@@ -163,3 +163,4 @@
 - **AI cause found (15 Oct):** App Check holds the reCAPTCHA *secret* key instead of the site key, so every
   AI call is rejected. Owner replaces it with a new site key in the console (steps in bug-fix.md).
 - Demo video script + shot list (2 min) in `docs/demo-video.md`.
+- Demo video assembled with ffmpeg from the owner's recordings (1:42, 1080p, captions per step); file kept outside the repo (Downloads/mdadDesk-Demo/MadadDesk-demo.mp4).
