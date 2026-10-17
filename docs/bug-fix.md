@@ -68,7 +68,9 @@ to the real site key and redeployed. The key was never committed. Treat it as ex
 domains `mdaddeskv1-6af42.web.app`, `mdaddeskv1-6af42.firebaseapp.com`, `localhost`) → copy its **key ID**
 → Firebase App Check → Apps → reCAPTCHA Enterprise → paste → Save; put the same ID in `web/.env`, rebuild,
 deploy. Changing App Check from the terminal was blocked (security setting), so the owner does it.
-**Check:** send an SOS on the live site → Firestore `aiStatus: "ok"` and filled fields.
+**Done (18 Oct):** at the owner's request the App Check Enterprise site key was set back to the real public
+site key (the one in `web/.env`) via the App Check API. **Check:** send an SOS on the live site → Firestore
+`aiStatus: "ok"` and filled fields.
 **Tip:** App Check needs the SITE key (key ID), never the secret key. Compare the whole key.
 
 ## 2026-10-14 — Install option missing on a Realme phone (Samsung fine) → just needed a short wait
